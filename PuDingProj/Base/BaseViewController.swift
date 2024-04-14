@@ -13,15 +13,22 @@ class BaseViewController: UIViewController {
 
     let disposeBag = DisposeBag()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         bind()
     }
+   
     
     func bind() {
         
     }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
     
     @available (*, unavailable)
     required init?(coder: NSCoder) {

@@ -24,22 +24,22 @@ final class LoginView: BaseView {
     override func configureViewLayout() {
         self.addSubviews([nicknameTextField, emailTextField, passwordTextField, phoneNumTextField, button])
         nicknameTextField.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(10)
+            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(40)
             make.top.equalTo(self.safeAreaLayoutGuide).offset(20)
         }
         emailTextField.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(10)
+            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(40)
             make.top.equalTo(nicknameTextField.snp.bottom).offset(20)
         }
         passwordTextField.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(10)
+            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(40)
             make.top.equalTo(emailTextField.snp.bottom).offset(20)
         }
         phoneNumTextField.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(10)
+            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(40)
             make.top.equalTo(passwordTextField.snp.bottom).offset(20)
         }
