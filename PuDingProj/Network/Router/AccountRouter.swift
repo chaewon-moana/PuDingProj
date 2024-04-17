@@ -8,18 +8,18 @@
 import Foundation
 import Alamofire
 
-enum Router {
+enum AccountRouter {
     case join(query: JoinQuery)
     case emailValidation(email: emailQuery)
     case login(query: LoginQuery)
 }
 
-enum Model {
+enum AccountModel {
     case join(model: JoinModel)
     case login(model: LoginModel)
 }
 
-extension Router: TargetType {
+extension AccountRouter: TargetType {
     var baseURL: String {
         return APIKey.baseURL.rawValue
     }

@@ -56,7 +56,7 @@ final class JoinViewModel {
             .withLatestFrom(emailObservable)
             .flatMap { value in
                 print(value, "여기는 되는데,,,")
-                return NetworkManager.requestNetwork(router: Router.emailValidation(email: value), modelType: emailValidationModel.self)
+                return NetworkManager.requestNetwork(router: AccountRouter.emailValidation(email: value), modelType: emailValidationModel.self)
                 //return NetworkManager.checkEmailValidation(email: value)
             }
             .subscribe(with: self) { owner, emailModel in

@@ -40,7 +40,7 @@ final class LoginViewModel {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(loginObservable)
             .flatMap { query in
-                return NetworkManager.requestNetwork(router: Router.login(query: query), modelType: LoginModel.self)
+                return NetworkManager.requestNetwork(router: AccountRouter.login(query: query), modelType: LoginModel.self)
             }
             .subscribe { model in
                 print("로그인서엉고옹")
