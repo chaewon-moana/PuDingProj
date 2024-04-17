@@ -14,3 +14,12 @@ struct JoinQuery: Encodable {
     let phoneNum: String
     //let birthDay: String?
 }
+
+struct emailQuery: Encodable {
+    let email: String
+}
+
+struct LoginQuery: Encodable {
+    let email: String
+    let password: String
+}

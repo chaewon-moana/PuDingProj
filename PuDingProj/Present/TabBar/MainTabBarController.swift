@@ -14,13 +14,16 @@ final class MainTabBarController: UITabBarController {
 
         let vc1 = LoginViewController()
         let vc2 = MyInfoViewController()
+        let vc3 = JoinViewController()
     
         vc1.tabBarItem.image = UIImage(systemName: "calendar")
         vc2.tabBarItem.image = UIImage(systemName: "person")
+        vc3.tabBarItem.image = UIImage(systemName: "star")
         
         let nav1 = UINavigationController(rootViewController: vc1)
         let nav2 = UINavigationController(rootViewController: vc2)
+        let nav3 = UINavigationController(rootViewController: vc3)
         
-        setViewControllers([nav1, nav2], animated: true)
+        setViewControllers([nav1, nav2, nav3], animated: true)
     }
 }
