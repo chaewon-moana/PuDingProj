@@ -49,9 +49,9 @@ final class RegistPostViewController: BaseViewController {
                                               contentText: mainView.contentTextView.rx.text.orEmpty.asObservable(),
                                               addPostButtonTapped: mainView.addPostButton.rx.tap.asObservable(),
                                               addImageButtonTapped: mainView.addImageButton.rx.tap.asObservable(),
-                                              imageList: BehaviorRelay(value: imageList)
+        imageList: BehaviorRelay(value: imageList))
     
-        )
+        
         
         let output = viewModel.transform(input: input)
         
@@ -85,10 +85,13 @@ extension RegistPostViewController: PHPickerViewControllerDelegate {
                    //self.mainView.testImageView.image = image
                     let data = image?.jpegData(compressionQuality: 0.5)
                     self.imageList.append(data)
+                    //self.viewModel.imageList.accept(self.imageList)
                     print(self.imageList, "imageList 확인")
+                    self.viewModel.updateImageList(value: self.imageList)
                 }
             }
         }
+        
 //        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
 //            itemProvider.loadObject(ofClass: UIImage.self) { photo, error in
 //                DispatchQueue.main.async { [self] in

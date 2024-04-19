@@ -16,5 +16,6 @@ struct RegisterPostQuery: Encodable {
 
 //MARK: 이미지 업로드
 struct UploadPostImageFilesQuery: Encodable {
-    let files: [Data]
+    let files: [Data?]
 }
+
