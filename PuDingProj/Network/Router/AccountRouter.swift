@@ -14,10 +14,10 @@ enum AccountRouter {
     case login(query: LoginQuery)
 }
 
-enum AccountModel {
-    case join(model: JoinModel)
-    case login(model: LoginModel)
-}
+//enum AccountModel {
+//    case join(model: JoinModel)
+//    case login(model: LoginModel)
+//}
 
 extension AccountRouter: TargetType {
     var baseURL: String {

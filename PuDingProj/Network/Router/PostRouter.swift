@@ -11,6 +11,7 @@ import Alamofire
 enum PostRouter {
     case registerPost(query: RegisterPostQuery)
     case inqueryPost
+    case uploadImage
 }
 
 enum PostModel {
@@ -28,6 +29,8 @@ extension PostRouter: TargetType {
             return .post
         case .inqueryPost:
             return .get
+        case .uploadImage:
+            return .post
         }
     }
     
@@ -37,6 +40,8 @@ extension PostRouter: TargetType {
             return "posts"
         case .inqueryPost:
             return "posts"
+        case .uploadImage:
+            return "posts/files"
         }
     }
     
@@ -45,12 +50,14 @@ extension PostRouter: TargetType {
         case .registerPost:
             return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
                     HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
-                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue
-            ]
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .inqueryPost:
             return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
-                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue
-            ]
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .uploadImage:
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+                    HTTPHeader.contentType.rawValue: HTTPHeader.multipart.rawValue,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
@@ -59,6 +66,8 @@ extension PostRouter: TargetType {
         case .registerPost:
             return nil
         case .inqueryPost:
+            return nil
+        case .uploadImage:
             return nil
         }
     }
@@ -69,6 +78,8 @@ extension PostRouter: TargetType {
             return nil
         case .inqueryPost:
             return [URLQueryItem(name: "product_id", value: "puding-moana22")]
+        case .uploadImage:
+            return nil
         }
     }
     
@@ -78,6 +89,8 @@ extension PostRouter: TargetType {
             let encoder = JSONEncoder()
             return try? encoder.encode(query)
         case .inqueryPost:
+            return nil
+        case .uploadImage:
             return nil
         }
     }

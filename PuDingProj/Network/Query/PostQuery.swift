@@ -14,6 +14,7 @@ struct RegisterPostQuery: Encodable {
     let product_id: String
 }
 
-//struct InquiryPostQuery: Encodable {
-//    let product_id: String
-//}
+//MARK: 이미지 업로드
+struct UploadPostImageFilesQuery: Encodable {
+    let files: [Data]
+}

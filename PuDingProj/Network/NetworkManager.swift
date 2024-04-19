@@ -106,8 +106,7 @@ struct NetworkManager {
                 return Disposables.create()
             }
         }
-        
-    
+
     static func requestPostNetwork<Model: Decodable>(router: PostRouter, modelType: Model.Type) -> Single<Model> {
         return Single<Model>.create { single in
             do {
@@ -131,6 +130,63 @@ struct NetworkManager {
             return Disposables.create()
         }
     }
+    
+    
+    static func requestUploadImage(query: MultipartFormData) -> Single<UploadPostImageFilesModel> {
+           return Single<UploadPostImageFilesModel>.create { single in
+               do {
+                   let urlRequest = try PostRouter.uploadImage.asURLRequest()
+                   print("됐,,나,,?")
+                   AF.upload(multipartFormData: query, to: urlRequest.url!, headers: urlRequest.headers)
+                       .validate(statusCode: 200..<300)
+                       .responseDecodable(of: UploadPostImageFilesModel.self) { response in
+                           print(response, "이미지 올린것 확인")
+                           switch response.result {
+                           case .success(let value):
+                               print(value, "이미지 올린것222 성공")
+                               single(.success(value))
+                           case .failure(let error):
+                               print(response.response?.statusCode, "이미지 올린 것333 실패")
+                               single(.failure(error))
+                           }
+                       }
+               } catch {
+                   single(.failure(error))
+               }
+               return Disposables.create()
+           }
+       }
+    
+//    static func requestUploadImage(query: UploadPostImageFilesQuery) -> Single<UploadPostImageFilesModel> {
+//           return Single<UploadPostImageFilesModel>.create { single in
+//               do {
+//                   let urlRequest = try PostRouter.uploadImage(query: query).asURLRequest()
+//                   print("됐,,나,,?")
+//                   AF.upload(multipartFormData: { multipartFormData in
+//                       multipartFormData.append(query.files[0],
+//                                                withName: "files",
+//                                                fileName: "임시테스트dddd.jpg",
+//                                                mimeType: "image/jpg")
+//                   }, to: urlRequest.url!, headers: urlRequest.headers)
+//                       .validate(statusCode: 200..<300)
+//                       .responseDecodable(of: UploadPostImageFilesModel.self) { response in
+//                           print(response, "이미지 올린것 확인")
+//                           switch response.result {
+//                           case .success(let value):
+//                               print(value, "이미지 올린것222 성공")
+//                               single(.success(value))
+//                           case .failure(let error):
+//                               print(response.response?.statusCode, "이미지 올린 것333 실패")
+//                               single(.failure(error))
+//                           }
+//                       }
+//               } catch {
+//                   single(.failure(error))
+//               }
+//               return Disposables.create()
+//           }
+//       }
+    
     
 //    static func loginUser(query: LoginQuery) -> Single<LoginModel> {
 //        return Single<LoginModel>.create { single in

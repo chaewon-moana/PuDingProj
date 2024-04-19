@@ -43,6 +43,7 @@
 		DE8B8F372BD110D900AA5A53 /* RegistPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F362BD110D900AA5A53 /* RegistPostViewController.swift */; };
 		DE8B8F392BD110E500AA5A53 /* RegistPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F382BD110E500AA5A53 /* RegistPostViewModel.swift */; };
 		DE8B8F3B2BD110EE00AA5A53 /* RegistPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F3A2BD110EE00AA5A53 /* RegistPostView.swift */; };
+		DE8B8F5A2BD2408400AA5A53 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F592BD2408400AA5A53 /* ImageFileManager.swift */; };
 		DE9CEC102BC646BB00360192 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */; };
 		DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC112BC646BB00360192 /* SceneDelegate.swift */; };
 		DE9CEC142BC646BB00360192 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC132BC646BB00360192 /* ViewController.swift */; };
@@ -84,6 +85,7 @@
 		DE8B8F362BD110D900AA5A53 /* RegistPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistPostViewController.swift; sourceTree = "<group>"; };
 		DE8B8F382BD110E500AA5A53 /* RegistPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistPostViewModel.swift; sourceTree = "<group>"; };
 		DE8B8F3A2BD110EE00AA5A53 /* RegistPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistPostView.swift; sourceTree = "<group>"; };
+		DE8B8F592BD2408400AA5A53 /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 		DE9CEC0C2BC646BB00360192 /* PuDingProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuDingProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9CEC112BC646BB00360192 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -306,6 +308,14 @@
 			path = RegistPostView;
 			sourceTree = "<group>";
 		};
+		DE8B8F582BD2407900AA5A53 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				DE8B8F592BD2408400AA5A53 /* ImageFileManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		DE9CEC032BC646BB00360192 = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +336,7 @@
 		DE9CEC0E2BC646BB00360192 /* PuDingProj */ = {
 			isa = PBXGroup;
 			children = (
+				DE8B8F582BD2407900AA5A53 /* Manager */,
 				DE8B8EB32BC7CE3E00AA5A53 /* CustomView */,
 				DE8B8E8C2BC76EE000AA5A53 /* Extension */,
 				DE8B8E8B2BC76EDC00AA5A53 /* Base */,
@@ -448,6 +459,7 @@
 				DE8B8EC42BCABA1500AA5A53 /* MyInfoView.swift in Sources */,
 				DE9CEC102BC646BB00360192 /* AppDelegate.swift in Sources */,
 				DE8B8F152BCFA1B200AA5A53 /* CommunitiyViewController.swift in Sources */,
+				DE8B8F5A2BD2408400AA5A53 /* ImageFileManager.swift in Sources */,
 				DE8B8EC62BCABA1D00AA5A53 /* MyInfoViewModel.swift in Sources */,
 				DE8B8EBB2BC7E1D700AA5A53 /* JoinModel.swift in Sources */,
 				DE8B8F372BD110D900AA5A53 /* RegistPostViewController.swift in Sources */,

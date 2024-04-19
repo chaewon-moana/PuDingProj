@@ -56,3 +56,12 @@ struct PostCreatorInfo: Decodable {
     let nick: String
     let profileImage: String?
 }
+
+//MARK: 이미지 업로드
+struct UploadPostImageFilesModel: Decodable {
+    let files: [String]
+}
+
+
+
+
