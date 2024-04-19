@@ -68,7 +68,7 @@ extension PostRouter: TargetType {
         case .registerPost:
             return nil
         case .inqueryPost:
-            return nil
+            return [URLQueryItem(name: "product_id", value: "puding-moana22")]
         }
     }
     
@@ -78,10 +78,7 @@ extension PostRouter: TargetType {
             let encoder = JSONEncoder()
             return try? encoder.encode(query)
         case .inqueryPost:
-            let encoder = JSONEncoder()
             return nil
         }
     }
-    
-    
 }

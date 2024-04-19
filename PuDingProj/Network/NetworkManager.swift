@@ -87,15 +87,16 @@ struct NetworkManager {
             return Single<inqueryUppperPostModel>.create { single in
                 do {
                     let urlRequest = try PostRouter.inqueryPost.asURLRequest()
+                    print(urlRequest)
                     AF.request(urlRequest)
-                       // .validate(statusCode: 200..<300)
+                        .validate(statusCode: 200..<300)
                         .responseDecodable(of: inqueryUppperPostModel.self) { response in
                             switch response.result {
                             case .success(let value):
                                 print(value, "포스트 조회 성공 ------")
                                 single(.success(value))
                             case .failure(let error):
-                                print(response.response?.statusCode)
+                                print(response.response?.statusCode, #function, "실패애", error)
                                 single(.failure(error))
                             }
                         }
@@ -107,29 +108,29 @@ struct NetworkManager {
         }
         
     
-//    static func requestPostNetwork<Model: Decodable>(router: PostRouter, modelType: Model.Type) -> Single<Model> {
-//        return Single<Model>.create { single in
-//            do {
-//                let urlRequest = try router.asURLRequest()
-//                AF.request(urlRequest)
-//                    .validate(statusCode: 200..<300)
-//                    .responseDecodable(of: Model.self) { response in
-//                        print(response)
-//                        switch response.result {
-//                        case .success(let value):
-//                            print(value, "router 서엉고옹")
-//                            single(.success(value))
-//                        case .failure(let error):
-//                            print(response.response?.statusCode, "router - post - 에러발생")
-//                            single(.failure(error))
-//                        }
-//                    }
-//            } catch {
-//                single(.failure(error))
-//            }
-//            return Disposables.create()
-//        }
-//    }
+    static func requestPostNetwork<Model: Decodable>(router: PostRouter, modelType: Model.Type) -> Single<Model> {
+        return Single<Model>.create { single in
+            do {
+                let urlRequest = try router.asURLRequest()
+                AF.request(urlRequest)
+                    .validate(statusCode: 200..<300)
+                    .responseDecodable(of: Model.self) { response in
+                        print(response)
+                        switch response.result {
+                        case .success(let value):
+                            print(value, "router 서엉고옹")
+                            single(.success(value))
+                        case .failure(let error):
+                            print(response.response?.statusCode, "router - post - 에러발생")
+                            single(.failure(error))
+                        }
+                    }
+            } catch {
+                single(.failure(error))
+            }
+            return Disposables.create()
+        }
+    }
     
 //    static func loginUser(query: LoginQuery) -> Single<LoginModel> {
 //        return Single<LoginModel>.create { single in

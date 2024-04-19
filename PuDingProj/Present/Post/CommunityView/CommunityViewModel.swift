@@ -23,14 +23,14 @@ final class CommunityViewModel {
     
     func transform(input: Input) -> Output {
         let result = PublishRelay<inqueryUppperPostModel>()
-        
-        let inquery = Observable.just("puding-moana22")//product_id
-            .map { value in
-                return InquiryPostQuery(product_id: value)
-            }
-        
+//        
+//        let inquery = Observable.just("puding-moana22")//product_id
+//            .map { value in
+//                return InquiryPostQuery(product_id: value)
+//            }
+//        
         input.inputTrigger
-            .withLatestFrom(inquery)
+            //.withLatestFrom(inquery)
             .flatMap { value in
                 return NetworkManager.requestPostText()
             }

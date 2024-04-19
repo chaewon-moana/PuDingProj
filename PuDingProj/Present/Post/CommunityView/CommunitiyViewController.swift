@@ -20,24 +20,40 @@ final class CommunitiyViewController: BaseViewController {
 //        RegisterPost(post_id: "123", product_id: "productId", title: "하이2342342하이", content: "냉무", content1: "분류", createdAt: "2022.22.22", creator: CreatorInfo(user_id: "4", nick: "덴", prifileImage: nil))
 //    ]
     
-    var list: [inqueryPostModel] = []
-    
+    let textField: UISearchBar = {
+        let view = UISearchBar()
+        view.placeholder = "텍스트필드 여기있따아아"
+        return view
+    }()
+    var list: [inqueryPostModel] = [] {
+        didSet {
+            mainView.collectionView.reloadData()
+        }
+    }
+    var inputTrigger: () = ()
     override func loadView() {
         view = mainView
 
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        inputTrigger = ()
+        print("input trigger 발동")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
         mainView.collectionView.register(CommunityCollectionViewCell.self, forCellWithReuseIdentifier: "CommunityCollectionViewCell")
+        navigationItem.titleView = textField
         
     }
     
     override func bind() {
-        let input = CommunityViewModel.Input(inputTrigger: Observable.just(()))
+        let inputTriggerObservable = Observable.just(inputTrigger)
+        
+        let input = CommunityViewModel.Input(inputTrigger: inputTriggerObservable)
         
         let output = viewModel.transform(input: input)
         
@@ -59,16 +75,9 @@ extension CommunitiyViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CommunityCollectionViewCell", for: indexPath) as! CommunityCollectionViewCell
-        
         let item = list[indexPath.item]
-        
         cell.backgroundColor = .green
-        cell.categoryLabel.text = item.post_id
-        cell.contentLabel.text = item.content
-        cell.nicknameLabel.text = item.content1
-        cell.titleLabel.text = item.title
-        cell.registerDate.text = item.creator.nick
-        
+        cell.updateUI(item: item)
         return cell
     }
 }
