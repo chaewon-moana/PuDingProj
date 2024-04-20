@@ -14,7 +14,7 @@ final class MainTabBarController: UITabBarController {
 
         let vc1 = LoginViewController()
         let vc2 = CommunitiyViewController()
-        let vc3 = RegistPostViewController()
+        let vc3 = PostDetailViewController()
     
         vc1.tabBarItem.image = UIImage(systemName: "calendar")
         vc2.tabBarItem.image = UIImage(systemName: "person")

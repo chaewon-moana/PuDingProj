@@ -17,16 +17,19 @@ final class CommunityViewModel {
         let inputTrigger: Observable<Void>
         let searchText: Observable<String>
         let searchButtonTapped: Observable<Void>
+        let postSelected: ControlEvent<inqueryPostModel>
     }
     
     struct Output {
         let inqueryResult: Observable<inqueryUppperPostModel>
         let specificPost: Observable<inqueryPostModel>
+        let moveToDetail: Observable<inqueryPostModel>
     }
     
     func transform(input: Input) -> Output {
         let result = PublishRelay<inqueryUppperPostModel>()
         let specificResult = PublishRelay<inqueryPostModel>()
+        let moveToDetail = PublishRelay<inqueryPostModel>()
         
         input.searchButtonTapped
             .withLatestFrom(input.searchText)
@@ -42,6 +45,12 @@ final class CommunityViewModel {
             }
             .disposed(by: disposeBag)
 
+        input.postSelected
+            .subscribe(with: self) { owner, model in
+                print(model, "포스트 모 델 선택되긴 함")
+                moveToDetail.accept(model)
+            }
+            .disposed(by: disposeBag)
         
         input.searchText
             .subscribe { value in
@@ -61,6 +70,8 @@ final class CommunityViewModel {
             }
             .disposed(by: disposeBag)
         
-        return Output(inqueryResult: result.asObservable(), specificPost: specificResult.asObservable())
+        return Output(inqueryResult: result.asObservable(), specificPost: specificResult.asObservable(),
+                      moveToDetail: moveToDetail.asObservable()
+        )
     }
 }

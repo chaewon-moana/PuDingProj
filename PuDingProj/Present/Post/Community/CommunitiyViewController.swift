@@ -18,11 +18,8 @@ final class CommunitiyViewController: BaseViewController {
         view.placeholder = "텍스트필드 여기있따아아"
         return view
     }()
-    var list: [inqueryPostModel] = [] {
-        didSet {
-            mainView.collectionView.reloadData()
-        }
-    }
+    var list: [inqueryPostModel] = []
+    var postList = PublishRelay<[inqueryPostModel]>()
     var inputTrigger: () = ()
     override func loadView() {
         view = mainView
@@ -36,19 +33,24 @@ final class CommunitiyViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        mainView.collectionView.delegate = self
-        mainView.collectionView.dataSource = self
         mainView.collectionView.register(CommunityCollectionViewCell.self, forCellWithReuseIdentifier: "CommunityCollectionViewCell")
         navigationItem.titleView = textField
-        
+        postList
+            .bind(to: mainView.collectionView.rx.items(cellIdentifier: "CommunityCollectionViewCell", cellType: CommunityCollectionViewCell.self)) { (index, item, cell) in
+                cell.backgroundColor = .green
+                cell.updateUI(item: item)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func bind() {
         let inputTriggerObservable = Observable.just(inputTrigger)
         
+        
         let input = CommunityViewModel.Input(inputTrigger: inputTriggerObservable,
                                              searchText: textField.rx.text.orEmpty.asObservable(),
-                                             searchButtonTapped: textField.rx.searchButtonClicked.asObservable()
+                                             searchButtonTapped: textField.rx.searchButtonClicked.asObservable(),
+                                             postSelected: mainView.collectionView.rx.modelSelected(inqueryPostModel.self)
         )
         
         let output = viewModel.transform(input: input)
@@ -56,6 +58,7 @@ final class CommunitiyViewController: BaseViewController {
         output.inqueryResult
             .subscribe(with: self) { owner, model in
                 owner.list = model.data
+                owner.postList.accept(model.data)
                 owner.mainView.collectionView.reloadData()
             }
             .disposed(by: disposeBag)
@@ -66,22 +69,13 @@ final class CommunitiyViewController: BaseViewController {
                 owner.mainView.collectionView.reloadData()
             }
             .disposed(by: disposeBag)
-    }
-    
-}
-
-
-extension CommunitiyViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return list.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CommunityCollectionViewCell", for: indexPath) as! CommunityCollectionViewCell
-        let item = list[indexPath.item]
-        cell.backgroundColor = .green
-        cell.updateUI(item: item)
-        return cell
+        
+        output.moveToDetail
+            .subscribe(with: self) { owner, model in
+                let vc = PostDetailViewController()
+                vc.item = model
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }
-
