@@ -25,14 +25,17 @@ final class PostDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .white
         navigationItem.leftBarButtonItem = backButton
     }
     
     override func bind() {
         let input = PostDetailViewModel.Input(postItem: Observable.of(item!),
-                                              backButtonTapped: backButton.rx.tap.asObservable())
+                                              backButtonTapped: backButton.rx.tap.asObservable(),
+                                              commentSendButtonTapped: mainView.commentSendButton.rx.tap.asObservable(),
+                                              commentText: mainView.commentTextView.rx.text.orEmpty.asObservable()
+        )
         
         let output = viewModel.transform(input: input)
         

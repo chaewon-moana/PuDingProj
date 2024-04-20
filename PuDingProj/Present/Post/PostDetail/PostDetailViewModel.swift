@@ -16,6 +16,8 @@ final class PostDetailViewModel {
     struct Input {
         let postItem: Observable<inqueryPostModel>
         let backButtonTapped: Observable<Void>
+        let commentSendButtonTapped: Observable<Void>
+        let commentText: Observable<String>
     }
     
     struct Output {
@@ -24,10 +26,23 @@ final class PostDetailViewModel {
     }
     
     func transform(input: Input) -> Output {
-        
+    
+        input.commentSendButtonTapped
+            .withLatestFrom(input.commentText)
+            .flatMap { value in
+                print("버튼 눌림")
+                let item = writeCommentQuery(content: value)
+                return NetworkManager.requestCommentNetwork(router: CommentRouter.writeComment(parameter: item, id: "662203e7438b876b25f7d3c5"), modelType: WriteCommentModel.self)
+            }
+            .subscribe { model in
+                print(model, "댓글달기 성공")
+            } onError: { error in
+                print("댓글달기 실패")
+            }
+            .disposed(by: disposeBag)
 
         
-        
+
         
         return Output(postResult: input.postItem,
                       backButtonTapped: input.backButtonTapped.asDriver(onErrorJustReturn: ()))

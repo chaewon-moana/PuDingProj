@@ -31,7 +31,7 @@ struct RegisterPostComment: Decodable {
     let comment_id: String
     let content: String
     let createdAt: String
-    let creator: PostCreatorInfo
+    let creator: CreatorInfo
 }
 
 //MARK: Post 조회
@@ -48,14 +48,9 @@ struct inqueryPostModel: Decodable {
     let content: String?
     let content1: String?
     let createdAt: String
-    let creator: PostCreatorInfo
+    let creator: CreatorInfo
 }
 
-struct PostCreatorInfo: Decodable {
-    let user_id: String
-    let nick: String
-    let profileImage: String?
-}
 
 //MARK: 이미지 업로드
 struct UploadPostImageFilesModel: Decodable {

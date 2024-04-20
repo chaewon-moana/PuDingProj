@@ -48,6 +48,10 @@
 		DE8B8F5F2BD3B80300AA5A53 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F5E2BD3B80300AA5A53 /* PostDetailViewController.swift */; };
 		DE8B8F612BD3B81700AA5A53 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F602BD3B81700AA5A53 /* PostDetailView.swift */; };
 		DE8B8F632BD3B82C00AA5A53 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F622BD3B82C00AA5A53 /* PostDetailViewModel.swift */; };
+		DE8B8F662BD4163800AA5A53 /* CommentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F652BD4163800AA5A53 /* CommentRouter.swift */; };
+		DE8B8F682BD4169F00AA5A53 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F672BD4169F00AA5A53 /* CommentModel.swift */; };
+		DE8B8F6A2BD416D000AA5A53 /* CommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F692BD416D000AA5A53 /* CommentQuery.swift */; };
+		DE8B8F6C2BD4173A00AA5A53 /* CreatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F6B2BD4173A00AA5A53 /* CreatorModel.swift */; };
 		DE9CEC102BC646BB00360192 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */; };
 		DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC112BC646BB00360192 /* SceneDelegate.swift */; };
 		DE9CEC142BC646BB00360192 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC132BC646BB00360192 /* ViewController.swift */; };
@@ -94,6 +98,10 @@
 		DE8B8F5E2BD3B80300AA5A53 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		DE8B8F602BD3B81700AA5A53 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		DE8B8F622BD3B82C00AA5A53 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
+		DE8B8F652BD4163800AA5A53 /* CommentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRouter.swift; sourceTree = "<group>"; };
+		DE8B8F672BD4169F00AA5A53 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
+		DE8B8F692BD416D000AA5A53 /* CommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentQuery.swift; sourceTree = "<group>"; };
+		DE8B8F6B2BD4173A00AA5A53 /* CreatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorModel.swift; sourceTree = "<group>"; };
 		DE9CEC0C2BC646BB00360192 /* PuDingProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuDingProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9CEC112BC646BB00360192 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +212,7 @@
 			children = (
 				DE8B8EAD2BC7C9D500AA5A53 /* JoinQuery.swift */,
 				DE8B8F1B2BCFC62100AA5A53 /* PostQuery.swift */,
+				DE8B8F692BD416D000AA5A53 /* CommentQuery.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -213,6 +222,8 @@
 			children = (
 				DE8B8EBA2BC7E1D700AA5A53 /* JoinModel.swift */,
 				DE8B8F1D2BCFC68000AA5A53 /* PostModel.swift */,
+				DE8B8F672BD4169F00AA5A53 /* CommentModel.swift */,
+				DE8B8F6B2BD4173A00AA5A53 /* CreatorModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -304,6 +315,7 @@
 				DE8B8EAB2BC7C65700AA5A53 /* AccountRouter.swift */,
 				DE8B8F192BCFC5DB00AA5A53 /* PostRouter.swift */,
 				DE8B8F5B2BD39F3300AA5A53 /* Router.swift */,
+				DE8B8F652BD4163800AA5A53 /* CommentRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -474,6 +486,7 @@
 				DE8B8EEC2BCD202700AA5A53 /* LoginViewController.swift in Sources */,
 				DE8B8EB22BC7CB7B00AA5A53 /* TargetType.swift in Sources */,
 				DE8B8F5C2BD39F3300AA5A53 /* Router.swift in Sources */,
+				DE8B8F662BD4163800AA5A53 /* CommentRouter.swift in Sources */,
 				DE8B8EF02BCD203D00AA5A53 /* LoginView.swift in Sources */,
 				DE8B8EB72BC7CF6400AA5A53 /* JoinView.swift in Sources */,
 				DE8B8F1C2BCFC62100AA5A53 /* PostQuery.swift in Sources */,
@@ -481,6 +494,8 @@
 				DE9CEC102BC646BB00360192 /* AppDelegate.swift in Sources */,
 				DE8B8F152BCFA1B200AA5A53 /* CommunitiyViewController.swift in Sources */,
 				DE8B8F5A2BD2408400AA5A53 /* ImageFileManager.swift in Sources */,
+				DE8B8F682BD4169F00AA5A53 /* CommentModel.swift in Sources */,
+				DE8B8F6A2BD416D000AA5A53 /* CommentQuery.swift in Sources */,
 				DE8B8EC62BCABA1D00AA5A53 /* MyInfoViewModel.swift in Sources */,
 				DE8B8EBB2BC7E1D700AA5A53 /* JoinModel.swift in Sources */,
 				DE8B8F372BD110D900AA5A53 /* RegistPostViewController.swift in Sources */,
@@ -496,6 +511,7 @@
 				DE8B8EA62BC7C27000AA5A53 /* BaseView.swift in Sources */,
 				DE8B8EBD2BC7E1FE00AA5A53 /* NetworkManager.swift in Sources */,
 				DE8B8F1A2BCFC5DB00AA5A53 /* PostRouter.swift in Sources */,
+				DE8B8F6C2BD4173A00AA5A53 /* CreatorModel.swift in Sources */,
 				DE8B8E942BC7BE9D00AA5A53 /* JoinViewController.swift in Sources */,
 				DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */,
 				DE8B8F242BCFCDEA00AA5A53 /* CommunityCollectionViewCell.swift in Sources */,

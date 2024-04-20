@@ -133,6 +133,29 @@ struct NetworkManager {
         }
     }
     
+    static func requestCommentNetwork<Model: Decodable>(router: CommentRouter, modelType: Model.Type) -> Single<Model> {
+        return Single<Model>.create { single in
+            do {
+                let urlRequest = try router.asURLRequest()
+                AF.request(urlRequest)
+                    .validate(statusCode: 200..<300)
+                    .responseDecodable(of: Model.self) { response in
+                        switch response.result {
+                        case .success(let value):
+                            print("comment router 서엉고옹")
+                            single(.success(value))
+                        case .failure(let error):
+                            print(response.response?.statusCode, "comment - post - 에러발생")
+                            single(.failure(error))
+                        }
+                    }
+            } catch {
+                single(.failure(error))
+            }
+            return Disposables.create()
+        }
+    }
+    
     
     static func requestUploadImage(query: MultipartFormData) -> Single<UploadPostImageFilesModel> {
            return Single<UploadPostImageFilesModel>.create { single in
