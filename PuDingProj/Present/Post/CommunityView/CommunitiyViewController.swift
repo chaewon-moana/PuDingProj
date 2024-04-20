@@ -13,13 +13,6 @@ final class CommunitiyViewController: BaseViewController {
     let mainView = CommunitiyView()
     let viewModel = CommunityViewModel()
     
-//    var list: [RegisterPost] = [
-//        RegisterPost(post_id: "123", product_id: "productId", title: "하이하234이", content: "냉무", content1: "분류", createdAt: "2022.22.22", creator: CreatorInfo(user_id: "1", nick: "모아나", prifileImage: nil)),
-//        RegisterPost(post_id: "123", product_id: "productId", title: "하이2344하이", content: "냉무", content1: "분류", createdAt: "2022.22.22", creator: CreatorInfo(user_id: "2", nick: "그리드", prifileImage: nil)),
-//        RegisterPost(post_id: "123", product_id: "productId", title: "하23444이하이", content: "냉무", content1: "분류", createdAt: "2022.22.22", creator: CreatorInfo(user_id: "3", nick: "짹", prifileImage: nil)),
-//        RegisterPost(post_id: "123", product_id: "productId", title: "하이2342342하이", content: "냉무", content1: "분류", createdAt: "2022.22.22", creator: CreatorInfo(user_id: "4", nick: "덴", prifileImage: nil))
-//    ]
-    
     let textField: UISearchBar = {
         let view = UISearchBar()
         view.placeholder = "텍스트필드 여기있따아아"
@@ -53,13 +46,23 @@ final class CommunitiyViewController: BaseViewController {
     override func bind() {
         let inputTriggerObservable = Observable.just(inputTrigger)
         
-        let input = CommunityViewModel.Input(inputTrigger: inputTriggerObservable)
+        let input = CommunityViewModel.Input(inputTrigger: inputTriggerObservable,
+                                             searchText: textField.rx.text.orEmpty.asObservable(),
+                                             searchButtonTapped: textField.rx.searchButtonClicked.asObservable()
+        )
         
         let output = viewModel.transform(input: input)
         
         output.inqueryResult
             .subscribe(with: self) { owner, model in
                 owner.list = model.data
+                owner.mainView.collectionView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        output.specificPost
+            .subscribe(with: self) { owner, model in
+                owner.list = [model]
                 owner.mainView.collectionView.reloadData()
             }
             .disposed(by: disposeBag)

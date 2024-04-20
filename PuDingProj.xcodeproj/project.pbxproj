@@ -44,6 +44,7 @@
 		DE8B8F392BD110E500AA5A53 /* RegistPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F382BD110E500AA5A53 /* RegistPostViewModel.swift */; };
 		DE8B8F3B2BD110EE00AA5A53 /* RegistPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F3A2BD110EE00AA5A53 /* RegistPostView.swift */; };
 		DE8B8F5A2BD2408400AA5A53 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F592BD2408400AA5A53 /* ImageFileManager.swift */; };
+		DE8B8F5C2BD39F3300AA5A53 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F5B2BD39F3300AA5A53 /* Router.swift */; };
 		DE9CEC102BC646BB00360192 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */; };
 		DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC112BC646BB00360192 /* SceneDelegate.swift */; };
 		DE9CEC142BC646BB00360192 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC132BC646BB00360192 /* ViewController.swift */; };
@@ -86,6 +87,7 @@
 		DE8B8F382BD110E500AA5A53 /* RegistPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistPostViewModel.swift; sourceTree = "<group>"; };
 		DE8B8F3A2BD110EE00AA5A53 /* RegistPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistPostView.swift; sourceTree = "<group>"; };
 		DE8B8F592BD2408400AA5A53 /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
+		DE8B8F5B2BD39F3300AA5A53 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		DE9CEC0C2BC646BB00360192 /* PuDingProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuDingProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9CEC112BC646BB00360192 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -281,8 +283,8 @@
 		DE8B8F122BCFA14100AA5A53 /* CommunityView */ = {
 			isa = PBXGroup;
 			children = (
-				DE8B8F162BCFA1C200AA5A53 /* CommunityViewModel.swift */,
 				DE8B8F142BCFA1B200AA5A53 /* CommunitiyViewController.swift */,
+				DE8B8F162BCFA1C200AA5A53 /* CommunityViewModel.swift */,
 				DE8B8F1F2BCFC79600AA5A53 /* CommunitiyView.swift */,
 				DE8B8F232BCFCDEA00AA5A53 /* CommunityCollectionViewCell.swift */,
 			);
@@ -294,6 +296,7 @@
 			children = (
 				DE8B8EAB2BC7C65700AA5A53 /* AccountRouter.swift */,
 				DE8B8F192BCFC5DB00AA5A53 /* PostRouter.swift */,
+				DE8B8F5B2BD39F3300AA5A53 /* Router.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				DE9CEC142BC646BB00360192 /* ViewController.swift in Sources */,
 				DE8B8EEC2BCD202700AA5A53 /* LoginViewController.swift in Sources */,
 				DE8B8EB22BC7CB7B00AA5A53 /* TargetType.swift in Sources */,
+				DE8B8F5C2BD39F3300AA5A53 /* Router.swift in Sources */,
 				DE8B8EF02BCD203D00AA5A53 /* LoginView.swift in Sources */,
 				DE8B8EB72BC7CF6400AA5A53 /* JoinView.swift in Sources */,
 				DE8B8F1C2BCFC62100AA5A53 /* PostQuery.swift in Sources */,

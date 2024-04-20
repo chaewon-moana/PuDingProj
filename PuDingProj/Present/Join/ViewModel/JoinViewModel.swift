@@ -97,7 +97,7 @@ final class JoinViewModel {
         .withLatestFrom(joinObservable)
         .flatMap { joinQuery in
             print(joinQuery)
-            return NetworkManager.joinMember(query: joinQuery)
+            return NetworkManager.requestNetwork(router: AccountRouter.join(query: joinQuery), modelType: JoinModel.self)
         }
         .subscribe(with: self) { owner, joinModel in
             print(joinModel)

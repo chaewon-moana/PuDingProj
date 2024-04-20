@@ -15,22 +15,41 @@ final class CommunityViewModel {
     
     struct Input {
         let inputTrigger: Observable<Void>
+        let searchText: Observable<String>
+        let searchButtonTapped: Observable<Void>
     }
     
     struct Output {
         let inqueryResult: Observable<inqueryUppperPostModel>
+        let specificPost: Observable<inqueryPostModel>
     }
     
     func transform(input: Input) -> Output {
         let result = PublishRelay<inqueryUppperPostModel>()
-//        
-//        let inquery = Observable.just("puding-moana22")//product_id
-//            .map { value in
-//                return InquiryPostQuery(product_id: value)
-//            }
-//        
+        let specificResult = PublishRelay<inqueryPostModel>()
+        
+        input.searchButtonTapped
+            .withLatestFrom(input.searchText)
+            .flatMap { value in
+                let item = SpecificPostQuery(post_id: value)
+                return NetworkManager.requestPostNetwork(router: PostRouter.inquerySpecificPost(id: item), modelType: inqueryPostModel.self)
+            }
+            .subscribe { model in
+                print(model, "특정 포스트 조회 성공")
+                specificResult.accept(model)
+            } onError: { error in
+                print(error, "특정 포스트 조회 실패")
+            }
+            .disposed(by: disposeBag)
+
+        
+        input.searchText
+            .subscribe { value in
+                print(value)
+            }
+            .disposed(by: disposeBag)
+        
         input.inputTrigger
-            //.withLatestFrom(inquery)
             .flatMap { value in
                 return NetworkManager.requestPostText()
             }
@@ -41,7 +60,7 @@ final class CommunityViewModel {
                 print("포스트 조회 실패애")
             }
             .disposed(by: disposeBag)
-            
-        return Output(inqueryResult: result.asObservable())
+        
+        return Output(inqueryResult: result.asObservable(), specificPost: specificResult.asObservable())
     }
 }

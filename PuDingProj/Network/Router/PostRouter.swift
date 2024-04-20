@@ -12,6 +12,7 @@ enum PostRouter {
     case registerPost(query: RegisterPostQuery)
     case inqueryPost
     case uploadImage
+    case inquerySpecificPost(id: SpecificPostQuery)
 }
 
 enum PostModel {
@@ -31,6 +32,8 @@ extension PostRouter: TargetType {
             return .get
         case .uploadImage:
             return .post
+        case .inquerySpecificPost:
+            return .get
         }
     }
     
@@ -42,6 +45,8 @@ extension PostRouter: TargetType {
             return "posts"
         case .uploadImage:
             return "posts/files"
+        case .inquerySpecificPost(let id):
+            return "posts/\(id.post_id)"
         }
     }
     
@@ -58,6 +63,9 @@ extension PostRouter: TargetType {
             return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
                     HTTPHeader.contentType.rawValue: HTTPHeader.multipart.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .inquerySpecificPost:
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
@@ -68,6 +76,8 @@ extension PostRouter: TargetType {
         case .inqueryPost:
             return nil
         case .uploadImage:
+            return nil
+        case .inquerySpecificPost:
             return nil
         }
     }
@@ -80,6 +90,8 @@ extension PostRouter: TargetType {
             return [URLQueryItem(name: "product_id", value: "puding-moana22")]
         case .uploadImage:
             return nil
+        case .inquerySpecificPost:
+            return nil
         }
     }
     
@@ -91,6 +103,8 @@ extension PostRouter: TargetType {
         case .inqueryPost:
             return nil
         case .uploadImage:
+            return nil
+        case .inquerySpecificPost:
             return nil
         }
     }

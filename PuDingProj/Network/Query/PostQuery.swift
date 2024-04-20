@@ -19,3 +19,6 @@ struct UploadPostImageFilesQuery: Encodable {
     let files: [Data?]
 }
 
+struct SpecificPostQuery: Decodable {
+    let post_id: String
+}
