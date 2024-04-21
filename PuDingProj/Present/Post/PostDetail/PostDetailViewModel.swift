@@ -32,7 +32,7 @@ final class PostDetailViewModel {
             .flatMap { value in
                 print("버튼 눌림")
                 let item = writeCommentQuery(content: value)
-                return NetworkManager.requestCommentNetwork(router: CommentRouter.writeComment(parameter: item, id: "662203e7438b876b25f7d3c5"), modelType: WriteCommentModel.self)
+                return NetworkManager.requestNetwork(router: .comment(.writeComment(parameter: item, id: "662203e7438b876b25f7d3c5")), modelType: WriteCommentModel.self)
             }
             .subscribe { model in
                 print(model, "댓글달기 성공")

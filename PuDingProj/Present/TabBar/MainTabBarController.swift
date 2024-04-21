@@ -12,9 +12,9 @@ final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let vc1 = LoginViewController()
-        let vc2 = CommunitiyViewController()
-        let vc3 = PostDetailViewController()
+        let vc1 = CommunitiyViewController()
+        let vc2 = JoinViewController()
+        let vc3 = MyInfoViewController()
     
         vc1.tabBarItem.image = UIImage(systemName: "calendar")
         vc2.tabBarItem.image = UIImage(systemName: "person")

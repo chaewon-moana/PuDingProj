@@ -28,9 +28,7 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
     
     private func configureLayout() {
         contentView.addSubviews([categoryLabel, nicknameLabel, registerDate, titleLabel, imageStackView])
-        
         imageStackView.addArrangedSubview(contentLabel)
-        imageStackView.addArrangedSubview(thumbnailImageView)
 
         categoryLabel.snp.makeConstraints { make in
             make.top.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
@@ -55,8 +53,6 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
            // make.width.equalTo(100)
         }
         thumbnailImageView.snp.makeConstraints { make in
-//            make.centerY.equalToSuperview()
-//            make.trailing.equalToSuperview().offset(-12)
             make.size.equalTo(70)
         }
     }
@@ -81,10 +77,7 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
     }
     
     func updateUI(item: inqueryPostModel) {
-        if item.files.isEmpty {
-            thumbnailImageView.image = UIImage(systemName: "heart")
-        } else {
-            let imageDownloader = ImageDownloader(name: "customDownloader")
+        if !item.files.isEmpty {
             guard let url = URL(string: APIKey.baseURL.rawValue + item.files[0]) else {
                   return
               }
@@ -92,8 +85,9 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
                  .requestModifier(ImageDownloadRequest())
              ]
             thumbnailImageView.kf.setImage(with: url, options: options)
-        
-
+            imageStackView.addArrangedSubview(thumbnailImageView)
+        } else {
+           //files이 비어있을 떄 예외처리
         }
         
         categoryLabel.text = item.post_id

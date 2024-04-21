@@ -60,7 +60,7 @@ struct NetworkManager {
     
     
     //MARK: Query - query, Model - Model
-    static func requestNetwork<Model: Decodable>(router: AccountRouter, modelType: Model.Type) -> Single<Model> {
+    static func requestNetwork<Model: Decodable>(router: Router, modelType: Model.Type) -> Single<Model> {
         return Single<Model>.create { single in
             do {
                 let urlRequest = try router.asURLRequest()
@@ -83,6 +83,31 @@ struct NetworkManager {
             return Disposables.create()
         }
     }
+    
+//    static func requestPostNetwork<Model: Decodable>(router: PostRouter, modelType: Model.Type) -> Single<Model> {
+//        return Single<Model>.create { single in
+//            do {
+//                let urlRequest = try router.asURLRequest()
+//                print(router.parameters)
+//                print(urlRequest.url , "전달되는 url 확인")
+//                AF.request(urlRequest)
+//                    .validate(statusCode: 200..<300)
+//                    .responseDecodable(of: Model.self) { response in
+//                        switch response.result {
+//                        case .success(let value):
+//                            print("router 서엉고옹")
+//                            single(.success(value))
+//                        case .failure(let error):
+//                            print(response.response?.statusCode, "router - post - 에러발생")
+//                            single(.failure(error))
+//                        }
+//                    }
+//            } catch {
+//                single(.failure(error))
+//            }
+//            return Disposables.create()
+//        }
+//    }
     
     static func requestPostText() -> Single<inqueryUppperPostModel> {
             return Single<inqueryUppperPostModel>.create { single in
@@ -108,53 +133,30 @@ struct NetworkManager {
             }
         }
 
-    static func requestPostNetwork<Model: Decodable>(router: PostRouter, modelType: Model.Type) -> Single<Model> {
-        return Single<Model>.create { single in
-            do {
-                let urlRequest = try router.asURLRequest()
-                print(router.parameters)
-                print(urlRequest.url , "전달되는 url 확인")
-                AF.request(urlRequest)
-                    .validate(statusCode: 200..<300)
-                    .responseDecodable(of: Model.self) { response in
-                        switch response.result {
-                        case .success(let value):
-                            print("router 서엉고옹")
-                            single(.success(value))
-                        case .failure(let error):
-                            print(response.response?.statusCode, "router - post - 에러발생")
-                            single(.failure(error))
-                        }
-                    }
-            } catch {
-                single(.failure(error))
-            }
-            return Disposables.create()
-        }
-    }
+   
     
-    static func requestCommentNetwork<Model: Decodable>(router: CommentRouter, modelType: Model.Type) -> Single<Model> {
-        return Single<Model>.create { single in
-            do {
-                let urlRequest = try router.asURLRequest()
-                AF.request(urlRequest)
-                    .validate(statusCode: 200..<300)
-                    .responseDecodable(of: Model.self) { response in
-                        switch response.result {
-                        case .success(let value):
-                            print("comment router 서엉고옹")
-                            single(.success(value))
-                        case .failure(let error):
-                            print(response.response?.statusCode, "comment - post - 에러발생")
-                            single(.failure(error))
-                        }
-                    }
-            } catch {
-                single(.failure(error))
-            }
-            return Disposables.create()
-        }
-    }
+//    static func requestCommentNetwork<Model: Decodable>(router: CommentRouter, modelType: Model.Type) -> Single<Model> {
+//        return Single<Model>.create { single in
+//            do {
+//                let urlRequest = try router.asURLRequest()
+//                AF.request(urlRequest)
+//                    .validate(statusCode: 200..<300)
+//                    .responseDecodable(of: Model.self) { response in
+//                        switch response.result {
+//                        case .success(let value):
+//                            print("comment router 서엉고옹")
+//                            single(.success(value))
+//                        case .failure(let error):
+//                            print(response.response?.statusCode, "comment - post - 에러발생")
+//                            single(.failure(error))
+//                        }
+//                    }
+//            } catch {
+//                single(.failure(error))
+//            }
+//            return Disposables.create()
+//        }
+//    }
     
     
     static func requestUploadImage(query: MultipartFormData) -> Single<UploadPostImageFilesModel> {

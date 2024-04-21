@@ -46,7 +46,9 @@ class LoginViewController: BaseViewController {
         
         output.successToLogin
             .subscribe(with: self) { owner, _ in
-                print("로그인 완!")
+                let vc = MainTabBarController()
+                vc.modalPresentationStyle = .fullScreen
+                owner.present(vc, animated: true)
             }
             .disposed(by: disposeBag)
     }

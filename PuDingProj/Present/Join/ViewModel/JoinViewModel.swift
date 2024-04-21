@@ -54,10 +54,8 @@ final class JoinViewModel {
         input.duplicationButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(emailObservable)
-            .flatMap { value in
-                print(value, "여기는 되는데,,,")
-                return NetworkManager.requestNetwork(router: AccountRouter.emailValidation(email: value), modelType: emailValidationModel.self)
-                //return NetworkManager.checkEmailValidation(email: value)
+            .flatMap { query in
+                return NetworkManager.requestNetwork(router: .account(.emailValidation(email: query)), modelType: emailValidationModel.self)
             }
             .subscribe(with: self) { owner, emailModel in
                 print(emailModel, "이메일 중복확인 성공")
@@ -97,7 +95,7 @@ final class JoinViewModel {
         .withLatestFrom(joinObservable)
         .flatMap { joinQuery in
             print(joinQuery)
-            return NetworkManager.requestNetwork(router: AccountRouter.join(query: joinQuery), modelType: JoinModel.self)
+            return NetworkManager.requestNetwork(router: .account(.join(query: joinQuery)), modelType: JoinModel.self)
         }
         .subscribe(with: self) { owner, joinModel in
             print(joinModel)

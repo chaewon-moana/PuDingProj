@@ -85,6 +85,13 @@ final class MyInfoView: BaseView {
         }
        
     }
+    
+    func updateUI(item: InqueryProfileModel) {
+        nicknameLabel.text = item.nick
+        followerLabel.text = "팔로워 \(item.followers.count)"
+        followingLabel.text = "팔로잉 \(item.following.count)"
+    }
+    
     override func configureAttribute() {
         profileImageView.layer.cornerRadius = 40
         profileImageView.layer.borderColor = UIColor.lightGray.cgColor
