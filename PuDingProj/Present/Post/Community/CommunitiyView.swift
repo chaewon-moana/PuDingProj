@@ -20,7 +20,7 @@ final class CommunitiyView: BaseView {
     private func collectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         let itemWidth: CGFloat = UIScreen.main.bounds.width - 20
-        let itemHeight: CGFloat = 150
+        let itemHeight: CGFloat = 170
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)

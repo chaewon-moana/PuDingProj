@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class PostDetailView: BaseView {
     let profileImageLogo = UIImageView()
@@ -22,10 +23,14 @@ final class PostDetailView: BaseView {
     let commentView = UIView()
     let commentTextView = UITextView()
     let commentSendButton = UIButton()
+    let imageScrollView = UIScrollView()
+    //let testImage = UIImageView()
     
     override func configureViewLayout() {
-        self.addSubviews([profileImageLogo, nicknameLabel, titleLabel, imageStackView, contentLabel, registerDateLabel, likeMarkImage, likeCountLabel,commentMarkImage, commentCountLabel, commentView])
+        self.addSubviews([profileImageLogo, nicknameLabel, titleLabel, contentLabel, registerDateLabel, likeMarkImage,  likeCountLabel,commentMarkImage, commentCountLabel, commentView, imageScrollView])
         commentView.addSubviews([commentTextView, commentSendButton])
+        imageScrollView.addSubview(imageStackView)
+        
         profileImageLogo.snp.makeConstraints { make in
             make.size.equalTo(32)
             make.top.leading.equalTo(self.safeAreaLayoutGuide).offset(8)
@@ -38,10 +43,14 @@ final class PostDetailView: BaseView {
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).offset(8)
             make.top.equalTo(profileImageLogo.snp.bottom).offset(12)
         }
-        imageStackView.snp.makeConstraints { make in
+        imageScrollView.snp.makeConstraints { make in
             make.height.equalTo(120)
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(8)
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.bottom.equalTo(contentLabel.snp.top).offset(8)
+        }
+        imageStackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         contentLabel.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(8)
@@ -91,9 +100,32 @@ final class PostDetailView: BaseView {
         titleLabel.text = item.title
         contentLabel.text = item.content
         registerDateLabel.text = item.createdAt
+        if item.files.isEmpty {
+            imageStackView.isHidden = true
+            //thumbnailImageView.image = UIImage(systemName: "heart")
+        } else {
+            for image in item.files {
+                guard let url = URL(string: APIKey.baseURL.rawValue + image) else {
+                    return
+                }
+                let options: KingfisherOptionsInfo = [
+                    .requestModifier(ImageDownloadRequest())
+                ]
+                let view = UIImageView()
+                view.kf.setImage(with: url, options: options)
+                view.contentMode = .scaleAspectFit
+                view.snp.makeConstraints { make in
+                    make.width.equalTo(100)
+                }
+                imageStackView.addArrangedSubview(view)
+            }
+            
+        }
     }
     
     override func configureAttribute() {
+       
+        imageStackView.axis = .horizontal
         commentSendButton.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
         commentTextView.backgroundColor = .yellow
         commentTextView.text = "asdfasdfasdfasdfasdfasdfasdfasdf"

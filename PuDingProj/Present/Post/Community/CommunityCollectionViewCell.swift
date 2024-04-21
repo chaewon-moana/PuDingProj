@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class CommunityCollectionViewCell: UICollectionViewCell {
     
@@ -15,6 +16,9 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
     let registerDate = UILabel()
     let titleLabel = UILabel()
     let contentLabel = UILabel()
+    let stackView = UIView()
+    let thumbnailImageView = UIImageView()
+    let imageStackView = UIStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,7 +27,11 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureLayout() {
-        contentView.addSubviews([categoryLabel, nicknameLabel, registerDate, titleLabel, contentLabel])
+        contentView.addSubviews([categoryLabel, nicknameLabel, registerDate, titleLabel, imageStackView])
+        
+        imageStackView.addArrangedSubview(contentLabel)
+        imageStackView.addArrangedSubview(thumbnailImageView)
+
         categoryLabel.snp.makeConstraints { make in
             make.top.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
         }
@@ -39,12 +47,25 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(nicknameLabel.snp.bottom).offset(8)
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(12)
         }
-        contentLabel.snp.makeConstraints { make in
+        imageStackView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview().inset(12)
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(12)
+        }
+        contentLabel.snp.makeConstraints { make in
+           // make.width.equalTo(100)
+        }
+        thumbnailImageView.snp.makeConstraints { make in
+//            make.centerY.equalToSuperview()
+//            make.trailing.equalToSuperview().offset(-12)
+            make.size.equalTo(70)
         }
     }
     private func configureAttribute() {
+        thumbnailImageView.image = UIImage(systemName: "star")
+        thumbnailImageView.contentMode = .scaleAspectFit
+        imageStackView.backgroundColor = .purple
+        imageStackView.axis = .horizontal
+        imageStackView.distribution = .fill
         categoryLabel.backgroundColor = .red
         categoryLabel.font = .systemFont(ofSize: 13)
         nicknameLabel.backgroundColor = .orange
@@ -60,17 +81,27 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
     }
     
     func updateUI(item: inqueryPostModel) {
+        if item.files.isEmpty {
+            thumbnailImageView.image = UIImage(systemName: "heart")
+        } else {
+            let imageDownloader = ImageDownloader(name: "customDownloader")
+            guard let url = URL(string: APIKey.baseURL.rawValue + item.files[0]) else {
+                  return
+              }
+            let options: KingfisherOptionsInfo = [
+                 .requestModifier(ImageDownloadRequest())
+             ]
+            thumbnailImageView.kf.setImage(with: url, options: options)
+        
+
+        }
+        
         categoryLabel.text = item.post_id
         nicknameLabel.text = item.content1
         registerDate.text = "| \(item.createdAt)"
         titleLabel.text = item.title
         contentLabel.text = item.content
-        //MARK: dummy data
-//        categoryLabel.text = "봉사모집"
-//        nicknameLabel.text = "뫄뫄"
-//        registerDate.text = "2222.222.22"
-//        titleLabel.text = "제에모오오옥"
-//        contentLabel.text = "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용"
+        
     }
 
     required init?(coder: NSCoder) {
@@ -78,5 +109,16 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
     }
 }
 
+class ImageDownloadRequest: ImageDownloadRequestModifier {
+    func modified(for request: URLRequest) -> URLRequest? {
+        var modifiedRequest = request
+        modifiedRequest.addValue(UserDefaults.standard.string(forKey: "accessToken")!, forHTTPHeaderField: HTTPHeader.authorization.rawValue)
+        modifiedRequest.addValue(APIKey.sesacKey.rawValue, forHTTPHeaderField: HTTPHeader.sesacKey.rawValue)
+        modifiedRequest.addValue(HTTPHeader.json.rawValue, forHTTPHeaderField: HTTPHeader.contentType.rawValue)
+        // 필요한 경우 다른 헤더도 추가 가능
+        
+        return modifiedRequest
+    }
+}
 
 

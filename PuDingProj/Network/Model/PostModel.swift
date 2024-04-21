@@ -49,6 +49,11 @@ struct inqueryPostModel: Decodable {
     let content1: String?
     let createdAt: String
     let creator: CreatorInfo
+    let files: [String]
+    let likes: [String]
+    let likes2: [String]
+    let hashTags: [String]
+    let comments: [WriteCommentModel]
 }
 
 
