@@ -24,15 +24,19 @@ final class PostDetailViewModel {
         let postResult: Observable<inqueryPostModel>
         let backButtonTapped: Driver<Void>
     }
-    
+    struct CommentOnPost {
+        let comment: String
+    }
     func transform(input: Input) -> Output {
     
+        let commentObservable = Observable.combineLatest(input.commentText, input.postItem)
+        
         input.commentSendButtonTapped
-            .withLatestFrom(input.commentText)
-            .flatMap { value in
+            .withLatestFrom(commentObservable)
+            .flatMap { value, post in
                 print("버튼 눌림")
                 let item = writeCommentQuery(content: value)
-                return NetworkManager.requestNetwork(router: .comment(.writeComment(parameter: item, id: "662203e7438b876b25f7d3c5")), modelType: WriteCommentModel.self)
+                return NetworkManager.requestNetwork(router: .comment(.writeComment(parameter: item, id: post.post_id)), modelType: WriteCommentModel.self)
             }
             .subscribe { model in
                 print(model, "댓글달기 성공")
@@ -40,6 +44,21 @@ final class PostDetailViewModel {
                 print("댓글달기 실패")
             }
             .disposed(by: disposeBag)
+
+        
+//        input.commentSendButtonTapped
+//            .withLatestFrom(input.commentText)
+//            .flatMap { value in
+//                print("버튼 눌림")
+//                let item = writeCommentQuery(content: value)
+//                return NetworkManager.requestNetwork(router: .comment(.writeComment(parameter: item, id: "662203e7438b876b25f7d3c5")), modelType: WriteCommentModel.self)
+//            }
+//            .subscribe { model in
+//                print(model, "댓글달기 성공")
+//            } onError: { error in
+//                print("댓글달기 실패")
+//            }
+//            .disposed(by: disposeBag)
 
         
 

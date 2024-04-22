@@ -66,6 +66,7 @@
 		DE9CEC1C2BC646BD00360192 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DE9CEC1B2BC646BD00360192 /* Base */; };
 		DE9CEC242BC646DB00360192 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DE9CEC232BC646DB00360192 /* .gitignore */; };
 		DE9CEC272BC6473500360192 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC262BC6473500360192 /* APIKey.swift */; };
+		DEB14E962BD6A52700B7A0AC /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14E952BD6A52700B7A0AC /* CommentCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +125,7 @@
 		DE9CEC1D2BC646BD00360192 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE9CEC232BC646DB00360192 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DE9CEC262BC6473500360192 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		DEB14E952BD6A52700B7A0AC /* CommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,6 +371,7 @@
 				DE8B8F5E2BD3B80300AA5A53 /* PostDetailViewController.swift */,
 				DE8B8F602BD3B81700AA5A53 /* PostDetailView.swift */,
 				DE8B8F622BD3B82C00AA5A53 /* PostDetailViewModel.swift */,
+				DEB14E952BD6A52700B7A0AC /* CommentCollectionViewCell.swift */,
 			);
 			path = PostDetail;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				DE8B8F722BD52EB000AA5A53 /* ProfileModel.swift in Sources */,
 				DE8B8F1E2BCFC68000AA5A53 /* PostModel.swift in Sources */,
 				DE8B8F632BD3B82C00AA5A53 /* PostDetailViewModel.swift in Sources */,
+				DEB14E962BD6A52700B7A0AC /* CommentCollectionViewCell.swift in Sources */,
 				DE8B8F832BD634C900AA5A53 /* NetworkErrorManager.swift in Sources */,
 				DE8B8EAC2BC7C65700AA5A53 /* AccountRouter.swift in Sources */,
 				DE8B8F172BCFA1C200AA5A53 /* CommunityViewModel.swift in Sources */,

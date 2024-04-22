@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CreatorInfo: Decodable {
+struct CreatorInfo: Decodable, Hashable {
     let user_id: String
     let nick: String
     let profileImage: String?

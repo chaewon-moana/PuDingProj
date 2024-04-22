@@ -47,7 +47,7 @@ final class CommunityViewModel {
 
         input.postSelected
             .subscribe(with: self) { owner, model in
-                print(model, "포스트 모 델 선택되긴 함")
+                print(model, "포스트 모델 선택되긴 함")
                 moveToDetail.accept(model)
             }
             .disposed(by: disposeBag)

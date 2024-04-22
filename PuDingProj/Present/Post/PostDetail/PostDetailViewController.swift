@@ -9,11 +9,16 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+enum Section {
+    case main
+}
+
+
 final class PostDetailViewController: BaseViewController {
     let mainView = PostDetailView()
     let viewModel = PostDetailViewModel()
     var item: inqueryPostModel?
-    
+    var dataSource: UICollectionViewDiffableDataSource<Section, WriteCommentModel>!
     lazy var backButton: UIBarButtonItem = {
         let view = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: nil)
     return view

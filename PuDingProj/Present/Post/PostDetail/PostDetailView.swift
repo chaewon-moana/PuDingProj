@@ -24,6 +24,7 @@ final class PostDetailView: BaseView {
     let commentTextView = UITextView()
     let commentSendButton = UIButton()
     let imageScrollView = UIScrollView()
+    let commentCollectionView = UICollectionView()
     //let testImage = UIImageView()
     
     override func configureViewLayout() {

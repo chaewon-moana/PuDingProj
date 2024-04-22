@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class MyInfoView: BaseView {
     
@@ -92,9 +93,17 @@ final class MyInfoView: BaseView {
     
     func updateUI(item: InqueryProfileModel) {
         nicknameLabel.text = item.email
-        followerLabel.text = "팔로워 \(item.followers.count)"
+        followerLabel.text = item.phoneNum
+        guard let url = URL(string: APIKey.baseURL.rawValue + item.profileImage!) else { return }
+            let options: KingfisherOptionsInfo = [
+                 .requestModifier(ImageDownloadRequest())
+             ]
+        profileImageView.kf.setImage(with: url, options: options)
+        //followerLabel.text = "팔로워 \(item.followers.count)"
         followingLabel.text = "팔로잉 \(item.following.count)"
+        
     }
+    
     
     override func configureAttribute() {
         withdrawButton.setTitle("탈퇴", for: .normal)
