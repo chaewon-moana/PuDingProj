@@ -34,7 +34,7 @@ final class CommunityViewModel {
         input.searchButtonTapped
             .withLatestFrom(input.searchText)
             .flatMap { value in
-                let item = SpecificPostQuery(post_id: value)
+                let item = SpecificPostQuery(next: nil, limit: nil, post_id: value)
                 return NetworkManager.requestNetwork(router: .post(.inquerySpecificPost(id: item)), modelType: inqueryPostModel.self)
             }
             .subscribe { model in
@@ -58,17 +58,17 @@ final class CommunityViewModel {
             }
             .disposed(by: disposeBag)
         
-//        input.inputTrigger
-//            .flatMap { value in
-//                return NetworkManager.requestNetwork(router: .post(.inqueryPost), modelType: inqueryUppperPostModel.self)
-//            }
-//            .subscribe { model in
-//                print("포스트 조회 서엉고옹")
-//                result.accept(model)
-//            } onError: { error in
-//                print("포스트 조회 실패애")
-//            }
-//            .disposed(by: disposeBag)
+        input.inputTrigger
+            .flatMap { value in
+                return NetworkManager.requestNetwork(router: .post(.inqueryPost), modelType: inqueryUppperPostModel.self)
+            }
+            .subscribe { model in
+                print("포스트 조회 서엉고옹")
+                result.accept(model)
+            } onError: { error in
+                print("포스트 조회 실패애")
+            }
+            .disposed(by: disposeBag)
         
         return Output(inqueryResult: result.asObservable(), specificPost: specificResult.asObservable(),
                       moveToDetail: moveToDetail.asObservable()

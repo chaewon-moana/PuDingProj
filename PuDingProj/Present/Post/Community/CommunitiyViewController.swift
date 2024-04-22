@@ -69,24 +69,26 @@ final class CommunitiyViewController: BaseViewController {
         
         output.moveToDetail
             .subscribe(with: self) { owner, model in
-                let vc = PostDetailViewController()
-                vc.item = model
-                owner.navigationController?.pushViewController(vc, animated: true)
+                //TODO: TabBarController가
+                if let tabBarController = self.tabBarController,
+                   let navigationController = tabBarController.viewControllers?[0] as? UINavigationController {
+                    let vc = PostDetailViewController()
+                    vc.item = model
+                    navigationController.pushViewController(vc, animated: true)
+                }
             }
             .disposed(by: disposeBag)
-        
-        inputTrigger
-            .flatMap { value in
-                return NetworkManager.requestNetwork(router: .post(.inqueryPost), modelType: inqueryUppperPostModel.self)
-            }
-            .subscribe { model in
-                print("포스트 조회 서엉고옹")
-                print(model)
-                //result.accept(model)
-            } onError: { error in
-                print("포스트 조회 실패애")
-            }
-            .disposed(by: disposeBag)
+//        
+//        inputTrigger
+//            .flatMap { value in
+//                return NetworkManager.requestNetwork(router: .post(.inqueryPost), modelType: inqueryUppperPostModel.self)
+//            }
+//            .subscribe { model in
+//                print("포스트 조회 VC긴하지만 서엉고옹")
+//            } onError: { error in
+//                print("포스트 조회 VC긴하지만 실패애")
+//            }
+//            .disposed(by: disposeBag)
     }
     override func loadView() {
         view = mainView

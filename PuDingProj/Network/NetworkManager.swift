@@ -28,7 +28,7 @@ struct NetworkManager {
                         case .failure(let error):
                             print(response.response?.statusCode)
                             guard let code = response.response?.statusCode else { return }
-                            if let networkError = NetworkError(rawValue: code) {
+                            if let networkError = NetworkErrorManager.NetworkError(rawValue: code) {
                                 networkError.handleNetworkError(code)
                             } else {
                                 print("NetWorkError 처리 못하는 에러어발생")

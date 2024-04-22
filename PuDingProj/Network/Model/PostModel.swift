@@ -56,11 +56,25 @@ struct inqueryPostModel: Decodable {
     let comments: [WriteCommentModel]
 }
 
+//TODO: PostModel 이걸로 대체할 수 있을듯 - regist, inquery, edit
+struct MainPostModel: Decodable {
+    let post_id: String
+    let product_id: String?
+    let title: String?
+    let content: String?
+    let content1: String?
+    let createdAt: String
+    let creator: CreatorInfo
+    let files: [String]
+    let likes: [String]
+    let likes2: [String]
+    let hashTags: [String]
+    let comments: [WriteCommentModel]
+}
+
 
 //MARK: 이미지 업로드
 struct UploadPostImageFilesModel: Decodable {
     let files: [String]
 }
-
-
 

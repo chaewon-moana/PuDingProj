@@ -43,6 +43,7 @@ final class LoginViewModel {
                 return NetworkManager.requestNetwork(router: .account(.login(query: query)), modelType: LoginModel.self)
             }
             .subscribe { model in
+                successToLogin.accept(())
                 print("로그인서엉고옹")
                 UserDefaults.standard.set(model.accessToken, forKey: "accessToken")
                 UserDefaults.standard.setValue(model.refreshToken, forKey: "refreshToken")
@@ -62,9 +63,9 @@ final class LoginViewModel {
             .bind(to: moveToJoin)
             .disposed(by: disposeBag)
         
-        input.loginButtonTapped
-            .bind(to: successToLogin)
-            .disposed(by: disposeBag)
+//        input.loginButtonTapped
+//            .bind(to: successToLogin)
+//            .disposed(by: disposeBag)
         
         input.saveEmailTapped
             .subscribe(with: self) { owner, _ in

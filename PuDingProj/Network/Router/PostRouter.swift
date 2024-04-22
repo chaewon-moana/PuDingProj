@@ -9,15 +9,16 @@ import Foundation
 import Alamofire
 
 enum PostRouter {
+    //query -> body로 변경,,ㅠ query1을 query로 두기
     case registerPost(query: RegisterPostQuery)
     case inqueryPost
     case uploadImage
     case inquerySpecificPost(id: SpecificPostQuery)
+    case editPost(query: EditPostQuery, id: String)
+    case deletePost(id: String)
 }
 
-enum PostModel {
-    case registerPost(model: RegisterPostModel)
-}
+
 
 extension PostRouter: TargetType {
     var baseURL: String {
@@ -34,6 +35,10 @@ extension PostRouter: TargetType {
             return .post
         case .inquerySpecificPost:
             return .get
+        case .editPost:
+            return .put
+        case .deletePost:
+            return .delete
         }
     }
     
@@ -47,6 +52,10 @@ extension PostRouter: TargetType {
             return "posts/files"
         case .inquerySpecificPost(let id):
             return "posts/\(id.post_id)"
+        case .editPost(let query, let id):
+            return "posts/\(id)"
+        case .deletePost(let id):
+            return "posts/\(id)"
         }
     }
     
@@ -66,6 +75,13 @@ extension PostRouter: TargetType {
         case .inquerySpecificPost:
             return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .editPost(query: let query):
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+                    HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .deletePost:
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
@@ -78,6 +94,10 @@ extension PostRouter: TargetType {
         case .uploadImage:
             return nil
         case .inquerySpecificPost:
+            return nil
+        case .editPost(query: let query):
+            return nil
+        case .deletePost:
             return nil
         }
     }
@@ -92,6 +112,10 @@ extension PostRouter: TargetType {
             return nil
         case .inquerySpecificPost:
             return nil
+        case .editPost:
+            return [URLQueryItem(name: "product_id", value: "puding-moana22")]
+        case .deletePost:
+            return nil
         }
     }
     
@@ -105,6 +129,11 @@ extension PostRouter: TargetType {
         case .uploadImage:
             return nil
         case .inquerySpecificPost:
+            return nil
+        case .editPost(let query, let id):
+            let encoder = JSONEncoder()
+            return try? encoder.encode(query)
+        case .deletePost:
             return nil
         }
     }

@@ -143,6 +143,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE527F5F2BD685690081C68E /* NetworkErrorManager */ = {
+			isa = PBXGroup;
+			children = (
+				DE8B8F822BD634C900AA5A53 /* NetworkErrorManager.swift */,
+			);
+			path = NetworkErrorManager;
+			sourceTree = "<group>";
+		};
 		DE8B8E892BC76EAE00AA5A53 /* Present */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,13 +166,13 @@
 		DE8B8E8A2BC76ED300AA5A53 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				DE527F5F2BD685690081C68E /* NetworkErrorManager */,
 				DE8B8F182BCFBED100AA5A53 /* Router */,
 				DE8B8EB92BC7E1CB00AA5A53 /* Model */,
 				DE8B8EB82BC7E1C400AA5A53 /* Query */,
 				DE8B8EAF2BC7CAC800AA5A53 /* HTTPHeader.swift */,
 				DE8B8EB12BC7CB7B00AA5A53 /* TargetType.swift */,
 				DE8B8EBC2BC7E1FE00AA5A53 /* NetworkManager.swift */,
-				DE8B8F822BD634C900AA5A53 /* NetworkErrorManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
