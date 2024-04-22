@@ -20,16 +20,14 @@ final class CommunitiyViewController: BaseViewController {
     }()
     var list: [inqueryPostModel] = []
     var postList = PublishRelay<[inqueryPostModel]>()
-    var inputTrigger: () = ()
-    override func loadView() {
-        view = mainView
-
-    }
+    var inputTrigger = PublishRelay<Void>()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        inputTrigger = ()
-        print("input trigger 발동")
+        inputTrigger.accept(())
+        print("community input Trigger")
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -45,10 +43,8 @@ final class CommunitiyViewController: BaseViewController {
     }
     
     override func bind() {
-        let inputTriggerObservable = Observable.just(inputTrigger)
         
-        
-        let input = CommunityViewModel.Input(inputTrigger: inputTriggerObservable,
+        let input = CommunityViewModel.Input(inputTrigger: inputTrigger,
                                              searchText: textField.rx.text.orEmpty.asObservable(),
                                              searchButtonTapped: textField.rx.searchButtonClicked.asObservable(),
                                              postSelected: mainView.collectionView.rx.modelSelected(inqueryPostModel.self)
@@ -78,5 +74,21 @@ final class CommunitiyViewController: BaseViewController {
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
+        
+        inputTrigger
+            .flatMap { value in
+                return NetworkManager.requestNetwork(router: .post(.inqueryPost), modelType: inqueryUppperPostModel.self)
+            }
+            .subscribe { model in
+                print("포스트 조회 서엉고옹")
+                print(model)
+                //result.accept(model)
+            } onError: { error in
+                print("포스트 조회 실패애")
+            }
+            .disposed(by: disposeBag)
+    }
+    override func loadView() {
+        view = mainView
     }
 }

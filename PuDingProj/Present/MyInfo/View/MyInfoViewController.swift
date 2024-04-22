@@ -31,7 +31,8 @@ class MyInfoViewController: BaseViewController {
     override func bind() {
         let inputTrigger = Observable.of(trigger)
         
-        let input = MyInfoViewModel.Input(inputTrigger: inputTrigger)
+        let input = MyInfoViewModel.Input(inputTrigger: inputTrigger,
+                                          withdrawButtonTappend: mainView.withdrawButton.rx.tap.asObservable())
         
         let output = viewModel.transform(input: input)
         

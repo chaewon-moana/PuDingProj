@@ -23,11 +23,11 @@ final class MyInfoView: BaseView {
     let supportLabel = UILabel()
     let supportCountLabel = UILabel()
     let mypostLabel = UILabel()
+    let withdrawButton = UIButton()
    // let collectionView = UICollectionView()
     
-    
     override func configureViewLayout() {
-        self.addSubviews([profileImageView, nicknameLabel, followerLabel, followingLabel, settingLabel, firstUnderLine, donationView, supportView, mypostLabel])
+        self.addSubviews([profileImageView, nicknameLabel, followerLabel, followingLabel, settingLabel, firstUnderLine, donationView, supportView, mypostLabel, withdrawButton])
         donationView.addSubviews([donationLabel, donationPriceLabel])
         supportView.addSubviews([supportLabel, supportCountLabel])
         
@@ -83,16 +83,22 @@ final class MyInfoView: BaseView {
             make.top.equalTo(donationLabel.snp.bottom).offset(4)
             make.horizontalEdges.equalToSuperview()
         }
-       
+        withdrawButton.snp.makeConstraints { make in
+            make.size.equalTo(40)
+            make.top.equalTo(self.safeAreaLayoutGuide).inset(12)
+            make.trailing.equalTo(settingLabel.snp.leading).offset(-8)
+        }
     }
     
     func updateUI(item: InqueryProfileModel) {
-        nicknameLabel.text = item.nick
+        nicknameLabel.text = item.email
         followerLabel.text = "팔로워 \(item.followers.count)"
         followingLabel.text = "팔로잉 \(item.following.count)"
     }
     
     override func configureAttribute() {
+        withdrawButton.setTitle("탈퇴", for: .normal)
+        withdrawButton.setTitleColor(.black, for: .normal)
         profileImageView.layer.cornerRadius = 40
         profileImageView.layer.borderColor = UIColor.lightGray.cgColor
         profileImageView.layer.borderWidth = 1

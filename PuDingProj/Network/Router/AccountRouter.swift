@@ -12,12 +12,9 @@ enum AccountRouter {
     case join(query: JoinQuery)
     case emailValidation(email: emailQuery)
     case login(query: LoginQuery)
+    case refresh
+    case withdraw
 }
-
-//enum AccountModel {
-//    case join(model: JoinModel)
-//    case login(model: LoginModel)
-//}
 
 extension AccountRouter: TargetType {
     var baseURL: String {
@@ -32,7 +29,10 @@ extension AccountRouter: TargetType {
             return .post
         case .login:
             return .post
-            
+        case .refresh:
+            return .get
+        case .withdraw:
+            return .get
         }
     }
     
@@ -44,22 +44,31 @@ extension AccountRouter: TargetType {
             return "validation/email"
         case .login:
             return "users/login"
+        case .refresh:
+            return "auth/refresh"
+        case .withdraw:
+            return "users/withdraw"
         }
     }
     
     var header: [String : String] {
         switch self {
         case .join:
-            return [ HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
+            return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                      HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .emailValidation:
             return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
-                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue
-            ]
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .login:
-            return [ HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
-                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue
-            ]
+            return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
+                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .refresh:
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue,
+                    HTTPHeader.refresh.rawValue: UserDefaults.standard.string(forKey: "refreshToken")!]
+        case .withdraw:
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
@@ -71,6 +80,10 @@ extension AccountRouter: TargetType {
             return nil
         case .login:
             return nil
+        case .refresh:
+            return nil
+        case .withdraw:
+            return nil
         }
     }
     
@@ -81,6 +94,10 @@ extension AccountRouter: TargetType {
         case .emailValidation:
             return nil
         case .login:
+            return nil
+        case .refresh:
+            return nil
+        case .withdraw:
             return nil
         }
     }
@@ -97,8 +114,10 @@ extension AccountRouter: TargetType {
         case .login(let query):
             let encoder = JSONEncoder()
             return try? encoder.encode(query)
+        case .refresh:
+            return nil
+        case .withdraw:
+            return nil
         }
     }
-    
-    
 }

@@ -46,6 +46,7 @@ class LoginViewController: BaseViewController {
         
         output.successToLogin
             .subscribe(with: self) { owner, _ in
+                print("로그인 성공해서 뷰로 넘어감~~")
                 let vc = MainTabBarController()
                 vc.modalPresentationStyle = .fullScreen
                 owner.present(vc, animated: true)

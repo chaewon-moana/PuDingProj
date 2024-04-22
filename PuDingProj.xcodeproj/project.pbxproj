@@ -55,6 +55,9 @@
 		DE8B8F6E2BD52CCB00AA5A53 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F6D2BD52CCB00AA5A53 /* ProfileRouter.swift */; };
 		DE8B8F702BD52D2000AA5A53 /* ProfileQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F6F2BD52D2000AA5A53 /* ProfileQuery.swift */; };
 		DE8B8F722BD52EB000AA5A53 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F712BD52EB000AA5A53 /* ProfileModel.swift */; };
+		DE8B8F832BD634C900AA5A53 /* NetworkErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F822BD634C900AA5A53 /* NetworkErrorManager.swift */; };
+		DE8B8F852BD636B100AA5A53 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F842BD636B100AA5A53 /* TestViewController.swift */; };
+		DE8B8F872BD646FF00AA5A53 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F862BD646FF00AA5A53 /* UIViewController+Extension.swift */; };
 		DE9CEC102BC646BB00360192 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */; };
 		DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC112BC646BB00360192 /* SceneDelegate.swift */; };
 		DE9CEC142BC646BB00360192 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC132BC646BB00360192 /* ViewController.swift */; };
@@ -108,6 +111,9 @@
 		DE8B8F6D2BD52CCB00AA5A53 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		DE8B8F6F2BD52D2000AA5A53 /* ProfileQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileQuery.swift; sourceTree = "<group>"; };
 		DE8B8F712BD52EB000AA5A53 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		DE8B8F822BD634C900AA5A53 /* NetworkErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorManager.swift; sourceTree = "<group>"; };
+		DE8B8F842BD636B100AA5A53 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		DE8B8F862BD646FF00AA5A53 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		DE9CEC0C2BC646BB00360192 /* PuDingProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuDingProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9CEC112BC646BB00360192 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +164,7 @@
 				DE8B8EAF2BC7CAC800AA5A53 /* HTTPHeader.swift */,
 				DE8B8EB12BC7CB7B00AA5A53 /* TargetType.swift */,
 				DE8B8EBC2BC7E1FE00AA5A53 /* NetworkManager.swift */,
+				DE8B8F822BD634C900AA5A53 /* NetworkErrorManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -175,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				DE8B8EA72BC7C4C900AA5A53 /* UIView+Extension.swift */,
+				DE8B8F862BD646FF00AA5A53 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -390,6 +398,7 @@
 				DE9CEC182BC646BD00360192 /* Assets.xcassets */,
 				DE9CEC112BC646BB00360192 /* SceneDelegate.swift */,
 				DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */,
+				DE8B8F842BD636B100AA5A53 /* TestViewController.swift */,
 			);
 			path = PuDingProj;
 			sourceTree = "<group>";
@@ -512,6 +521,7 @@
 				DE8B8F722BD52EB000AA5A53 /* ProfileModel.swift in Sources */,
 				DE8B8F1E2BCFC68000AA5A53 /* PostModel.swift in Sources */,
 				DE8B8F632BD3B82C00AA5A53 /* PostDetailViewModel.swift in Sources */,
+				DE8B8F832BD634C900AA5A53 /* NetworkErrorManager.swift in Sources */,
 				DE8B8EAC2BC7C65700AA5A53 /* AccountRouter.swift in Sources */,
 				DE8B8F172BCFA1C200AA5A53 /* CommunityViewModel.swift in Sources */,
 				DE8B8F612BD3B81700AA5A53 /* PostDetailView.swift in Sources */,
@@ -523,6 +533,7 @@
 				DE8B8F1A2BCFC5DB00AA5A53 /* PostRouter.swift in Sources */,
 				DE8B8F6C2BD4173A00AA5A53 /* CreatorModel.swift in Sources */,
 				DE8B8E942BC7BE9D00AA5A53 /* JoinViewController.swift in Sources */,
+				DE8B8F852BD636B100AA5A53 /* TestViewController.swift in Sources */,
 				DE8B8F6E2BD52CCB00AA5A53 /* ProfileRouter.swift in Sources */,
 				DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */,
 				DE8B8F702BD52D2000AA5A53 /* ProfileQuery.swift in Sources */,
@@ -534,6 +545,7 @@
 				DE8B8EC92BCBC81100AA5A53 /* MainTabBarController.swift in Sources */,
 				DE8B8EAA2BC7C53500AA5A53 /* JoinViewModel.swift in Sources */,
 				DE8B8EC22BCABA0700AA5A53 /* MyInfoViewController.swift in Sources */,
+				DE8B8F872BD646FF00AA5A53 /* UIViewController+Extension.swift in Sources */,
 				DE8B8F392BD110E500AA5A53 /* RegistPostViewModel.swift in Sources */,
 				DE8B8EB52BC7CE4D00AA5A53 /* LoginTextField.swift in Sources */,
 			);

@@ -25,3 +25,7 @@ struct LoginModel: Decodable {
     let accessToken: String
     let refreshToken: String
 }
+
+struct refreshAccessToken: Decodable {
+    let accessToken: String
+}
