@@ -10,6 +10,8 @@ import SnapKit
 import Kingfisher
 
 final class PostDetailView: BaseView {
+    let scrollView = UIScrollView()
+    let backView = UIView()
     let profileImageLogo = UIImageView()
     let nicknameLabel = UILabel()
     let titleLabel = UILabel()
@@ -24,29 +26,62 @@ final class PostDetailView: BaseView {
     let commentTextView = UITextView()
     let commentSendButton = UIButton()
     let imageScrollView = UIScrollView()
-    let commentCollectionView = UICollectionView()
-    //let testImage = UIImageView()
+    let commentStackView = UIStackView()
+    let commentCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+    
+    static func createLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, enviroment in
+            
+            // guard let section = Section(rawValue: sectionIndex) else { return nil }
+            
+            let layoutSection: NSCollectionLayoutSection
+            //cell
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            //group
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(60))
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+            
+            //Section
+            layoutSection = NSCollectionLayoutSection(group: group)
+            layoutSection.interGroupSpacing = 5
+            
+            return layoutSection
+        }
+        
+        return layout
+    }
     
     override func configureViewLayout() {
-        self.addSubviews([profileImageLogo, nicknameLabel, titleLabel, contentLabel, registerDateLabel, likeMarkImage,  likeCountLabel,commentMarkImage, commentCountLabel, commentView, imageScrollView])
+        self.addSubviews([scrollView, commentView])
+        scrollView.addSubview(backView)
+        backView.addSubviews([profileImageLogo, nicknameLabel, titleLabel, contentLabel, registerDateLabel, likeMarkImage,  likeCountLabel,commentMarkImage, commentCountLabel, imageScrollView, commentCollectionView])
         commentView.addSubviews([commentTextView, commentSendButton])
         imageScrollView.addSubview(imageStackView)
         
+        scrollView.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(8)
+            make.bottom.equalTo(commentView.snp.top).offset(-4)
+        }
+        backView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalTo(scrollView)
+        }
         profileImageLogo.snp.makeConstraints { make in
             make.size.equalTo(32)
-            make.top.leading.equalTo(self.safeAreaLayoutGuide).offset(8)
+            make.top.leading.equalToSuperview().offset(8)
         }
         nicknameLabel.snp.makeConstraints { make in
             make.leading.equalTo(profileImageLogo.snp.trailing).offset(8)
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(8)
+            make.top.equalToSuperview().offset(8)
         }
         titleLabel.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).offset(8)
+            make.horizontalEdges.equalToSuperview().offset(8)
             make.top.equalTo(profileImageLogo.snp.bottom).offset(12)
         }
         imageScrollView.snp.makeConstraints { make in
             make.height.equalTo(120)
-            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(8)
+            make.horizontalEdges.equalToSuperview().inset(8)
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.bottom.equalTo(contentLabel.snp.top).offset(8)
         }
@@ -54,23 +89,30 @@ final class PostDetailView: BaseView {
             make.edges.equalToSuperview()
         }
         contentLabel.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(8)
+            make.horizontalEdges.equalToSuperview().inset(8)
             make.top.equalTo(imageStackView.snp.bottom).offset(8)
+            make.bottom.equalTo(registerDateLabel.snp.top).offset(-4)
         }
         registerDateLabel.snp.makeConstraints { make in
             make.top.equalTo(contentLabel.snp.bottom).offset(4)
-            make.trailing.equalTo(self.safeAreaLayoutGuide).inset(4)
+            make.trailing.equalToSuperview().inset(4)
         }
         likeMarkImage.snp.makeConstraints { make in
             make.size.equalTo(20)
             make.top.equalTo(contentLabel.snp.bottom).offset(4)
-            make.leading.equalTo(self.safeAreaLayoutGuide).offset(8)
+            make.leading.equalToSuperview().offset(8)
         }
         likeCountLabel.snp.makeConstraints { make in
             make.top.equalTo(contentLabel.snp.bottom).offset(4)
             make.leading.equalTo(likeMarkImage.snp.trailing).offset(4)
+            make.bottom.equalTo(commentCollectionView.snp.top)
         }
-        
+       
+        commentCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(likeCountLabel.snp.bottom).offset(12)
+            make.horizontalEdges.equalToSuperview().inset(8)
+            make.bottom.equalTo(backView.snp.bottom)
+        }
         commentMarkImage.snp.makeConstraints { make in
             make.size.equalTo(20)
             make.top.equalTo(contentLabel.snp.bottom).offset(4)
@@ -94,13 +136,23 @@ final class PostDetailView: BaseView {
             make.bottom.trailing.equalToSuperview().inset(8)
         }
     }
+
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        scrollView.snp.updateConstraints { make in
+            make.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(8)
+            make.bottom.equalTo(commentView.snp.top).offset(-4)
+        }
+    }
     
     func updateUI(item: inqueryPostModel) {
         nicknameLabel.text = item.creator.nick
         titleLabel.text = item.title
         contentLabel.text = item.content
         registerDateLabel.text = item.createdAt
+        commentCountLabel.text = "\(item.comments.count)"
+        
         if item.files.isEmpty {
             imageStackView.isHidden = true
             //thumbnailImageView.image = UIImage(systemName: "heart")
@@ -125,14 +177,14 @@ final class PostDetailView: BaseView {
     }
     
     override func configureAttribute() {
-       
+        backView.isUserInteractionEnabled = true
         imageStackView.axis = .horizontal
         commentSendButton.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
         commentTextView.backgroundColor = .yellow
         commentTextView.text = "asdfasdfasdfasdfasdfasdfasdfasdf"
         commentView.backgroundColor = .blue
         commentMarkImage.image = UIImage(systemName: "bubble.left")
-        commentCountLabel.text = "88"
+        
         commentCountLabel.font = .systemFont(ofSize: 11)
         likeCountLabel.text = "88"
         likeCountLabel.font = .systemFont(ofSize: 11)

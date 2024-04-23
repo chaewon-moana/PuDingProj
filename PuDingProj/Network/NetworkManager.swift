@@ -9,8 +9,6 @@ import Foundation
 import Alamofire
 import RxSwift
 
-
-
 struct NetworkManager {
     //MARK: Query - query, Model - Model
     static func requestNetwork<Model: Decodable>(router: Router, modelType: Model.Type) -> Single<Model> {
@@ -43,6 +41,22 @@ struct NetworkManager {
         }
     }
     
+    static func requestDeletePost(id: String) {
+        do {
+            let urlRequest = try Router.post(.deletePost(id: id)).asURLRequest()
+            AF.request(urlRequest).response { response in
+                switch response.result {
+                case .success(let value):
+                    print(value, "delete 성공")
+                case .failure(let error):
+                    print(error, "delete 실패")
+                }
+            }
+        } catch {
+            print("catch error")
+        }
+    }
+   
   
     
 //    static func requestPostText() -> Single<inqueryUppperPostModel> {

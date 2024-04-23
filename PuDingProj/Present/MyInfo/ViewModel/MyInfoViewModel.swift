@@ -49,7 +49,6 @@ final class MyInfoViewModel {
             }
             .disposed(by: disposeBag)
 
-        
         return Output(profileInfo: profile.asObservable())
     }
 }

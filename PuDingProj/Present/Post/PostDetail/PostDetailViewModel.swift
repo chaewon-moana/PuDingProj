@@ -18,6 +18,7 @@ final class PostDetailViewModel {
         let backButtonTapped: Observable<Void>
         let commentSendButtonTapped: Observable<Void>
         let commentText: Observable<String>
+        let settingButtonTapped: Observable<Void>
     }
     
     struct Output {
@@ -27,9 +28,11 @@ final class PostDetailViewModel {
     struct CommentOnPost {
         let comment: String
     }
+    
     func transform(input: Input) -> Output {
     
         let commentObservable = Observable.combineLatest(input.commentText, input.postItem)
+        let postObservalbe = Observable.of(input.postItem)
         
         input.commentSendButtonTapped
             .withLatestFrom(commentObservable)
@@ -44,8 +47,24 @@ final class PostDetailViewModel {
                 print("댓글달기 실패")
             }
             .disposed(by: disposeBag)
-
         
+//        input.settingButtonTapped
+//            .withLatestFrom(commentObservable)
+//            .flatMap { value, model in
+//                return NetworkManager.requestDeletePost(id: model.post_id)
+//            }
+//            .subscribe { model in
+//                print(model, "삭제성공")
+//            } onError: { error in
+//                print(error, "삭제 못함,,에러,,")
+//            }
+//            .disposed(by: disposeBag)
+        
+        
+        
+         
+         
+
 //        input.commentSendButtonTapped
 //            .withLatestFrom(input.commentText)
 //            .flatMap { value in
@@ -59,11 +78,10 @@ final class PostDetailViewModel {
 //                print("댓글달기 실패")
 //            }
 //            .disposed(by: disposeBag)
-
-        
-
         
         return Output(postResult: input.postItem,
                       backButtonTapped: input.backButtonTapped.asDriver(onErrorJustReturn: ()))
     }
 }
+
+

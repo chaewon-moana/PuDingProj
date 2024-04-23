@@ -56,7 +56,7 @@ struct inqueryPostModel: Decodable {
     let comments: [WriteCommentModel]
 }
 
-//TODO: PostModel 이걸로 대체할 수 있을듯 - regist, inquery, edit
+//TODO: PostModel 이걸로 대체할 수 있을듯 - regist, inquery, edit, delete
 struct MainPostModel: Decodable {
     let post_id: String
     let product_id: String?

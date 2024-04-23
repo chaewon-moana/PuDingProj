@@ -291,8 +291,8 @@
 		DE8B8EE82BCD1FED00AA5A53 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				DE8B8EEA2BCD200200AA5A53 /* ViewModel */,
 				DE8B8EE92BCD1FFA00AA5A53 /* View */,
+				DE8B8EEA2BCD200200AA5A53 /* ViewModel */,
 			);
 			path = Login;
 			sourceTree = "<group>";
