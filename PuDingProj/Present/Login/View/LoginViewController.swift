@@ -52,6 +52,13 @@ class LoginViewController: BaseViewController {
                 owner.present(vc, animated: true)
             }
             .disposed(by: disposeBag)
+        
+        output.saveEmailValue
+            .bind(with: self) { owner, value in
+                owner.mainView.checkBox.tintColor = value ? .blue : .gray
+            }
+            .disposed(by: disposeBag)
+        
     }
 }
 

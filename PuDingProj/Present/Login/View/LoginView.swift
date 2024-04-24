@@ -49,7 +49,7 @@ final class LoginView: BaseView {
     }
 
     override func configureAttribute() {
-        
+        checkBox.tintColor = UserDefault.saveEmail.isEmpty ? .gray : .blue
         checkBox.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
         checkBoxLabel.text = "아이디 저장"
         checkBoxLabel.font = .systemFont(ofSize: 13)
@@ -58,6 +58,7 @@ final class LoginView: BaseView {
         joinButton.setTitle("회원가입", for: .normal)
         joinButton.setTitleColor(.black, for: .normal)
         emailTextField.keyboardType = .emailAddress
+        emailTextField.text = UserDefault.saveEmail
     }
-    
+   
 }

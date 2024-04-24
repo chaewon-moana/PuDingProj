@@ -21,7 +21,6 @@ struct WrapperDefaults<T> {
     }
 }
 
-
 enum UserDefault {
     enum Key: String {
         case accessToken
@@ -34,48 +33,5 @@ enum UserDefault {
     static var refreshToken
     @WrapperDefaults(key: Key.saveEmail.rawValue, defaultValue: "")
     static var saveEmail
-
 }
 
-
-class UserDefault {
-    private init() { }
-    
-    static let  = UserDefault()
-    
-    let ud = UserDefaults.standard
-    
-    enum UDKey: String {
-        case accessToken
-        case refreshToken
-        case saveEmail
-    }
-    
-    var accessToken: String {
-        get {
-            ud.string(forKey: UDKey.accessToken.rawValue) ?? ""
-        }
-        set {
-            ud.set(newValue, forKey: UDKey.accessToken.rawValue)
-        }
-    }
-    
-    var refreshToken: String {
-        get {
-            ud.string(forKey: UDKey.refreshToken.rawValue) ?? ""
-        }
-        set {
-            ud.set(newValue, forKey: UDKey.refreshToken.rawValue)
-        }
-    }
-    
-    var saveEmail: String {
-        get {
-            ud.string(forKey: UDKey.saveEmail.rawValue) ?? ""
-        }
-        set {
-            ud.set(newValue, forKey: UDKey.saveEmail.rawValue)
-        }
-    }
-    
-}

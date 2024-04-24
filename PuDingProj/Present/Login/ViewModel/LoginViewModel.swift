@@ -24,6 +24,7 @@ final class LoginViewModel {
     struct Output {
         let moveToJoinView: Observable<Void>
         let successToLogin: Observable<Void>
+        let saveEmailValue: Observable<Bool>
     }
     
     func transform(input: Input) -> Output {
@@ -53,12 +54,7 @@ final class LoginViewModel {
                 print("로그인실패애")
             }
             .disposed(by: disposeBag)
-        
-        input.emailText
-            .map{ value in
-                email = value
-            }
-        
+
         input.joinButtonTapped
             .bind(to: moveToJoin)
             .disposed(by: disposeBag)
@@ -68,14 +64,22 @@ final class LoginViewModel {
 //            .disposed(by: disposeBag)
         
         input.saveEmailTapped
-            .subscribe(with: self) { owner, _ in
-                UserDefault.saveEmail = email
-                UserDefaults.standard.setValue(email, forKey: "userEmail")
+            .withLatestFrom(input.emailText)
+            .subscribe(with: self) { owner, value in
+                if UserDefault.saveEmail.isEmpty {
+                    UserDefault.saveEmail = value
+                    print(UserDefault.saveEmail, "이메일 저장 됨!")
+                    saveEmail.accept(true)
+                } else {
+                    UserDefault.saveEmail = ""
+                    saveEmail.accept(false)
+                }
+                
             }
             .disposed(by: disposeBag)
         
         return Output(moveToJoinView: moveToJoin.asObservable(),
-                      successToLogin: successToLogin.asObservable())
+                      successToLogin: successToLogin.asObservable(), saveEmailValue: saveEmail.asObservable())
         
     }
     
