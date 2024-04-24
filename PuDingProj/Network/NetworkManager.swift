@@ -41,9 +41,9 @@ struct NetworkManager {
         }
     }
     
-    static func requestDeletePost(id: String) {
+    static func requestDeletePost(router: Router) {
         do {
-            let urlRequest = try Router.post(.deletePost(id: id)).asURLRequest()
+            let urlRequest = try router.asURLRequest()
             AF.request(urlRequest).response { response in
                 switch response.result {
                 case .success(let value):
@@ -56,6 +56,22 @@ struct NetworkManager {
             print("catch error")
         }
     }
+    static func requestDeleteComment(postID: String, commentID: String) {
+        do {
+            let urlRequest = try Router.comment(.deleteComment(postID: postID, commentID: commentID)).asURLRequest()
+            AF.request(urlRequest).response { response in
+                switch response.result {
+                case .success(let value):
+                    print(value, "delete 성공")
+                case .failure(let error):
+                    print(error, "delete 실패")
+                }
+            }
+        } catch {
+            print("catch error")
+        }
+    }
+    
    
   
     

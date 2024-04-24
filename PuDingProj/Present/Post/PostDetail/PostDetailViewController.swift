@@ -31,6 +31,10 @@ final class PostDetailViewController: BaseViewController {
     }()
     
     var list: [WriteCommentModel] = [WriteCommentModel(comment_id: "asdf", content: "asdfasdf", createdAt: "asdfasdfasdf", creator: CreatorInfo(user_id: "ddd", nick: "sdfsdfsd", profileImage: nil))]
+    
+    var commentID: String = ""
+    var commentDelete: Void = ()
+    
     override func loadView() {
         view = mainView
     }
@@ -51,6 +55,15 @@ final class PostDetailViewController: BaseViewController {
         
         dataSource = UICollectionViewDiffableDataSource<Section, WriteCommentModel>(collectionView: mainView.commentCollectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+            
+            cell.deleteButton.rx.tap
+                .subscribe(with: self) { owner, _ in
+                    print("cell에 deleteButtonTap함")
+                    //TODO: 삭제했을 때, 다시 받아오는 작업 필요함 - 각 Post
+                    NetworkManager.requestDeleteComment(postID: owner.item!.post_id , commentID: itemIdentifier.comment_id)
+                }
+                .disposed(by: cell.disposeBag)
+            
             return cell
         })
     }
@@ -64,7 +77,9 @@ final class PostDetailViewController: BaseViewController {
         navigationItem.rightBarButtonItem = settingButton
         cellRegistration()
         updateSnapShot()
+        
     }
+    
     private func updateSnapShot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, WriteCommentModel>()
         snapshot.appendSections(Section.allCases)
@@ -74,11 +89,14 @@ final class PostDetailViewController: BaseViewController {
     }
     
     override func bind() {
+        let commentID = Observable.just(commentID)
+        let commentTapped = Observable.just(commentDelete)
+        
         let input = PostDetailViewModel.Input(postItem: Observable.of(item!),
                                               backButtonTapped: backButton.rx.tap.asObservable(),
                                               commentSendButtonTapped: mainView.commentSendButton.rx.tap.asObservable(),
                                               commentText: mainView.commentTextView.rx.text.orEmpty.asObservable(),
-                                              settingButtonTapped: settingButton.rx.tap.asObservable()
+                                              settingButtonTapped: settingButton.rx.tap.asObservable(), cellDeleataButtonTapped: commentTapped, deleteComment: commentID
         )
         
         let output = viewModel.transform(input: input)
@@ -93,6 +111,13 @@ final class PostDetailViewController: BaseViewController {
         output.backButtonTapped
             .drive(with: self) { owner, _ in
                 owner.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        output.updatePost
+            .subscribe(with: self) { owner, model in
+                owner.mainView.updateUI(item: model)
+                owner.list = model.comments
             }
             .disposed(by: disposeBag)
         

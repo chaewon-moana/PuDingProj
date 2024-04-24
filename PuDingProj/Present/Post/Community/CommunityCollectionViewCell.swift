@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import RxSwift
+import RxCocoa
 
 final class CommunityCollectionViewCell: UICollectionViewCell {
     
@@ -24,6 +26,7 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         configureLayout()
         configureAttribute()
+        
     }
     
     private func configureLayout() {

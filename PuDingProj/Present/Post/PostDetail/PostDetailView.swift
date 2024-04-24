@@ -107,11 +107,11 @@ final class PostDetailView: BaseView {
             make.leading.equalTo(likeMarkImage.snp.trailing).offset(4)
             make.bottom.equalTo(commentCollectionView.snp.top)
         }
-       
         commentCollectionView.snp.makeConstraints { make in
             make.top.equalTo(likeCountLabel.snp.bottom).offset(12)
             make.horizontalEdges.equalToSuperview().inset(8)
             make.bottom.equalTo(backView.snp.bottom)
+            make.height.equalTo(300)
         }
         commentMarkImage.snp.makeConstraints { make in
             make.size.equalTo(20)

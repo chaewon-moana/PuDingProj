@@ -7,22 +7,37 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class CommentCollectionViewCell: UICollectionViewCell {
     
+    let disposeBag = DisposeBag()
     let profileImageView = UIImageView()
     let nicknameLabel = UILabel()
     let contentLabel = UILabel()
     let dateLabel = UILabel()
+    let deleteButton = UIButton()
     
+    let buttonTap = PublishSubject<Void>()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureLayout()
         configureAttribute()
+        deleteButton.rx.tap
+            .subscribe(with: self) { owner, value in
+                print("cell에서의 동작")
+                owner.buttonTap.onNext(value)
+            }
+            .disposed(by: disposeBag)
+//        deleteButton.rx.tap
+//            .bind(to: buttonTap)
+//            .disposed(by: disposeBag)
     }
     
     private func configureLayout() {
-        contentView.addSubviews([profileImageView, nicknameLabel, contentLabel, dateLabel])
+        contentView.addSubviews([profileImageView, nicknameLabel, contentLabel, dateLabel, deleteButton])
         profileImageView.snp.makeConstraints { make in
             make.size.equalTo(32)
             make.top.leading.equalTo(self.safeAreaLayoutGuide).offset(8)
@@ -40,9 +55,16 @@ final class CommentCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(contentLabel.snp.bottom).offset(8)
             make.leading.equalTo(contentLabel)
         }
+        deleteButton.snp.makeConstraints { make in
+            make.leading.equalTo(nicknameLabel.snp.trailing).offset(8)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(8)
+        }
     }
     
     private func configureAttribute() {
+        deleteButton.isUserInteractionEnabled = true
+        deleteButton.setTitle("삭제", for: .normal)
+        deleteButton.setTitleColor(.red, for: .normal)
         profileImageView.image = UIImage(systemName: "star")
         nicknameLabel.text = "뫄나모나"
         nicknameLabel.font = .systemFont(ofSize: 14)

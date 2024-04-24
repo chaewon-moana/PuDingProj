@@ -95,7 +95,7 @@ extension PostRouter: TargetType {
             return nil
         case .inquerySpecificPost:
             return nil
-        case .editPost(query: let query):
+        case .editPost:
             return nil
         case .deletePost:
             return nil

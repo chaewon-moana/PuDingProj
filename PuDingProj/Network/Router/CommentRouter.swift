@@ -10,6 +10,8 @@ import Alamofire
 
 enum CommentRouter {
     case writeComment(parameter: writeCommentQuery, id: String)
+    case editComment(query: writeCommentQuery, postID: String, commentID: String)
+    case deleteComment(postID: String, commentID: String)
 }
 
 extension CommentRouter: TargetType {
@@ -21,13 +23,21 @@ extension CommentRouter: TargetType {
         switch self {
         case .writeComment:
             return .post
+        case .editComment:
+            return .put
+        case .deleteComment:
+            return .delete
         }
     }
     
     var path: String {
         switch self {
-        case .writeComment(let parameter, let id):
+        case .writeComment(_, let id):
             return "posts/\(id)/comments"
+        case .editComment(_, let postID, let commentID):
+            return "posts/\(postID)/comments/\(commentID)"
+        case .deleteComment(let postID, let commentID):
+            return "posts/\(postID)/comments/\(commentID)"
         }
     }
     
@@ -36,30 +46,35 @@ extension CommentRouter: TargetType {
         case .writeComment:
             return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
                     HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
-                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue
-            ]
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .editComment:
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+                    HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .deleteComment:
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
     var parameters: String? {
-        switch self {
-        case .writeComment:
-            return nil
-        }
+        return nil
     }
     
     var queryItems: [URLQueryItem]? {
-        switch self {
-        case .writeComment:
-            return nil
-        }
+        return nil
     }
     
     var body: Data? {
         switch self {
-        case .writeComment(let query, let id):
+        case .writeComment(let query, _):
             let encoder = JSONEncoder()
             return try? encoder.encode(query)
+        case .editComment(let query, _, _):
+            let encoder = JSONEncoder()
+            return try? encoder.encode(query)
+        case .deleteComment:
+            return nil
         }
     }
     

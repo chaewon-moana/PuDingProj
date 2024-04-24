@@ -19,10 +19,13 @@ final class PostDetailViewModel {
         let commentSendButtonTapped: Observable<Void>
         let commentText: Observable<String>
         let settingButtonTapped: Observable<Void>
+        let cellDeleataButtonTapped: Observable<Void>
+        let deleteComment: Observable<String>
     }
     
     struct Output {
         let postResult: Observable<inqueryPostModel>
+        let updatePost: Observable<inqueryPostModel>
         let backButtonTapped: Driver<Void>
     }
     struct CommentOnPost {
@@ -30,9 +33,9 @@ final class PostDetailViewModel {
     }
     
     func transform(input: Input) -> Output {
-    
+        let updatePostModel = PublishRelay<inqueryPostModel>()
         let commentObservable = Observable.combineLatest(input.commentText, input.postItem)
-        let postObservalbe = Observable.of(input.postItem)
+        let comment = Observable.combineLatest(input.postItem, input.deleteComment)
         
         input.commentSendButtonTapped
             .withLatestFrom(commentObservable)
@@ -48,18 +51,33 @@ final class PostDetailViewModel {
             }
             .disposed(by: disposeBag)
         
-//        input.settingButtonTapped
-//            .withLatestFrom(commentObservable)
-//            .flatMap { value, model in
-//                return NetworkManager.requestDeletePost(id: model.post_id)
-//            }
-//            .subscribe { model in
-//                print(model, "삭제성공")
-//            } onError: { error in
-//                print(error, "삭제 못함,,에러,,")
-//            }
-//            .disposed(by: disposeBag)
         
+        //TODO: 되긴하나, 바로바로 반영이 안됨
+        input.settingButtonTapped
+            .withLatestFrom(input.postItem)
+            .flatMap { post in
+                print(post.post_id, "input이 제로랭")
+                return NetworkManager.requestNetwork(router: .post(.deletePost(id: post.post_id)), modelType: inqueryPostModel.self)
+                //return NetworkManager.requestDeletePost(id: post.post_id)
+            }
+            .subscribe { value in
+                updatePostModel.accept(value)
+                print("삭제 성공")
+            } onError: { error in
+                print(error, "삭제 실패")
+            }
+            .disposed(by: disposeBag)
+        
+        
+        input.cellDeleataButtonTapped
+            .subscribe { value in
+                print("삭제됐어여!", value)
+            } onError: { error in
+                print(error, "삭제 안됨여")
+            }
+            .disposed(by: disposeBag)
+
+
         
         
          
@@ -80,6 +98,7 @@ final class PostDetailViewModel {
 //            .disposed(by: disposeBag)
         
         return Output(postResult: input.postItem,
+                      updatePost: updatePostModel.asObservable(),
                       backButtonTapped: input.backButtonTapped.asDriver(onErrorJustReturn: ()))
     }
 }

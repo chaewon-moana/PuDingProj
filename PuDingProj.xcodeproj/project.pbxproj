@@ -67,6 +67,7 @@
 		DE9CEC242BC646DB00360192 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DE9CEC232BC646DB00360192 /* .gitignore */; };
 		DE9CEC272BC6473500360192 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC262BC6473500360192 /* APIKey.swift */; };
 		DEB14E962BD6A52700B7A0AC /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14E952BD6A52700B7A0AC /* CommentCollectionViewCell.swift */; };
+		DEB14EA92BD8E7AB00B7A0AC /* FollowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14EA82BD8E7AB00B7A0AC /* FollowRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		DE9CEC232BC646DB00360192 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DE9CEC262BC6473500360192 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		DEB14E952BD6A52700B7A0AC /* CommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewCell.swift; sourceTree = "<group>"; };
+		DEB14EA82BD8E7AB00B7A0AC /* FollowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +345,7 @@
 				DE8B8F192BCFC5DB00AA5A53 /* PostRouter.swift */,
 				DE8B8F652BD4163800AA5A53 /* CommentRouter.swift */,
 				DE8B8F6D2BD52CCB00AA5A53 /* ProfileRouter.swift */,
+				DEB14EA82BD8E7AB00B7A0AC /* FollowRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				DE8B8E942BC7BE9D00AA5A53 /* JoinViewController.swift in Sources */,
 				DE8B8F852BD636B100AA5A53 /* TestViewController.swift in Sources */,
 				DE8B8F6E2BD52CCB00AA5A53 /* ProfileRouter.swift in Sources */,
+				DEB14EA92BD8E7AB00B7A0AC /* FollowRouter.swift in Sources */,
 				DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */,
 				DE8B8F702BD52D2000AA5A53 /* ProfileQuery.swift in Sources */,
 				DE8B8F242BCFCDEA00AA5A53 /* CommunityCollectionViewCell.swift in Sources */,
