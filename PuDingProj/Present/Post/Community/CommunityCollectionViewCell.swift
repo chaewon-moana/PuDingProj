@@ -109,7 +109,7 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
 class ImageDownloadRequest: ImageDownloadRequestModifier {
     func modified(for request: URLRequest) -> URLRequest? {
         var modifiedRequest = request
-        modifiedRequest.addValue(UserDefaults.standard.string(forKey: "accessToken")!, forHTTPHeaderField: HTTPHeader.authorization.rawValue)
+        modifiedRequest.addValue(UserDefault.accessToken, forHTTPHeaderField: HTTPHeader.authorization.rawValue)
         modifiedRequest.addValue(APIKey.sesacKey.rawValue, forHTTPHeaderField: HTTPHeader.sesacKey.rawValue)
         modifiedRequest.addValue(HTTPHeader.json.rawValue, forHTTPHeaderField: HTTPHeader.contentType.rawValue)
         // 필요한 경우 다른 헤더도 추가 가능

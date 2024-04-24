@@ -60,7 +60,7 @@ final class NetworkErrorManager {
         let item = NetworkManager.requestNetwork(router: .account(.refresh), modelType: refreshAccessToken.self)
         item
             .subscribe { value in
-                UserDefaults.standard.set(value.accessToken, forKey: "accessToken")
+                UserDefault.accessToken = value.accessToken
             } onFailure: { error in
                 print("accessToken refresh하는데서 에러남")
             }

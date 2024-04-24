@@ -62,44 +62,31 @@ extension PostRouter: TargetType {
     var header: [String : String] {
         switch self {
         case .registerPost:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+            return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
                     HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .inqueryPost:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+            return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .uploadImage:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+            return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
                     HTTPHeader.contentType.rawValue: HTTPHeader.multipart.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .inquerySpecificPost:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+            return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
-        case .editPost(query: let query):
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+        case .editPost:
+            return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
                     HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .deletePost:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+            return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
     var parameters: String? {
-        switch self {
-        case .registerPost:
-            return nil
-        case .inqueryPost:
-            return nil
-        case .uploadImage:
-            return nil
-        case .inquerySpecificPost:
-            return nil
-        case .editPost:
-            return nil
-        case .deletePost:
-            return nil
-        }
+        return nil
     }
     
     var queryItems: [URLQueryItem]? {
@@ -130,7 +117,7 @@ extension PostRouter: TargetType {
             return nil
         case .inquerySpecificPost:
             return nil
-        case .editPost(let query, let id):
+        case .editPost(let query, _):
             let encoder = JSONEncoder()
             return try? encoder.encode(query)
         case .deletePost:

@@ -40,10 +40,10 @@ extension ProfileRouter: TargetType {
     var header: [String : String] {
         switch self {
         case .inqueryProfile:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+            return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .editProfile:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+            return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
              HTTPHeader.contentType.rawValue: HTTPHeader.multipart.rawValue,
              HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
@@ -59,12 +59,7 @@ extension ProfileRouter: TargetType {
     }
     
     var queryItems: [URLQueryItem]? {
-        switch self {
-        case .inqueryProfile:
-            return nil
-        case .editProfile(let query):
-            return nil
-        }
+        return nil
     }
     
     var body: Data? {

@@ -63,11 +63,11 @@ extension AccountRouter: TargetType {
             return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                      HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .refresh:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+            return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue,
-                    HTTPHeader.refresh.rawValue: UserDefaults.standard.string(forKey: "refreshToken")!]
+                    HTTPHeader.refresh.rawValue: UserDefault.refreshToken]
         case .withdraw:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken")!,
+            return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }

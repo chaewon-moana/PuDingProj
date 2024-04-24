@@ -49,6 +49,7 @@ final class LoginView: BaseView {
     }
 
     override func configureAttribute() {
+        
         checkBox.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
         checkBoxLabel.text = "아이디 저장"
         checkBoxLabel.font = .systemFont(ofSize: 13)

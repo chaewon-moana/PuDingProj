@@ -68,6 +68,7 @@
 		DE9CEC272BC6473500360192 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC262BC6473500360192 /* APIKey.swift */; };
 		DEB14E962BD6A52700B7A0AC /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14E952BD6A52700B7A0AC /* CommentCollectionViewCell.swift */; };
 		DEB14EA92BD8E7AB00B7A0AC /* FollowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14EA82BD8E7AB00B7A0AC /* FollowRouter.swift */; };
+		DEB14EAB2BD931DC00B7A0AC /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14EAA2BD931DC00B7A0AC /* UserDefault.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +129,7 @@
 		DE9CEC262BC6473500360192 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		DEB14E952BD6A52700B7A0AC /* CommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewCell.swift; sourceTree = "<group>"; };
 		DEB14EA82BD8E7AB00B7A0AC /* FollowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRouter.swift; sourceTree = "<group>"; };
+		DEB14EAA2BD931DC00B7A0AC /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				DE8B8F592BD2408400AA5A53 /* ImageFileManager.swift */,
+				DEB14EAA2BD931DC00B7A0AC /* UserDefault.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				DE8B8F702BD52D2000AA5A53 /* ProfileQuery.swift in Sources */,
 				DE8B8F242BCFCDEA00AA5A53 /* CommunityCollectionViewCell.swift in Sources */,
 				DE8B8EAE2BC7C9D500AA5A53 /* JoinQuery.swift in Sources */,
+				DEB14EAB2BD931DC00B7A0AC /* UserDefault.swift in Sources */,
 				DE8B8F202BCFC79600AA5A53 /* CommunitiyView.swift in Sources */,
 				DE8B8E962BC7BF1300AA5A53 /* BaseViewController.swift in Sources */,
 				DE8B8F3B2BD110EE00AA5A53 /* RegistPostView.swift in Sources */,
