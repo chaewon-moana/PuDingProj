@@ -111,6 +111,7 @@ final class MyInfoView: BaseView {
         profileImageView.layer.cornerRadius = 40
         profileImageView.layer.borderColor = UIColor.lightGray.cgColor
         profileImageView.layer.borderWidth = 1
+        profileImageView.clipsToBounds = true
         
         nicknameLabel.font = .systemFont(ofSize: 15, weight: .bold)
         followerLabel.font = .systemFont(ofSize: 13)

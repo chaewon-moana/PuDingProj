@@ -24,9 +24,12 @@ final class PostDetailViewController: BaseViewController {
         let view = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: nil)
     return view
     }()
-    
     lazy var settingButton: UIBarButtonItem = {
         let view = UIBarButtonItem(image: UIImage(systemName: "list.bullet"), style: .plain, target: self, action: nil)
+        return view
+    }()
+    lazy var likeButton: UIBarButtonItem = {
+        let view = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: nil)
         return view
     }()
     
@@ -74,7 +77,8 @@ final class PostDetailViewController: BaseViewController {
         tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .white
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.rightBarButtonItem = settingButton
+        navigationItem.rightBarButtonItems = [likeButton, settingButton]
+        
         cellRegistration()
         updateSnapShot()
         
@@ -91,12 +95,17 @@ final class PostDetailViewController: BaseViewController {
     override func bind() {
         let commentID = Observable.just(commentID)
         let commentTapped = Observable.just(commentDelete)
+        let like = item?.likes.contains(UserDefault.userID) ?? false
+        let likeObservable = Observable.just(like)
         
         let input = PostDetailViewModel.Input(postItem: Observable.of(item!),
                                               backButtonTapped: backButton.rx.tap.asObservable(),
                                               commentSendButtonTapped: mainView.commentSendButton.rx.tap.asObservable(),
                                               commentText: mainView.commentTextView.rx.text.orEmpty.asObservable(),
-                                              settingButtonTapped: settingButton.rx.tap.asObservable(), cellDeleataButtonTapped: commentTapped, deleteComment: commentID
+                                              settingButtonTapped: settingButton.rx.tap.asObservable(),
+                                              cellDeleataButtonTapped: commentTapped,
+                                              deleteComment: commentID, likeButtonTapped: likeButton.rx.tap.asObservable(),
+                                              likeValue: likeObservable
         )
         
         let output = viewModel.transform(input: input)

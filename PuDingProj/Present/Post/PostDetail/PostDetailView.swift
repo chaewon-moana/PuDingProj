@@ -152,6 +152,7 @@ final class PostDetailView: BaseView {
         contentLabel.text = item.content
         registerDateLabel.text = item.createdAt
         commentCountLabel.text = "\(item.comments.count)"
+        likeCountLabel.text = "\(item.likes.count)"
         
         if item.files.isEmpty {
             imageStackView.isHidden = true

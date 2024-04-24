@@ -21,6 +21,8 @@ final class PostDetailViewModel {
         let settingButtonTapped: Observable<Void>
         let cellDeleataButtonTapped: Observable<Void>
         let deleteComment: Observable<String>
+        let likeButtonTapped: Observable<Void>
+        let likeValue: Observable<Bool>
     }
     
     struct Output {
@@ -36,6 +38,7 @@ final class PostDetailViewModel {
         let updatePostModel = PublishRelay<inqueryPostModel>()
         let commentObservable = Observable.combineLatest(input.commentText, input.postItem)
         let comment = Observable.combineLatest(input.postItem, input.deleteComment)
+        let likeObservable = Observable.combineLatest(input.postItem, input.likeButtonTapped, input.likeValue)
         
         input.commentSendButtonTapped
             .withLatestFrom(commentObservable)
@@ -58,7 +61,7 @@ final class PostDetailViewModel {
             .flatMap { post in
                 print(post.post_id, "input이 제로랭")
                 return NetworkManager.requestNetwork(router: .post(.deletePost(id: post.post_id)), modelType: inqueryPostModel.self)
-                //return NetworkManager.requestDeletePost(id: post.post_id)
+                //return NetworkManager.requestDeletePost(router: .post(.deletePost(id: post.post_id)))
             }
             .subscribe { value in
                 updatePostModel.accept(value)
@@ -69,16 +72,28 @@ final class PostDetailViewModel {
             .disposed(by: disposeBag)
         
         
-        input.cellDeleataButtonTapped
+//        input.cellDeleataButtonTapped
+//            .subscribe { value in
+//                print("삭제됐어여!", value)
+//            } onError: { error in
+//                print(error, "삭제 안됨여")
+//            }
+//            .disposed(by: disposeBag)
+
+        likeObservable
+            .flatMap { post, value, state  in
+                let item = LikeQuery(like_status: state)
+                let model = input.postItem
+                print(post.post_id, "이게 조회가 안된다고?")
+                return NetworkManager.requestNetwork(router: .like(.like(query: item, id: post.post_id)), modelType: LikeModel.self)
+            }
             .subscribe { value in
-                print("삭제됐어여!", value)
+                print("좋아여!", value)
             } onError: { error in
-                print(error, "삭제 안됨여")
+                print("좋아여 에러남여!")
             }
             .disposed(by: disposeBag)
 
-
-        
         
          
          

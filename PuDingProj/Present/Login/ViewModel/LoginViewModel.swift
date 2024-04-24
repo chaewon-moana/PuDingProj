@@ -47,6 +47,7 @@ final class LoginViewModel {
             .subscribe { model in
                 successToLogin.accept(())
                 print("로그인서엉고옹")
+                UserDefault.userID = model.user_id
                 UserDefault.accessToken = model.accessToken
                 UserDefault.refreshToken = model.refreshToken
             } onError: { error in
@@ -58,10 +59,6 @@ final class LoginViewModel {
         input.joinButtonTapped
             .bind(to: moveToJoin)
             .disposed(by: disposeBag)
-        
-//        input.loginButtonTapped
-//            .bind(to: successToLogin)
-//            .disposed(by: disposeBag)
         
         input.saveEmailTapped
             .withLatestFrom(input.emailText)
