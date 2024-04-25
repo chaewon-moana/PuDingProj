@@ -54,7 +54,6 @@ final class PostDetailViewModel {
             }
             .disposed(by: disposeBag)
         
-        
         //TODO: 되긴하나, 바로바로 반영이 안됨
         input.settingButtonTapped
             .withLatestFrom(input.postItem)
@@ -70,7 +69,6 @@ final class PostDetailViewModel {
                 print(error, "삭제 실패")
             }
             .disposed(by: disposeBag)
-        
         
 //        input.cellDeleataButtonTapped
 //            .subscribe { value in
@@ -93,10 +91,6 @@ final class PostDetailViewModel {
                 print("좋아여 에러남여!")
             }
             .disposed(by: disposeBag)
-
-        
-         
-         
 
 //        input.commentSendButtonTapped
 //            .withLatestFrom(input.commentText)

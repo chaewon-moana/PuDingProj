@@ -40,7 +40,8 @@ extension LikeRouter: TargetType {
         switch self {
         case .like:
             return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
-                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue,
+                    HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue]
         case .inquery:
             return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
