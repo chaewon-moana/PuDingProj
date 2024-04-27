@@ -32,13 +32,22 @@ class MyInfoViewController: BaseViewController {
         let inputTrigger = Observable.of(trigger)
         
         let input = MyInfoViewModel.Input(inputTrigger: inputTrigger,
-                                          withdrawButtonTappend: mainView.withdrawButton.rx.tap.asObservable())
+                                          withdrawButtonTapped: mainView.withdrawButton.rx.tap.asObservable(),
+                                          settingButtonTapped: mainView.settingButton.rx.tap.asObservable())
         
         let output = viewModel.transform(input: input)
         
         output.profileInfo
             .subscribe(with: self) { owner, model in
                 owner.mainView.updateUI(item: model)
+            }
+            .disposed(by: disposeBag)
+        
+        output.moveToEditInfo
+            .subscribe(with: self) { owner, model in
+                let vc = EditMyInfoViewController()
+                vc.item = model
+                owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
     }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE179CB42BDB2B31000A74C7 /* EditMyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE179CB32BDB2B31000A74C7 /* EditMyInfoView.swift */; };
+		DE179CB62BDB2BA3000A74C7 /* EditMyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE179CB52BDB2BA3000A74C7 /* EditMyInfoViewController.swift */; };
+		DE179CB82BDB2BB9000A74C7 /* EditMyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE179CB72BDB2BB9000A74C7 /* EditMyInfoViewModel.swift */; };
 		DE8B8E942BC7BE9D00AA5A53 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8E932BC7BE9D00AA5A53 /* JoinViewController.swift */; };
 		DE8B8E962BC7BF1300AA5A53 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8E952BC7BF1300AA5A53 /* BaseViewController.swift */; };
 		DE8B8E992BC7BF2F00AA5A53 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE8B8E982BC7BF2F00AA5A53 /* Alamofire */; };
@@ -75,6 +78,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE179CB32BDB2B31000A74C7 /* EditMyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyInfoView.swift; sourceTree = "<group>"; };
+		DE179CB52BDB2BA3000A74C7 /* EditMyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyInfoViewController.swift; sourceTree = "<group>"; };
+		DE179CB72BDB2BB9000A74C7 /* EditMyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyInfoViewModel.swift; sourceTree = "<group>"; };
 		DE8B8E932BC7BE9D00AA5A53 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		DE8B8E952BC7BF1300AA5A53 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DE8B8EA52BC7C27000AA5A53 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -155,6 +161,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE179CB12BDB2B03000A74C7 /* MyInfo */ = {
+			isa = PBXGroup;
+			children = (
+				DE8B8EC52BCABA1D00AA5A53 /* MyInfoViewModel.swift */,
+				DE8B8EC12BCABA0700AA5A53 /* MyInfoViewController.swift */,
+				DE8B8EC32BCABA1500AA5A53 /* MyInfoView.swift */,
+			);
+			path = MyInfo;
+			sourceTree = "<group>";
+		};
+		DE179CB22BDB2B1D000A74C7 /* EditMyInfo */ = {
+			isa = PBXGroup;
+			children = (
+				DE179CB32BDB2B31000A74C7 /* EditMyInfoView.swift */,
+				DE179CB52BDB2BA3000A74C7 /* EditMyInfoViewController.swift */,
+				DE179CB72BDB2BB9000A74C7 /* EditMyInfoViewModel.swift */,
+			);
+			path = EditMyInfo;
+			sourceTree = "<group>";
+		};
 		DE527F5F2BD685690081C68E /* NetworkErrorManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,27 +295,10 @@
 		DE8B8EBE2BCAB9F100AA5A53 /* MyInfo */ = {
 			isa = PBXGroup;
 			children = (
-				DE8B8EC02BCAB9FB00AA5A53 /* ViewModel */,
-				DE8B8EBF2BCAB9F600AA5A53 /* View */,
+				DE179CB22BDB2B1D000A74C7 /* EditMyInfo */,
+				DE179CB12BDB2B03000A74C7 /* MyInfo */,
 			);
 			path = MyInfo;
-			sourceTree = "<group>";
-		};
-		DE8B8EBF2BCAB9F600AA5A53 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				DE8B8EC12BCABA0700AA5A53 /* MyInfoViewController.swift */,
-				DE8B8EC32BCABA1500AA5A53 /* MyInfoView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		DE8B8EC02BCAB9FB00AA5A53 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				DE8B8EC52BCABA1D00AA5A53 /* MyInfoViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		DE8B8EC72BCBC7E400AA5A53 /* TabBar */ = {
@@ -534,6 +543,7 @@
 				DE8B8EF02BCD203D00AA5A53 /* LoginView.swift in Sources */,
 				DE8B8EB72BC7CF6400AA5A53 /* JoinView.swift in Sources */,
 				DE8B8F1C2BCFC62100AA5A53 /* PostQuery.swift in Sources */,
+				DE179CB62BDB2BA3000A74C7 /* EditMyInfoViewController.swift in Sources */,
 				DE8B8EC42BCABA1500AA5A53 /* MyInfoView.swift in Sources */,
 				DE9CEC102BC646BB00360192 /* AppDelegate.swift in Sources */,
 				DE8B8F152BCFA1B200AA5A53 /* CommunitiyViewController.swift in Sources */,
@@ -554,6 +564,7 @@
 				DE8B8F612BD3B81700AA5A53 /* PostDetailView.swift in Sources */,
 				DE8B8EEE2BCD203000AA5A53 /* LoginViewModel.swift in Sources */,
 				DE8B8EA82BC7C4C900AA5A53 /* UIView+Extension.swift in Sources */,
+				DE179CB82BDB2BB9000A74C7 /* EditMyInfoViewModel.swift in Sources */,
 				DE9CEC272BC6473500360192 /* APIKey.swift in Sources */,
 				DEB14EAF2BD93F3000B7A0AC /* LikeModel.swift in Sources */,
 				DE8B8EA62BC7C27000AA5A53 /* BaseView.swift in Sources */,
@@ -575,6 +586,7 @@
 				DE8B8E962BC7BF1300AA5A53 /* BaseViewController.swift in Sources */,
 				DE8B8F3B2BD110EE00AA5A53 /* RegistPostView.swift in Sources */,
 				DE8B8EC92BCBC81100AA5A53 /* MainTabBarController.swift in Sources */,
+				DE179CB42BDB2B31000A74C7 /* EditMyInfoView.swift in Sources */,
 				DE8B8EAA2BC7C53500AA5A53 /* JoinViewModel.swift in Sources */,
 				DE8B8EC22BCABA0700AA5A53 /* MyInfoViewController.swift in Sources */,
 				DE8B8F872BD646FF00AA5A53 /* UIViewController+Extension.swift in Sources */,

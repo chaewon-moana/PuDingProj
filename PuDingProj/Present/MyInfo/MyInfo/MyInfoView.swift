@@ -11,7 +11,7 @@ import Kingfisher
 
 final class MyInfoView: BaseView {
     
-    let settingLabel = UILabel()
+    let settingButton = UIButton()
     let profileImageView = UIImageView()
     let nicknameLabel = UILabel()
     let followerLabel = UILabel()
@@ -28,7 +28,7 @@ final class MyInfoView: BaseView {
    // let collectionView = UICollectionView()
     
     override func configureViewLayout() {
-        self.addSubviews([profileImageView, nicknameLabel, followerLabel, followingLabel, settingLabel, firstUnderLine, donationView, supportView, mypostLabel, withdrawButton])
+        self.addSubviews([profileImageView, nicknameLabel, followerLabel, followingLabel, settingButton, firstUnderLine, donationView, supportView, mypostLabel, withdrawButton])
         donationView.addSubviews([donationLabel, donationPriceLabel])
         supportView.addSubviews([supportLabel, supportCountLabel])
         
@@ -48,7 +48,7 @@ final class MyInfoView: BaseView {
             make.leading.equalTo(followerLabel.snp.trailing).offset(4)
             make.top.equalTo(nicknameLabel.snp.bottom).offset(4)
         }
-        settingLabel.snp.makeConstraints { make in
+        settingButton.snp.makeConstraints { make in
             make.top.trailing.equalTo(self.safeAreaLayoutGuide).inset(12)
         }
         firstUnderLine.snp.makeConstraints { make in
@@ -87,7 +87,7 @@ final class MyInfoView: BaseView {
         withdrawButton.snp.makeConstraints { make in
             make.size.equalTo(40)
             make.top.equalTo(self.safeAreaLayoutGuide).inset(12)
-            make.trailing.equalTo(settingLabel.snp.leading).offset(-8)
+            make.trailing.equalTo(settingButton.snp.leading).offset(-8)
         }
     }
     
@@ -116,8 +116,8 @@ final class MyInfoView: BaseView {
         nicknameLabel.font = .systemFont(ofSize: 15, weight: .bold)
         followerLabel.font = .systemFont(ofSize: 13)
         followingLabel.font = .systemFont(ofSize: 13)
-        settingLabel.font = .systemFont(ofSize: 13)
-        settingLabel.textColor = .lightGray
+        settingButton.setTitleColor(.black, for: .normal)
+        settingButton.setTitle("설정", for: .normal)
         firstUnderLine.backgroundColor = .lightGray
         firstUnderLine.layer.borderColor = UIColor.lightGray.cgColor
         firstUnderLine.layer.borderWidth = 1
@@ -133,7 +133,6 @@ final class MyInfoView: BaseView {
         nicknameLabel.text = "닉네임 없음"
         followerLabel.text = "팔로워 8888"
         followingLabel.text = "팔로잉 8888"
-        settingLabel.text = "설정"
         donationLabel.text = "후원 금액"
         donationPriceLabel.text = "₩ 88,888,888"
         supportLabel.text = "물품 후원"

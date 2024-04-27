@@ -15,11 +15,13 @@ final class MyInfoViewModel {
     
     struct Input {
         let inputTrigger: Observable<Void>
-        let withdrawButtonTappend: Observable<Void>
+        let withdrawButtonTapped: Observable<Void>
+        let settingButtonTapped: Observable<Void>
     }
     
     struct Output {
         let profileInfo: Observable<InqueryProfileModel>
+        let moveToEditInfo: Observable<InqueryProfileModel>
     }
 
     func transform(input: Input) -> Output {
@@ -38,7 +40,7 @@ final class MyInfoViewModel {
             }
             .disposed(by: disposeBag)
         
-        input.withdrawButtonTappend
+        input.withdrawButtonTapped
             .flatMap { _ in
                 return NetworkManager.requestNetwork(router: .account(.withdraw), modelType: CreatorInfo.self)
             }
@@ -49,6 +51,19 @@ final class MyInfoViewModel {
             }
             .disposed(by: disposeBag)
 
-        return Output(profileInfo: profile.asObservable())
+        //TODO: settingView 만들어야할듯
+        input.settingButtonTapped
+            .flatMap { _ in
+                return NetworkManager.requestNetwork(router: .profile(.inqueryProfile), modelType: InqueryProfileModel.self)
+            }
+            .subscribe { model in
+                profile.accept(model)
+            } onError: { error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
+
+        return Output(profileInfo: profile.asObservable(),
+                      moveToEditInfo: profile.asObservable())
     }
 }
