@@ -16,6 +16,7 @@ final class RegistPostView: BaseView {
     let addImageButton = UIButton()
     let testImageView = UIImageView()
     let addPostButton = UIButton()
+    let tmpButton = UIButton()
     
     override func configureAttribute() {
         categoryButton.setTitle("카테고리 영역", for: .normal)
@@ -29,14 +30,21 @@ final class RegistPostView: BaseView {
         addImageButton.setTitle("이미지 저장", for: .normal)
         addImageButton.backgroundColor = .purple
         testImageView.image = UIImage(systemName: "star")
+        tmpButton.setTitle("임시버튼", for: .normal)
+        tmpButton.backgroundColor = .systemYellow
     }
     
     override func configureViewLayout() {
-        self.addSubviews([categoryButton, titleTextView, contentTextView, addImageButton, addPostButton, testImageView])
+        self.addSubviews([categoryButton, titleTextView, contentTextView, addImageButton, addPostButton, testImageView, tmpButton])
         categoryButton.snp.makeConstraints { make in
             make.leading.top.equalTo(self.safeAreaLayoutGuide).offset(12)
             make.size.equalTo(100)
         }
+        tmpButton.snp.makeConstraints { make in
+            make.leading.equalTo(categoryButton.snp.trailing).offset(20)
+            make.top.equalTo(categoryButton)
+        }
+
         titleTextView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(12)
             make.top.equalTo(categoryButton.snp.bottom).offset(8)

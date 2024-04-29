@@ -53,7 +53,9 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
         }
         contentLabel.snp.makeConstraints { make in
-           // make.width.equalTo(100)
+//            make.horizontalEdges.equalToSuperview().inset(12)
+//            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+//            make.bottom.equalToSuperview().inset(8)
         }
         thumbnailImageView.snp.makeConstraints { make in
             make.size.equalTo(70)
@@ -92,7 +94,6 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
         } else {
            //files이 비어있을 떄 예외처리
         }
-        
         categoryLabel.text = item.post_id
         nicknameLabel.text = item.content1
         registerDate.text = "| \(item.createdAt)"
@@ -100,6 +101,14 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
         contentLabel.text = item.content
         
     }
+    
+    
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+           let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
+           layoutAttributes.frame.size = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+           return layoutAttributes
+       }
+    
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -113,7 +122,6 @@ class ImageDownloadRequest: ImageDownloadRequestModifier {
         modifiedRequest.addValue(APIKey.sesacKey.rawValue, forHTTPHeaderField: HTTPHeader.sesacKey.rawValue)
         modifiedRequest.addValue(HTTPHeader.json.rawValue, forHTTPHeaderField: HTTPHeader.contentType.rawValue)
         // 필요한 경우 다른 헤더도 추가 가능
-        
         return modifiedRequest
     }
 }

@@ -49,7 +49,8 @@ final class RegistPostViewController: BaseViewController {
                                               contentText: mainView.contentTextView.rx.text.orEmpty.asObservable(),
                                               addPostButtonTapped: mainView.addPostButton.rx.tap.asObservable(),
                                               addImageButtonTapped: mainView.addImageButton.rx.tap.asObservable(),
-        imageList: BehaviorRelay(value: imageList))
+        imageList: BehaviorRelay(value: imageList),
+                                              tmpButtonTapped: mainView.tmpButton.rx.tap.asObservable())
     
         
         

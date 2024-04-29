@@ -13,7 +13,7 @@ final class MainTabBarController: UITabBarController {
         super.viewDidLoad()
 
         let vc1 = CommunitiyViewController()
-        let vc2 = JoinViewController()
+        let vc2 = RegistPostViewController()
         let vc3 = MyInfoViewController()
     
         vc1.tabBarItem.image = UIImage(systemName: "calendar")

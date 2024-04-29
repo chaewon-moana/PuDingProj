@@ -23,6 +23,7 @@ final class RegistPostViewModel {
         let addPostButtonTapped: Observable<Void>
         let addImageButtonTapped: Observable<Void>
         let imageList: BehaviorRelay<[Data?]>
+        let tmpButtonTapped: Observable<Void>
     }
     
     struct Output {
@@ -35,13 +36,16 @@ final class RegistPostViewModel {
     }
     
     func transform(input: Input) -> Output {
-        //let image = (ImageFileManager.shared.loadImageFromDocument(fileName: "임시테스트.jpg")?.jpegData(compressionQuality: 0.5))
+      
+        let uploadedImages = PublishRelay<UploadPostImageFilesModel>()
+        let postObservable = Observable.combineLatest(uploadedImages, input.titleText, input.contentText)
+//        let textObservable = Observable.combineLatest(input.titleText, input.contentText)
+//            .map { title, content in
+//                //TODO: content1 -> 게시글 분류값
+//                return RegisterPostQuery(title: title, content: content, content1: "후원모집", product_id: "puding-moana22")
+//            }
         
-        let textObservable = Observable.combineLatest(input.titleText, input.contentText)
-            .map { title, content in
-                //TODO: content1 -> 게시글 분류값
-                return RegisterPostQuery(title: title, content: content, content1: "후원모집", product_id: "puding-moana22")
-            }
+        
         
         let imageObservable = Observable.of(images.value)
             .map { image in
@@ -59,11 +63,10 @@ final class RegistPostViewModel {
                             return UploadPostImageFilesQuery(files: images)
                         }
                 }
-            //.withLatestFrom(imageObservable)
             .map { value in
                 print(value, "뷰모델에서 확인")
                 print(input.imageList.value)
-                var multipartFormData = MultipartFormData()
+                let multipartFormData = MultipartFormData()
                 for data in value.files {
                     multipartFormData.append(data!,
                                              withName: "files",
@@ -77,12 +80,28 @@ final class RegistPostViewModel {
                 return NetworkManager.requestUploadImage(query: data)
             }
             .subscribe { model in
+                uploadedImages.accept(model)
                 print(model)
             } onError: { error in
                 print(error)
             }
             .disposed(by: disposeBag)
      
+        
+        input.tmpButtonTapped
+            .withLatestFrom(postObservable)
+            .flatMap { images, title, content in
+                print("버튼 눌리긴 함")
+                let query = RegisterPostQuery(title: title, content: content, content1: "후원모집", product_id: "puding-moana22", files: images.files)
+                return NetworkManager.requestNetwork(router: .post(.registerPost(query: query)), modelType: RegisterPostModel.self)
+            }
+            .subscribe { model in
+                print(model, "포스트 등록 성공")
+            } onError: { error in
+                print("포스트 등록 실패")
+            }
+            .disposed(by: disposeBag)
+
 //        input.addPostButtonTapped
 //            .withLatestFrom(imageObservable)
 //            .map { value in
@@ -108,18 +127,6 @@ final class RegistPostViewModel {
 //            }
 //            .disposed(by: disposeBag)
         
-//        input.addPostButtonTapped
-//            .withLatestFrom(imageObservable)
-//            .flatMap { query in
-//                return NetworkManager.requestUploadImage(query: query)
-//            }
-//            .subscribe { model in
-//                print("이미지 저장하는거 성공!", model)
-//            } onError: { error in
-//                print("이미지 저장하는거 실패", error)
-//            }
-//            .disposed(by: disposeBag)
-
         
 //        input.addPostButtonTapped
 //            .subscribe(with: self) { owner, _ in

@@ -37,10 +37,12 @@ final class CommunitiyViewController: BaseViewController {
             .bind(to: mainView.collectionView.rx.items(cellIdentifier: "CommunityCollectionViewCell", cellType: CommunityCollectionViewCell.self)) { (index, item, cell) in
                 cell.backgroundColor = .green
                 cell.updateUI(item: item)
-                cell.sizeThatFits(cell.intrinsicContentSize)
             }
             .disposed(by: disposeBag)
+        
+        mainView.collectionView.rx.setDelegate(self).disposed(by: disposeBag)
     }
+    
     
     override func bind() {
         
@@ -93,4 +95,8 @@ final class CommunitiyViewController: BaseViewController {
     override func loadView() {
         view = mainView
     }
+}
+
+extension CommunitiyViewController: UICollectionViewDelegateFlowLayout {
+    
 }

@@ -26,6 +26,7 @@ final class MyInfoViewModel {
 
     func transform(input: Input) -> Output {
         let profile = PublishRelay<InqueryProfileModel>()
+        let editProfile = PublishRelay<InqueryProfileModel>()
         
         input.inputTrigger
             .flatMap { _ in
@@ -51,19 +52,18 @@ final class MyInfoViewModel {
             }
             .disposed(by: disposeBag)
 
-        //TODO: settingView 만들어야할듯
         input.settingButtonTapped
             .flatMap { _ in
                 return NetworkManager.requestNetwork(router: .profile(.inqueryProfile), modelType: InqueryProfileModel.self)
             }
             .subscribe { model in
-                profile.accept(model)
+                editProfile.accept(model)
             } onError: { error in
                 print(error)
             }
             .disposed(by: disposeBag)
 
         return Output(profileInfo: profile.asObservable(),
-                      moveToEditInfo: profile.asObservable())
+                      moveToEditInfo: editProfile.asObservable())
     }
 }
