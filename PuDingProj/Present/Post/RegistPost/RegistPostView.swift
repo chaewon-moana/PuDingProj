@@ -38,7 +38,8 @@ final class RegistPostView: BaseView {
         self.addSubviews([categoryButton, titleTextView, contentTextView, addImageButton, addPostButton, testImageView, tmpButton])
         categoryButton.snp.makeConstraints { make in
             make.leading.top.equalTo(self.safeAreaLayoutGuide).offset(12)
-            make.size.equalTo(100)
+            make.height.equalTo(40)
+            make.width.equalTo(100)
         }
         tmpButton.snp.makeConstraints { make in
             make.leading.equalTo(categoryButton.snp.trailing).offset(20)

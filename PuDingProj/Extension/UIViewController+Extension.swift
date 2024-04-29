@@ -17,4 +17,16 @@ extension UIViewController {
         navigationController.present(LoginViewController(), animated: true, completion: nil)
 
         }
+    
+    func showAlert(title: String, messgae: String, action: ((UIAlertAction) -> Void)?) {
+        let alert = UIAlertController(title: title, message: messgae, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "작성 취소", style: .destructive)
+        let postKeep = UIAlertAction(title: "계속 작성하기", style: .default, handler: action)
+        
+        alert.addAction(cancel)
+        alert.addAction(postKeep)
+        
+        present(alert, animated: true)
+    }
 }

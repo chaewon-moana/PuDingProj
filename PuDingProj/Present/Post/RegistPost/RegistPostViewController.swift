@@ -19,6 +19,8 @@ final class RegistPostViewController: BaseViewController {
     private var selections = [String: PHPickerResult]()
     private var selectedAssetIdentifiers = [String]()
     
+    lazy var cancelButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: nil)
+    
     override func loadView() {
         view = mainView
     }
@@ -30,6 +32,7 @@ final class RegistPostViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = cancelButton
         view.backgroundColor = .white
     }
     
@@ -45,12 +48,14 @@ final class RegistPostViewController: BaseViewController {
     }
     
     override func bind() {
-        let input = RegistPostViewModel.Input(titleText: mainView.titleTextView.rx.text.orEmpty.asObservable(),
-                                              contentText: mainView.contentTextView.rx.text.orEmpty.asObservable(),
-                                              addPostButtonTapped: mainView.addPostButton.rx.tap.asObservable(),
-                                              addImageButtonTapped: mainView.addImageButton.rx.tap.asObservable(),
-        imageList: BehaviorRelay(value: imageList),
-                                              tmpButtonTapped: mainView.tmpButton.rx.tap.asObservable())
+        let input = RegistPostViewModel.Input(
+            titleText: mainView.titleTextView.rx.text.orEmpty.asObservable(),
+            contentText: mainView.contentTextView.rx.text.orEmpty.asObservable(),
+            addPostButtonTapped: mainView.addPostButton.rx.tap.asObservable(),
+            addImageButtonTapped: mainView.addImageButton.rx.tap.asObservable(),
+            imageList: BehaviorRelay(value: imageList),
+            tmpButtonTapped: mainView.tmpButton.rx.tap.asObservable(),
+            categoryButtonTapped: mainView.categoryButton.rx.tap.asObservable(), cancalButtonTapped: cancelButton.rx.tap.asObservable())
     
         
         
@@ -61,6 +66,34 @@ final class RegistPostViewController: BaseViewController {
                 owner.setImage()
             })
             .disposed(by: disposeBag)
+        
+        output.categoryHalfModal
+            .drive(with: self) { owner, _ in
+                let vc = CategoryDetailViewController()
+                vc.modalPresentationStyle = .pageSheet
+                if let sheet = vc.sheetPresentationController {
+                    sheet.detents = [.medium()]
+                    sheet.delegate = self
+                }
+                owner.present(vc, animated: true)
+                vc.closure = { value in
+                    print(value)
+                    owner.mainView.categoryButton.setTitle(value, for: .normal)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        output.cancelButtonTapped
+            .drive(with: self) { owner, _ in
+                owner.showAlert(title: "글 작성을 취소할까요?", messgae: "작성 중인 글은 삭제됩니다", action: { _ in
+                    if let tabBarController = owner.navigationController?.tabBarController {
+                        tabBarController.selectedIndex = 0
+                        owner.navigationController?.popViewController(animated: true)
+                    }
+                })
+            }
+            .disposed(by: disposeBag)
+
     }
 }
 
@@ -127,4 +160,7 @@ extension RegistPostViewController: PHPickerViewControllerDelegate {
 //            print(#function, "이미지 입력에 문제생김!!!!")
 //        }
 //    }
+}
+extension RegistPostViewController: UISheetPresentationControllerDelegate {
+    
 }

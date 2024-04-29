@@ -33,6 +33,8 @@ final class CommunitiyViewController: BaseViewController {
         view.backgroundColor = .white
         mainView.collectionView.register(CommunityCollectionViewCell.self, forCellWithReuseIdentifier: "CommunityCollectionViewCell")
         navigationItem.titleView = textField
+        tabBarController?.tabBar.isHidden = false
+        
         postList
             .bind(to: mainView.collectionView.rx.items(cellIdentifier: "CommunityCollectionViewCell", cellType: CommunityCollectionViewCell.self)) { (index, item, cell) in
                 cell.backgroundColor = .green
@@ -40,7 +42,7 @@ final class CommunitiyViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        mainView.collectionView.rx.setDelegate(self).disposed(by: disposeBag)
+       // mainView.collectionView.rx.setDelegate(self).disposed(by: disposeBag)
     }
     
     
@@ -72,12 +74,11 @@ final class CommunitiyViewController: BaseViewController {
         output.moveToDetail
             .subscribe(with: self) { owner, model in
                 //TODO: TabBarController가
-                if let tabBarController = self.tabBarController,
-                   let navigationController = tabBarController.viewControllers?[0] as? UINavigationController {
-                    let vc = PostDetailViewController()
-                    vc.item = model
-                    navigationController.pushViewController(vc, animated: true)
-                }
+                let vc = PostDetailViewController()
+                //TODO: 왜 이걸 해줘야,,,되는건가,,?
+                vc.hidesBottomBarWhenPushed = true
+                vc.item = model
+                owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
 //        

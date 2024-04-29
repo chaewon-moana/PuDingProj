@@ -119,6 +119,10 @@ final class PostDetailViewController: BaseViewController {
         
         output.backButtonTapped
             .drive(with: self) { owner, _ in
+//                if let tabBarController = owner.navigationController?.tabBarController {
+//                    tabBarController.selectedIndex = 0
+//                    owner.navigationController?.popViewController(animated: true)
+//                }
                 owner.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
