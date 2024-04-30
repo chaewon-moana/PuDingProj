@@ -66,9 +66,14 @@
 		DE8F6D0C2BDF932A00074A6C /* CategoryDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D0B2BDF932A00074A6C /* CategoryDetailCollectionViewCell.swift */; };
 		DE8F6D0E2BDF964900074A6C /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D0D2BDF964900074A6C /* CategoryViewModel.swift */; };
 		DE8F6D102BDF978B00074A6C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D0F2BDF978B00074A6C /* DataManager.swift */; };
+		DE8F6D142BDFD34700074A6C /* ShelterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D132BDFD34700074A6C /* ShelterListViewController.swift */; };
+		DE8F6D162BDFD36A00074A6C /* ShelterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D152BDFD36A00074A6C /* ShelterListView.swift */; };
+		DE8F6D182BDFD38700074A6C /* ShlterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D172BDFD38700074A6C /* ShlterListViewModel.swift */; };
+		DE8F6D1C2BDFD79600074A6C /* FundingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D1B2BDFD79600074A6C /* FundingViewController.swift */; };
+		DE8F6D1E2BDFD7B700074A6C /* FundingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D1D2BDFD7B700074A6C /* FundingView.swift */; };
+		DE8F6D202BDFD7D300074A6C /* FundingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D1F2BDFD7D300074A6C /* FundingViewModel.swift */; };
 		DE9CEC102BC646BB00360192 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */; };
 		DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC112BC646BB00360192 /* SceneDelegate.swift */; };
-		DE9CEC142BC646BB00360192 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC132BC646BB00360192 /* ViewController.swift */; };
 		DE9CEC172BC646BB00360192 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DE9CEC162BC646BB00360192 /* Base */; };
 		DE9CEC192BC646BD00360192 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9CEC182BC646BD00360192 /* Assets.xcassets */; };
 		DE9CEC1C2BC646BD00360192 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DE9CEC1B2BC646BD00360192 /* Base */; };
@@ -136,10 +141,15 @@
 		DE8F6D0B2BDF932A00074A6C /* CategoryDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		DE8F6D0D2BDF964900074A6C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		DE8F6D0F2BDF978B00074A6C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		DE8F6D132BDFD34700074A6C /* ShelterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterListViewController.swift; sourceTree = "<group>"; };
+		DE8F6D152BDFD36A00074A6C /* ShelterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterListView.swift; sourceTree = "<group>"; };
+		DE8F6D172BDFD38700074A6C /* ShlterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShlterListViewModel.swift; sourceTree = "<group>"; };
+		DE8F6D1B2BDFD79600074A6C /* FundingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingViewController.swift; sourceTree = "<group>"; };
+		DE8F6D1D2BDFD7B700074A6C /* FundingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingView.swift; sourceTree = "<group>"; };
+		DE8F6D1F2BDFD7D300074A6C /* FundingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingViewModel.swift; sourceTree = "<group>"; };
 		DE9CEC0C2BC646BB00360192 /* PuDingProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuDingProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9CEC112BC646BB00360192 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DE9CEC132BC646BB00360192 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DE9CEC162BC646BB00360192 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE9CEC182BC646BD00360192 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE9CEC1B2BC646BD00360192 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -202,6 +212,8 @@
 		DE8B8E892BC76EAE00AA5A53 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				DE8F6D192BDFD42500074A6C /* Funding */,
+				DE8F6D112BDFD31800074A6C /* Shelter */,
 				DE8B8F112BCFA06100AA5A53 /* Post */,
 				DE8B8EE82BCD1FED00AA5A53 /* Login */,
 				DE8B8EC72BCBC7E400AA5A53 /* TabBar */,
@@ -423,6 +435,42 @@
 			path = CategoryDetail;
 			sourceTree = "<group>";
 		};
+		DE8F6D112BDFD31800074A6C /* Shelter */ = {
+			isa = PBXGroup;
+			children = (
+				DE8F6D122BDFD33500074A6C /* ShelterList */,
+			);
+			path = Shelter;
+			sourceTree = "<group>";
+		};
+		DE8F6D122BDFD33500074A6C /* ShelterList */ = {
+			isa = PBXGroup;
+			children = (
+				DE8F6D132BDFD34700074A6C /* ShelterListViewController.swift */,
+				DE8F6D152BDFD36A00074A6C /* ShelterListView.swift */,
+				DE8F6D172BDFD38700074A6C /* ShlterListViewModel.swift */,
+			);
+			path = ShelterList;
+			sourceTree = "<group>";
+		};
+		DE8F6D192BDFD42500074A6C /* Funding */ = {
+			isa = PBXGroup;
+			children = (
+				DE8F6D1A2BDFD78800074A6C /* Funding */,
+			);
+			path = Funding;
+			sourceTree = "<group>";
+		};
+		DE8F6D1A2BDFD78800074A6C /* Funding */ = {
+			isa = PBXGroup;
+			children = (
+				DE8F6D1B2BDFD79600074A6C /* FundingViewController.swift */,
+				DE8F6D1D2BDFD7B700074A6C /* FundingView.swift */,
+				DE8F6D1F2BDFD7D300074A6C /* FundingViewModel.swift */,
+			);
+			path = Funding;
+			sourceTree = "<group>";
+		};
 		DE9CEC032BC646BB00360192 = {
 			isa = PBXGroup;
 			children = (
@@ -450,12 +498,9 @@
 				DE8B8E8A2BC76ED300AA5A53 /* Network */,
 				DE8B8E892BC76EAE00AA5A53 /* Present */,
 				DE9CEC252BC6471800360192 /* App */,
-				DE9CEC132BC646BB00360192 /* ViewController.swift */,
 				DE9CEC262BC6473500360192 /* APIKey.swift */,
 				DE9CEC1D2BC646BD00360192 /* Info.plist */,
 				DE9CEC182BC646BD00360192 /* Assets.xcassets */,
-				DE9CEC112BC646BB00360192 /* SceneDelegate.swift */,
-				DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */,
 				DE8B8F842BD636B100AA5A53 /* TestViewController.swift */,
 			);
 			path = PuDingProj;
@@ -464,6 +509,8 @@
 		DE9CEC252BC6471800360192 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */,
+				DE9CEC112BC646BB00360192 /* SceneDelegate.swift */,
 				DE9CEC1A2BC646BD00360192 /* LaunchScreen.storyboard */,
 				DE9CEC152BC646BB00360192 /* Main.storyboard */,
 			);
@@ -558,8 +605,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE8B8EB02BC7CAC800AA5A53 /* HTTPHeader.swift in Sources */,
-				DE9CEC142BC646BB00360192 /* ViewController.swift in Sources */,
 				DE8B8EEC2BCD202700AA5A53 /* LoginViewController.swift in Sources */,
+				DE8F6D182BDFD38700074A6C /* ShlterListViewModel.swift in Sources */,
 				DE8B8EB22BC7CB7B00AA5A53 /* TargetType.swift in Sources */,
 				DE8B8F5C2BD39F3300AA5A53 /* Router.swift in Sources */,
 				DE8B8F662BD4163800AA5A53 /* CommentRouter.swift in Sources */,
@@ -578,15 +625,18 @@
 				DE8B8F6A2BD416D000AA5A53 /* CommentQuery.swift in Sources */,
 				DE8B8EC62BCABA1D00AA5A53 /* MyInfoViewModel.swift in Sources */,
 				DE8B8EBB2BC7E1D700AA5A53 /* JoinModel.swift in Sources */,
+				DE8F6D1E2BDFD7B700074A6C /* FundingView.swift in Sources */,
 				DE8B8F372BD110D900AA5A53 /* RegistPostViewController.swift in Sources */,
 				DE8B8F5F2BD3B80300AA5A53 /* PostDetailViewController.swift in Sources */,
 				DE8B8F722BD52EB000AA5A53 /* ProfileModel.swift in Sources */,
 				DE8B8F1E2BCFC68000AA5A53 /* PostModel.swift in Sources */,
 				DE8B8F632BD3B82C00AA5A53 /* PostDetailViewModel.swift in Sources */,
+				DE8F6D1C2BDFD79600074A6C /* FundingViewController.swift in Sources */,
 				DEB14E962BD6A52700B7A0AC /* CommentCollectionViewCell.swift in Sources */,
 				DE8B8F832BD634C900AA5A53 /* NetworkErrorManager.swift in Sources */,
 				DE8B8EAC2BC7C65700AA5A53 /* AccountRouter.swift in Sources */,
 				DE8B8F172BCFA1C200AA5A53 /* CommunityViewModel.swift in Sources */,
+				DE8F6D142BDFD34700074A6C /* ShelterListViewController.swift in Sources */,
 				DE8B8F612BD3B81700AA5A53 /* PostDetailView.swift in Sources */,
 				DE8B8EEE2BCD203000AA5A53 /* LoginViewModel.swift in Sources */,
 				DE8B8EA82BC7C4C900AA5A53 /* UIView+Extension.swift in Sources */,
@@ -606,6 +656,7 @@
 				DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */,
 				DE8B8F702BD52D2000AA5A53 /* ProfileQuery.swift in Sources */,
 				DE8B8F242BCFCDEA00AA5A53 /* CommunityCollectionViewCell.swift in Sources */,
+				DE8F6D202BDFD7D300074A6C /* FundingViewModel.swift in Sources */,
 				DEB14EB12BD93F3A00B7A0AC /* LikeQuery.swift in Sources */,
 				DE8B8EAE2BC7C9D500AA5A53 /* JoinQuery.swift in Sources */,
 				DEB14EAB2BD931DC00B7A0AC /* UserDefault.swift in Sources */,
@@ -619,6 +670,7 @@
 				DE8B8EC22BCABA0700AA5A53 /* MyInfoViewController.swift in Sources */,
 				DE8B8F872BD646FF00AA5A53 /* UIViewController+Extension.swift in Sources */,
 				DE8B8F392BD110E500AA5A53 /* RegistPostViewModel.swift in Sources */,
+				DE8F6D162BDFD36A00074A6C /* ShelterListView.swift in Sources */,
 				DE8B8EB52BC7CE4D00AA5A53 /* LoginTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

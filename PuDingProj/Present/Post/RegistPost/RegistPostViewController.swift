@@ -70,7 +70,9 @@ final class RegistPostViewController: BaseViewController {
         output.categoryHalfModal
             .drive(with: self) { owner, _ in
                 let vc = CategoryDetailViewController()
+        
                 vc.modalPresentationStyle = .pageSheet
+        
                 if let sheet = vc.sheetPresentationController {
                     sheet.detents = [.medium()]
                     sheet.delegate = self

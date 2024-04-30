@@ -32,6 +32,7 @@ final class CommunitiyViewController: BaseViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         mainView.collectionView.register(CommunityCollectionViewCell.self, forCellWithReuseIdentifier: "CommunityCollectionViewCell")
+       // mainView.collectionView.delegate = self
         navigationItem.titleView = textField
         tabBarController?.tabBar.isHidden = false
         
@@ -99,5 +100,8 @@ final class CommunitiyViewController: BaseViewController {
 }
 
 extension CommunitiyViewController: UICollectionViewDelegateFlowLayout {
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: collectionView.bounds.width, height: 50)
+    }
 }

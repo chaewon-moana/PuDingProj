@@ -74,4 +74,5 @@ final class CommunityViewModel {
                       moveToDetail: moveToDetail.asObservable()
         )
     }
+ 
 }

@@ -14,12 +14,12 @@ import RxCocoa
 final class CommunityCollectionViewCell: UICollectionViewCell {
     
     let categoryLabel = UILabel()
+    let profileImageView = UIImageView()
     let nicknameLabel = UILabel()
     let registerDate = UILabel()
     let titleLabel = UILabel()
     let contentLabel = UILabel()
     let stackView = UIView()
-    let thumbnailImageView = UIImageView()
     let imageStackView = UIStackView()
     
     override init(frame: CGRect) {
@@ -30,13 +30,17 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureLayout() {
-        contentView.addSubviews([categoryLabel, nicknameLabel, registerDate, titleLabel, imageStackView])
-        imageStackView.addArrangedSubview(contentLabel)
+        contentView.addSubviews([categoryLabel, profileImageView, nicknameLabel, registerDate, titleLabel, imageStackView, contentLabel])
 
         categoryLabel.snp.makeConstraints { make in
             make.top.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
         }
         nicknameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(profileImageView.snp.trailing).offset(8)
+            make.top.equalTo(categoryLabel.snp.bottom).offset(12)
+        }
+        profileImageView.snp.makeConstraints { make in
+            make.size.equalTo(32)
             make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
             make.top.equalTo(categoryLabel.snp.bottom).offset(12)
         }
@@ -45,25 +49,26 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(categoryLabel.snp.bottom).offset(12)
         }
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(nicknameLabel.snp.bottom).offset(8)
+            make.top.equalTo(profileImageView.snp.bottom).offset(8)
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(12)
-        }
-        imageStackView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(12)
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.height.lessThanOrEqualTo(50)
         }
         contentLabel.snp.makeConstraints { make in
-//            make.horizontalEdges.equalToSuperview().inset(12)
-//            make.top.equalTo(titleLabel.snp.bottom).offset(8)
-//            make.bottom.equalToSuperview().inset(8)
+            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(12)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.height.lessThanOrEqualTo(40)
         }
-        thumbnailImageView.snp.makeConstraints { make in
-            make.size.equalTo(70)
+        imageStackView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(12)
+            make.top.equalTo(contentLabel.snp.bottom).offset(8)
+            make.height.equalTo(70)
         }
+        imageStackView.backgroundColor = .purple
+        
     }
     private func configureAttribute() {
-        thumbnailImageView.image = UIImage(systemName: "star")
-        thumbnailImageView.contentMode = .scaleAspectFit
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.cornerRadius = 16
         imageStackView.backgroundColor = .purple
         imageStackView.axis = .horizontal
         imageStackView.distribution = .fill
@@ -83,34 +88,52 @@ final class CommunityCollectionViewCell: UICollectionViewCell {
     
     func updateUI(item: inqueryPostModel) {
         if !item.files.isEmpty {
-            guard let url = URL(string: APIKey.baseURL.rawValue + item.files[0]) else {
-                  return
-              }
-            let options: KingfisherOptionsInfo = [
-                 .requestModifier(ImageDownloadRequest())
-             ]
-            thumbnailImageView.kf.setImage(with: url, options: options)
-            imageStackView.addArrangedSubview(thumbnailImageView)
+            for idx in item.files {
+                guard let url = URL(string: APIKey.baseURL.rawValue + idx) else {
+                    return
+                }
+                let options: KingfisherOptionsInfo = [
+                    .requestModifier(ImageDownloadRequest())
+                ]
+                let view = UIImageView()
+                view.snp.makeConstraints { make in
+                    make.size.equalTo(70)
+                }
+                view.kf.setImage(with: url, options: options)
+                view.contentMode = .scaleAspectFit
+                imageStackView.addArrangedSubview(view)
+            }
         } else {
-           //files이 비어있을 떄 예외처리
+            imageStackView.isHidden = true
         }
-        categoryLabel.text = item.post_id
-        nicknameLabel.text = item.content1
+        
+        let imageURL = URL(string: APIKey.baseURL.rawValue + item.creator.profileImage!)
+        profileImageView.kf.setImage(with: imageURL)
+        categoryLabel.text = item.content1
+        nicknameLabel.text = item.creator.nick
         registerDate.text = "| \(item.createdAt)"
         titleLabel.text = item.title
         contentLabel.text = item.content
         
     }
     
+    func setSize(width: CGFloat, item: inqueryPostModel) -> CGFloat {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = item.content
+        label.sizeToFit()
+        return label.frame.height
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
     }
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-           let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
-           layoutAttributes.frame.size = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
-           return layoutAttributes
-       }
     
+//    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+//           let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
+//           layoutAttributes.frame.size = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+//           return layoutAttributes
+//       }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -123,7 +146,6 @@ class ImageDownloadRequest: ImageDownloadRequestModifier {
         modifiedRequest.addValue(UserDefault.accessToken, forHTTPHeaderField: HTTPHeader.authorization.rawValue)
         modifiedRequest.addValue(APIKey.sesacKey.rawValue, forHTTPHeaderField: HTTPHeader.sesacKey.rawValue)
         modifiedRequest.addValue(HTTPHeader.json.rawValue, forHTTPHeaderField: HTTPHeader.contentType.rawValue)
-        // 필요한 경우 다른 헤더도 추가 가능
         return modifiedRequest
     }
 }
