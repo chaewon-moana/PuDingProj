@@ -26,33 +26,29 @@ final class CommunitiyViewController: BaseViewController {
         super.viewWillAppear(animated)
         inputTrigger.accept(())
         print("community input Trigger")
+        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        mainView.collectionView.register(CommunityCollectionViewCell.self, forCellWithReuseIdentifier: "CommunityCollectionViewCell")
-       // mainView.collectionView.delegate = self
+        mainView.tableView.register(CommunityTableViewCell.self, forCellReuseIdentifier: "CommunityTableViewCell")
         navigationItem.titleView = textField
         tabBarController?.tabBar.isHidden = false
-        
         postList
-            .bind(to: mainView.collectionView.rx.items(cellIdentifier: "CommunityCollectionViewCell", cellType: CommunityCollectionViewCell.self)) { (index, item, cell) in
-                cell.backgroundColor = .green
+            .bind(to: mainView.tableView.rx.items(cellIdentifier: "CommunityTableViewCell", cellType: CommunityTableViewCell.self)) { (index, item, cell) in
                 cell.updateUI(item: item)
+                cell.layoutIfNeeded()
             }
             .disposed(by: disposeBag)
-        
-       // mainView.collectionView.rx.setDelegate(self).disposed(by: disposeBag)
     }
-    
-    
     override func bind() {
+        
         
         let input = CommunityViewModel.Input(inputTrigger: inputTrigger,
                                              searchText: textField.rx.text.orEmpty.asObservable(),
                                              searchButtonTapped: textField.rx.searchButtonClicked.asObservable(),
-                                             postSelected: mainView.collectionView.rx.modelSelected(inqueryPostModel.self)
+                                             postSelected: mainView.tableView.rx.modelSelected(inqueryPostModel.self)
         )
         
         let output = viewModel.transform(input: input)
@@ -61,14 +57,14 @@ final class CommunitiyViewController: BaseViewController {
             .subscribe(with: self) { owner, model in
                 owner.list = model.data
                 owner.postList.accept(model.data)
-                owner.mainView.collectionView.reloadData()
+                owner.mainView.tableView.reloadData()
             }
             .disposed(by: disposeBag)
         
         output.specificPost
             .subscribe(with: self) { owner, model in
                 owner.list = [model]
-                owner.mainView.collectionView.reloadData()
+                owner.mainView.tableView.reloadData()
             }
             .disposed(by: disposeBag)
         
@@ -99,9 +95,15 @@ final class CommunitiyViewController: BaseViewController {
     }
 }
 
-extension CommunitiyViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: collectionView.bounds.width, height: 50)
-    }
-}
+//extension CommunitiyViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CommunityCollectionViewCell", for: indexPath) as? CommunityCollectionViewCell else {
+//            return .zero
+//        }
+//        
+//        let textSize = cell.setSize(item: list[indexPath.item])
+//        print(textSize, "글자,,,,,,인데,,되낭?")
+//        
+//        return CGSize(width: collectionView.bounds.width, height: 150 + textSize)
+//    }
+//}

@@ -59,6 +59,7 @@ final class LoginView: BaseView {
         joinButton.setTitleColor(.black, for: .normal)
         emailTextField.keyboardType = .emailAddress
         emailTextField.text = UserDefault.saveEmail
+        passwordTextField.text = "1234"
     }
    
 }

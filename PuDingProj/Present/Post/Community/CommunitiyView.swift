@@ -11,30 +11,21 @@ import SnapKit
 final class CommunitiyView: BaseView, UICollectionViewDelegateFlowLayout {
 
     let filterView = UIView() //collectionView로 만들기
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+    //lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+    let tableView = UITableView(frame: .zero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+//        tableView.estimatedRowHeight = 200
+//        tableView.rowHeight = UITableView.automaticDimension
+       // tableView.rowHeight = 200
     }
     
-    private func collectionViewLayout() -> UICollectionViewFlowLayout {
-        let layout = UICollectionViewFlowLayout()
-        let itemWidth: CGFloat = UIScreen.main.bounds.width - 20
-        let itemHeight: CGFloat = 200
-        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-        layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        return layout
-    }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//            
-//            return CGSize(width: collectionView.frame.width, height: 100)
-//        }
+
     
     override func configureViewLayout() {
-        self.addSubviews([collectionView])
-        collectionView.snp.makeConstraints { make in
+        self.addSubviews([tableView])
+        tableView.snp.makeConstraints { make in
             make.top.horizontalEdges.bottom.equalTo(self.safeAreaLayoutGuide)
         }
     }

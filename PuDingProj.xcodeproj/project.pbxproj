@@ -42,7 +42,7 @@
 		DE8B8F1C2BCFC62100AA5A53 /* PostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F1B2BCFC62100AA5A53 /* PostQuery.swift */; };
 		DE8B8F1E2BCFC68000AA5A53 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F1D2BCFC68000AA5A53 /* PostModel.swift */; };
 		DE8B8F202BCFC79600AA5A53 /* CommunitiyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F1F2BCFC79600AA5A53 /* CommunitiyView.swift */; };
-		DE8B8F242BCFCDEA00AA5A53 /* CommunityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F232BCFCDEA00AA5A53 /* CommunityCollectionViewCell.swift */; };
+		DE8B8F242BCFCDEA00AA5A53 /* CommunityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F232BCFCDEA00AA5A53 /* CommunityTableViewCell.swift */; };
 		DE8B8F372BD110D900AA5A53 /* RegistPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F362BD110D900AA5A53 /* RegistPostViewController.swift */; };
 		DE8B8F392BD110E500AA5A53 /* RegistPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F382BD110E500AA5A53 /* RegistPostViewModel.swift */; };
 		DE8B8F3B2BD110EE00AA5A53 /* RegistPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F3A2BD110EE00AA5A53 /* RegistPostView.swift */; };
@@ -117,7 +117,7 @@
 		DE8B8F1B2BCFC62100AA5A53 /* PostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostQuery.swift; sourceTree = "<group>"; };
 		DE8B8F1D2BCFC68000AA5A53 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		DE8B8F1F2BCFC79600AA5A53 /* CommunitiyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiyView.swift; sourceTree = "<group>"; };
-		DE8B8F232BCFCDEA00AA5A53 /* CommunityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE8B8F232BCFCDEA00AA5A53 /* CommunityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTableViewCell.swift; sourceTree = "<group>"; };
 		DE8B8F362BD110D900AA5A53 /* RegistPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistPostViewController.swift; sourceTree = "<group>"; };
 		DE8B8F382BD110E500AA5A53 /* RegistPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistPostViewModel.swift; sourceTree = "<group>"; };
 		DE8B8F3A2BD110EE00AA5A53 /* RegistPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistPostView.swift; sourceTree = "<group>"; };
@@ -374,7 +374,7 @@
 				DE8B8F142BCFA1B200AA5A53 /* CommunitiyViewController.swift */,
 				DE8B8F162BCFA1C200AA5A53 /* CommunityViewModel.swift */,
 				DE8B8F1F2BCFC79600AA5A53 /* CommunitiyView.swift */,
-				DE8B8F232BCFCDEA00AA5A53 /* CommunityCollectionViewCell.swift */,
+				DE8B8F232BCFCDEA00AA5A53 /* CommunityTableViewCell.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -655,7 +655,7 @@
 				DEB14EA92BD8E7AB00B7A0AC /* FollowRouter.swift in Sources */,
 				DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */,
 				DE8B8F702BD52D2000AA5A53 /* ProfileQuery.swift in Sources */,
-				DE8B8F242BCFCDEA00AA5A53 /* CommunityCollectionViewCell.swift in Sources */,
+				DE8B8F242BCFCDEA00AA5A53 /* CommunityTableViewCell.swift in Sources */,
 				DE8F6D202BDFD7D300074A6C /* FundingViewModel.swift in Sources */,
 				DEB14EB12BD93F3A00B7A0AC /* LikeQuery.swift in Sources */,
 				DE8B8EAE2BC7C9D500AA5A53 /* JoinQuery.swift in Sources */,
