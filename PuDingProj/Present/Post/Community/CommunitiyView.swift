@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class CommunitiyView: BaseView, UICollectionViewDelegateFlowLayout {
+final class CommunitiyView: BaseView {
 
     let filterView = UIView() //collectionView로 만들기
     //lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())

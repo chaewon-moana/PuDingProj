@@ -72,6 +72,7 @@
 		DE8F6D1C2BDFD79600074A6C /* FundingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D1B2BDFD79600074A6C /* FundingViewController.swift */; };
 		DE8F6D1E2BDFD7B700074A6C /* FundingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D1D2BDFD7B700074A6C /* FundingView.swift */; };
 		DE8F6D202BDFD7D300074A6C /* FundingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D1F2BDFD7D300074A6C /* FundingViewModel.swift */; };
+		DE8F6D342BE1FDE100074A6C /* FundingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D332BE1FDE100074A6C /* FundingTableViewCell.swift */; };
 		DE9CEC102BC646BB00360192 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */; };
 		DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC112BC646BB00360192 /* SceneDelegate.swift */; };
 		DE9CEC172BC646BB00360192 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DE9CEC162BC646BB00360192 /* Base */; };
@@ -147,6 +148,7 @@
 		DE8F6D1B2BDFD79600074A6C /* FundingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingViewController.swift; sourceTree = "<group>"; };
 		DE8F6D1D2BDFD7B700074A6C /* FundingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingView.swift; sourceTree = "<group>"; };
 		DE8F6D1F2BDFD7D300074A6C /* FundingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingViewModel.swift; sourceTree = "<group>"; };
+		DE8F6D332BE1FDE100074A6C /* FundingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingTableViewCell.swift; sourceTree = "<group>"; };
 		DE9CEC0C2BC646BB00360192 /* PuDingProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuDingProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9CEC112BC646BB00360192 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -467,6 +469,7 @@
 				DE8F6D1B2BDFD79600074A6C /* FundingViewController.swift */,
 				DE8F6D1D2BDFD7B700074A6C /* FundingView.swift */,
 				DE8F6D1F2BDFD7D300074A6C /* FundingViewModel.swift */,
+				DE8F6D332BE1FDE100074A6C /* FundingTableViewCell.swift */,
 			);
 			path = Funding;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				DE8B8E962BC7BF1300AA5A53 /* BaseViewController.swift in Sources */,
 				DE8B8F3B2BD110EE00AA5A53 /* RegistPostView.swift in Sources */,
 				DE8B8EC92BCBC81100AA5A53 /* MainTabBarController.swift in Sources */,
+				DE8F6D342BE1FDE100074A6C /* FundingTableViewCell.swift in Sources */,
 				DE179CB42BDB2B31000A74C7 /* EditMyInfoView.swift in Sources */,
 				DE8B8EAA2BC7C53500AA5A53 /* JoinViewModel.swift in Sources */,
 				DE8B8EC22BCABA0700AA5A53 /* MyInfoViewController.swift in Sources */,
@@ -749,7 +753,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -806,7 +810,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

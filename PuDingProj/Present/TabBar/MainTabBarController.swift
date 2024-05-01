@@ -29,6 +29,6 @@ final class MainTabBarController: UITabBarController {
         let nav3 = UINavigationController(rootViewController: vc3)
         let nav5 = UINavigationController(rootViewController: vc5)
         
-        setViewControllers([nav1, nav2, nav3], animated: true)
+        setViewControllers([nav1, nav2, nav3, nav5], animated: true)
     }
 }
