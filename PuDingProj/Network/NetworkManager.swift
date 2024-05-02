@@ -102,7 +102,6 @@ struct NetworkManager {
            return Single<UploadPostImageFilesModel>.create { single in
                do {
                    let urlRequest = try PostRouter.uploadImage.asURLRequest()
-                   print("됐,,나,,?")
                    AF.upload(multipartFormData: query, to: urlRequest.url!, headers: urlRequest.headers)
                        .validate(statusCode: 200..<300)
                        .responseDecodable(of: UploadPostImageFilesModel.self) { response in
@@ -110,6 +109,31 @@ struct NetworkManager {
                            switch response.result {
                            case .success(let value):
                                print(value, "이미지 올린것222 성공")
+                               single(.success(value))
+                           case .failure(let error):
+                               print(response.response?.statusCode, "이미지 올린 것333 실패")
+                               single(.failure(error))
+                           }
+                       }
+               } catch {
+                   single(.failure(error))
+               }
+               return Disposables.create()
+           }
+       }
+    
+    static func editProfile(query: MultipartFormData) -> Single<InqueryProfileModel> {
+           return Single<InqueryProfileModel>.create { single in
+               do {
+                   let urlRequest = try ProfileRouter.editProfile.asURLRequest()
+                   print(urlRequest.url)
+                   AF.upload(multipartFormData: query, to: urlRequest.url!, headers: urlRequest.headers)
+                       .validate(statusCode: 200..<300)
+                       .responseDecodable(of: InqueryProfileModel.self) { response in
+                           print(response, "프로필 수정 확인")
+                           switch response.result {
+                           case .success(let value):
+                               print(value, "프로필 수정 수정 성공")
                                single(.success(value))
                            case .failure(let error):
                                print(response.response?.statusCode, "이미지 올린 것333 실패")

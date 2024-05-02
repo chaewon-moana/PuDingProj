@@ -13,17 +13,17 @@ final class CategoryView: BaseView {
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
     override func configureAttribute() {
-        descriptionLabel.text = "카테고리 영역을 설정해주세요"
-        descriptionLabel.font = .systemFont(ofSize: 14)
+        descriptionLabel.text = "카테고리를 설정해주세요"
+        descriptionLabel.font = .systemFont(ofSize: 16)
     }
     
     override func configureViewLayout() {
         self.addSubviews([descriptionLabel, collectionView])
         descriptionLabel.snp.makeConstraints { make in
-            make.leading.top.equalToSuperview().inset(8)
+            make.leading.top.equalToSuperview().inset(16)
         }
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(descriptionLabel.snp.bottom)
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(8)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalTo(self.snp.bottom)
         }

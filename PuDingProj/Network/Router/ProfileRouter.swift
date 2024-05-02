@@ -10,7 +10,7 @@ import Alamofire
 
 enum ProfileRouter {
     case inqueryProfile
-    case editProfile(query: EditProfileQuery)
+    case editProfile//(query: EditProfileQuery)
    // case inqueryOtherProfile(parameter: String)
 }
 
@@ -66,9 +66,10 @@ extension ProfileRouter: TargetType {
         switch self {
         case .inqueryProfile:
             return nil
-        case .editProfile(let query):
-            let encoder = JSONEncoder()
-            return try? encoder.encode(query)
+        case .editProfile:
+//            let encoder = JSONEncoder()
+//            return try? encoder.encode(query)
+            return nil
         }
     }
     

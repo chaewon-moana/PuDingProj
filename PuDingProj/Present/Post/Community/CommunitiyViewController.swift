@@ -26,7 +26,6 @@ final class CommunitiyViewController: BaseViewController {
         super.viewWillAppear(animated)
         inputTrigger.accept(())
         print("community input Trigger")
-        
     }
 
     override func viewDidLoad() {

@@ -10,6 +10,7 @@
 		DE179CB42BDB2B31000A74C7 /* EditMyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE179CB32BDB2B31000A74C7 /* EditMyInfoView.swift */; };
 		DE179CB62BDB2BA3000A74C7 /* EditMyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE179CB52BDB2BA3000A74C7 /* EditMyInfoViewController.swift */; };
 		DE179CB82BDB2BB9000A74C7 /* EditMyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE179CB72BDB2BB9000A74C7 /* EditMyInfoViewModel.swift */; };
+		DE6A5BD72BE2559500D9578F /* RegistPostImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6A5BD62BE2559500D9578F /* RegistPostImageCollectionViewCell.swift */; };
 		DE8B8E942BC7BE9D00AA5A53 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8E932BC7BE9D00AA5A53 /* JoinViewController.swift */; };
 		DE8B8E962BC7BF1300AA5A53 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8E952BC7BF1300AA5A53 /* BaseViewController.swift */; };
 		DE8B8E992BC7BF2F00AA5A53 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE8B8E982BC7BF2F00AA5A53 /* Alamofire */; };
@@ -73,6 +74,7 @@
 		DE8F6D1E2BDFD7B700074A6C /* FundingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D1D2BDFD7B700074A6C /* FundingView.swift */; };
 		DE8F6D202BDFD7D300074A6C /* FundingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D1F2BDFD7D300074A6C /* FundingViewModel.swift */; };
 		DE8F6D342BE1FDE100074A6C /* FundingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D332BE1FDE100074A6C /* FundingTableViewCell.swift */; };
+		DE8F90B82BE37E1F00E41A98 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F90B72BE37E1F00E41A98 /* DateManager.swift */; };
 		DE9CEC102BC646BB00360192 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */; };
 		DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC112BC646BB00360192 /* SceneDelegate.swift */; };
 		DE9CEC172BC646BB00360192 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DE9CEC162BC646BB00360192 /* Base */; };
@@ -80,7 +82,7 @@
 		DE9CEC1C2BC646BD00360192 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DE9CEC1B2BC646BD00360192 /* Base */; };
 		DE9CEC242BC646DB00360192 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DE9CEC232BC646DB00360192 /* .gitignore */; };
 		DE9CEC272BC6473500360192 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC262BC6473500360192 /* APIKey.swift */; };
-		DEB14E962BD6A52700B7A0AC /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14E952BD6A52700B7A0AC /* CommentCollectionViewCell.swift */; };
+		DEB14E962BD6A52700B7A0AC /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14E952BD6A52700B7A0AC /* CommentTableViewCell.swift */; };
 		DEB14EA92BD8E7AB00B7A0AC /* FollowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14EA82BD8E7AB00B7A0AC /* FollowRouter.swift */; };
 		DEB14EAB2BD931DC00B7A0AC /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14EAA2BD931DC00B7A0AC /* UserDefault.swift */; };
 		DEB14EAD2BD93EE700B7A0AC /* LikeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14EAC2BD93EE700B7A0AC /* LikeRouter.swift */; };
@@ -92,6 +94,7 @@
 		DE179CB32BDB2B31000A74C7 /* EditMyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyInfoView.swift; sourceTree = "<group>"; };
 		DE179CB52BDB2BA3000A74C7 /* EditMyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyInfoViewController.swift; sourceTree = "<group>"; };
 		DE179CB72BDB2BB9000A74C7 /* EditMyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyInfoViewModel.swift; sourceTree = "<group>"; };
+		DE6A5BD62BE2559500D9578F /* RegistPostImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistPostImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		DE8B8E932BC7BE9D00AA5A53 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		DE8B8E952BC7BF1300AA5A53 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DE8B8EA52BC7C27000AA5A53 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -149,6 +152,7 @@
 		DE8F6D1D2BDFD7B700074A6C /* FundingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingView.swift; sourceTree = "<group>"; };
 		DE8F6D1F2BDFD7D300074A6C /* FundingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingViewModel.swift; sourceTree = "<group>"; };
 		DE8F6D332BE1FDE100074A6C /* FundingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingTableViewCell.swift; sourceTree = "<group>"; };
+		DE8F90B72BE37E1F00E41A98 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		DE9CEC0C2BC646BB00360192 /* PuDingProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuDingProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9CEC112BC646BB00360192 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,7 +162,7 @@
 		DE9CEC1D2BC646BD00360192 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE9CEC232BC646DB00360192 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DE9CEC262BC6473500360192 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
-		DEB14E952BD6A52700B7A0AC /* CommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewCell.swift; sourceTree = "<group>"; };
+		DEB14E952BD6A52700B7A0AC /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		DEB14EA82BD8E7AB00B7A0AC /* FollowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRouter.swift; sourceTree = "<group>"; };
 		DEB14EAA2BD931DC00B7A0AC /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		DEB14EAC2BD93EE700B7A0AC /* LikeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRouter.swift; sourceTree = "<group>"; };
@@ -401,6 +405,7 @@
 				DE8B8F362BD110D900AA5A53 /* RegistPostViewController.swift */,
 				DE8B8F382BD110E500AA5A53 /* RegistPostViewModel.swift */,
 				DE8B8F3A2BD110EE00AA5A53 /* RegistPostView.swift */,
+				DE6A5BD62BE2559500D9578F /* RegistPostImageCollectionViewCell.swift */,
 			);
 			path = RegistPost;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 				DE8B8F592BD2408400AA5A53 /* ImageFileManager.swift */,
 				DEB14EAA2BD931DC00B7A0AC /* UserDefault.swift */,
 				DE8F6D0F2BDF978B00074A6C /* DataManager.swift */,
+				DE8F90B72BE37E1F00E41A98 /* DateManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -421,7 +427,7 @@
 				DE8B8F5E2BD3B80300AA5A53 /* PostDetailViewController.swift */,
 				DE8B8F602BD3B81700AA5A53 /* PostDetailView.swift */,
 				DE8B8F622BD3B82C00AA5A53 /* PostDetailViewModel.swift */,
-				DEB14E952BD6A52700B7A0AC /* CommentCollectionViewCell.swift */,
+				DEB14E952BD6A52700B7A0AC /* CommentTableViewCell.swift */,
 			);
 			path = PostDetail;
 			sourceTree = "<group>";
@@ -635,11 +641,12 @@
 				DE8B8F1E2BCFC68000AA5A53 /* PostModel.swift in Sources */,
 				DE8B8F632BD3B82C00AA5A53 /* PostDetailViewModel.swift in Sources */,
 				DE8F6D1C2BDFD79600074A6C /* FundingViewController.swift in Sources */,
-				DEB14E962BD6A52700B7A0AC /* CommentCollectionViewCell.swift in Sources */,
+				DEB14E962BD6A52700B7A0AC /* CommentTableViewCell.swift in Sources */,
 				DE8B8F832BD634C900AA5A53 /* NetworkErrorManager.swift in Sources */,
 				DE8B8EAC2BC7C65700AA5A53 /* AccountRouter.swift in Sources */,
 				DE8B8F172BCFA1C200AA5A53 /* CommunityViewModel.swift in Sources */,
 				DE8F6D142BDFD34700074A6C /* ShelterListViewController.swift in Sources */,
+				DE8F90B82BE37E1F00E41A98 /* DateManager.swift in Sources */,
 				DE8B8F612BD3B81700AA5A53 /* PostDetailView.swift in Sources */,
 				DE8B8EEE2BCD203000AA5A53 /* LoginViewModel.swift in Sources */,
 				DE8B8EA82BC7C4C900AA5A53 /* UIView+Extension.swift in Sources */,
@@ -669,6 +676,7 @@
 				DE8B8F3B2BD110EE00AA5A53 /* RegistPostView.swift in Sources */,
 				DE8B8EC92BCBC81100AA5A53 /* MainTabBarController.swift in Sources */,
 				DE8F6D342BE1FDE100074A6C /* FundingTableViewCell.swift in Sources */,
+				DE6A5BD72BE2559500D9578F /* RegistPostImageCollectionViewCell.swift in Sources */,
 				DE179CB42BDB2B31000A74C7 /* EditMyInfoView.swift in Sources */,
 				DE8B8EAA2BC7C53500AA5A53 /* JoinViewModel.swift in Sources */,
 				DE8B8EC22BCABA0700AA5A53 /* MyInfoViewController.swift in Sources */,
@@ -753,7 +761,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -810,7 +818,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

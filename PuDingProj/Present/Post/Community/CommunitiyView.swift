@@ -16,13 +16,9 @@ final class CommunitiyView: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        tableView.estimatedRowHeight = 200
-//        tableView.rowHeight = UITableView.automaticDimension
-       // tableView.rowHeight = 200
+        tableView.rowHeight = UITableView.automaticDimension
     }
-    
 
-    
     override func configureViewLayout() {
         self.addSubviews([tableView])
         tableView.snp.makeConstraints { make in

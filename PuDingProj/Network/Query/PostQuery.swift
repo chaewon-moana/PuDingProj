@@ -12,7 +12,7 @@ struct RegisterPostQuery: Encodable {
     let content: String
     let content1: String //게시글 분류
     let product_id: String
-    let files: [String]
+    let files: [String]?
 }
 
 //MARK: 이미지 업로드

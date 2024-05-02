@@ -10,6 +10,6 @@ import Foundation
 struct EditProfileQuery: Encodable {
     let nick: String?
     let phoneNum: String?
-    let birthDay: String?
+    //let birthDay: String?
     let profile: Data?
 }

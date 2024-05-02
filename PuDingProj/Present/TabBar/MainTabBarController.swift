@@ -17,8 +17,8 @@ final class MainTabBarController: UITabBarController {
         let vc3 = RegistPostViewController()
         let vc5 = MyInfoViewController()
         
-        vc2.hidesBottomBarWhenPushed = true
-    
+        vc3.hidesBottomBarWhenPushed = true
+        
         vc1.tabBarItem.image = UIImage(systemName: "calendar")
         vc2.tabBarItem.image = UIImage(systemName: "star")
         vc3.tabBarItem.image = UIImage(systemName: "plus")

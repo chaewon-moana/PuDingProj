@@ -15,7 +15,6 @@ final class PostDetailView: BaseView {
     let profileImageLogo = UIImageView()
     let nicknameLabel = UILabel()
     let titleLabel = UILabel()
-    let imageStackView = UIStackView()
     let contentLabel = UILabel()
     let registerDateLabel = UILabel()
     let likeMarkImage = UIImageView()
@@ -25,37 +24,53 @@ final class PostDetailView: BaseView {
     let commentView = UIView()
     let commentTextView = UITextView()
     let commentSendButton = UIButton()
-    let imageScrollView = UIScrollView()
-    let commentStackView = UIStackView()
-    let commentCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     
-    static func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, enviroment in
-            
-            // guard let section = Section(rawValue: sectionIndex) else { return nil }
-            
-            let layoutSection: NSCollectionLayoutSection
-            //cell
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            //group
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(60))
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-            
-            //Section
-            layoutSection = NSCollectionLayoutSection(group: group)
-            layoutSection.interGroupSpacing = 5
-            
-            return layoutSection
-        }
+    let imageScrollView = UIScrollView()
+    let imageStackView = UIStackView()
+    let commentTableView = UITableView(frame: .zero)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commentTableView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor).isActive = true
+    }
         
-        return layout
+    func updateUI(item: inqueryPostModel) {
+        nicknameLabel.text = item.creator.nick
+        titleLabel.text = item.title
+        contentLabel.text = item.content
+        registerDateLabel.text = item.createdAt
+        commentCountLabel.text = "\(item.comments.count)"
+        likeCountLabel.text = "\(item.likes.count)"
+        let imageURL = URL(string: APIKey.baseURL.rawValue + item.creator.profileImage!)
+        profileImageLogo.kf.setImage(with: imageURL)
+        
+        if item.files.isEmpty {
+            imageStackView.isHidden = true
+            //thumbnailImageView.image = UIImage(systemName: "heart")
+        } else {
+            for image in item.files {
+                guard let url = URL(string: APIKey.baseURL.rawValue + image) else {
+                    return
+                }
+                let options: KingfisherOptionsInfo = [
+                    .requestModifier(ImageDownloadRequest())
+                ]
+                let view = UIImageView()
+                view.kf.setImage(with: url, options: options)
+                view.contentMode = .scaleAspectFit
+                view.snp.makeConstraints { make in
+                    make.width.equalTo(100)
+                }
+                imageStackView.addArrangedSubview(view)
+            }
+            
+        }
     }
     
     override func configureViewLayout() {
         self.addSubviews([scrollView, commentView])
         scrollView.addSubview(backView)
-        backView.addSubviews([profileImageLogo, nicknameLabel, titleLabel, contentLabel, registerDateLabel, likeMarkImage,  likeCountLabel,commentMarkImage, commentCountLabel, imageScrollView, commentCollectionView])
+        backView.addSubviews([profileImageLogo, nicknameLabel, titleLabel, contentLabel, registerDateLabel, likeMarkImage,  likeCountLabel,commentMarkImage, commentCountLabel, imageScrollView, commentTableView])
         commentView.addSubviews([commentTextView, commentSendButton])
         imageScrollView.addSubview(imageStackView)
         
@@ -64,16 +79,17 @@ final class PostDetailView: BaseView {
             make.bottom.equalTo(commentView.snp.top).offset(-4)
         }
         backView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(scrollView)
             make.width.equalTo(scrollView)
+            make.height.equalTo(1200)
         }
         profileImageLogo.snp.makeConstraints { make in
-            make.size.equalTo(32)
-            make.top.leading.equalToSuperview().offset(8)
+            make.size.equalTo(28)
+            make.top.leading.equalToSuperview()
         }
         nicknameLabel.snp.makeConstraints { make in
             make.leading.equalTo(profileImageLogo.snp.trailing).offset(8)
-            make.top.equalToSuperview().offset(8)
+            make.centerY.equalTo(profileImageLogo)
         }
         titleLabel.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().offset(8)
@@ -105,14 +121,15 @@ final class PostDetailView: BaseView {
         likeCountLabel.snp.makeConstraints { make in
             make.top.equalTo(contentLabel.snp.bottom).offset(4)
             make.leading.equalTo(likeMarkImage.snp.trailing).offset(4)
-            make.bottom.equalTo(commentCollectionView.snp.top)
+            //make.bottom.equalTo(commentTableView.snp.top)
         }
-        commentCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(likeCountLabel.snp.bottom).offset(12)
-            make.horizontalEdges.equalToSuperview().inset(8)
-            make.bottom.equalTo(backView.snp.bottom)
+        commentTableView.snp.makeConstraints { make in
+            make.top.equalTo(likeMarkImage.snp.bottom).offset(16)
+            make.horizontalEdges.equalToSuperview()
+            //make.bottom.equalTo(backView.snp.bottom)
             make.height.equalTo(300)
         }
+        commentTableView.backgroundColor = .red
         commentMarkImage.snp.makeConstraints { make in
             make.size.equalTo(20)
             make.top.equalTo(contentLabel.snp.bottom).offset(4)
@@ -137,7 +154,7 @@ final class PostDetailView: BaseView {
         }
     }
 
-    
+ 
     override func layoutSubviews() {
         super.layoutSubviews()
         scrollView.snp.updateConstraints { make in
@@ -146,38 +163,10 @@ final class PostDetailView: BaseView {
         }
     }
     
-    func updateUI(item: inqueryPostModel) {
-        nicknameLabel.text = item.creator.nick
-        titleLabel.text = item.title
-        contentLabel.text = item.content
-        registerDateLabel.text = item.createdAt
-        commentCountLabel.text = "\(item.comments.count)"
-        likeCountLabel.text = "\(item.likes.count)"
-        
-        if item.files.isEmpty {
-            imageStackView.isHidden = true
-            //thumbnailImageView.image = UIImage(systemName: "heart")
-        } else {
-            for image in item.files {
-                guard let url = URL(string: APIKey.baseURL.rawValue + image) else {
-                    return
-                }
-                let options: KingfisherOptionsInfo = [
-                    .requestModifier(ImageDownloadRequest())
-                ]
-                let view = UIImageView()
-                view.kf.setImage(with: url, options: options)
-                view.contentMode = .scaleAspectFit
-                view.snp.makeConstraints { make in
-                    make.width.equalTo(100)
-                }
-                imageStackView.addArrangedSubview(view)
-            }
-            
-        }
-    }
+   
     
     override func configureAttribute() {
+        scrollView.isScrollEnabled = true
         backView.isUserInteractionEnabled = true
         imageStackView.axis = .horizontal
         commentSendButton.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)

@@ -28,8 +28,6 @@ class CategoryDetailViewController: BaseViewController {
                 cell.titleLabel.text = item.rawValue
             }
             .disposed(by: disposeBag)
-        
-        
     }
     
     override func loadView() {

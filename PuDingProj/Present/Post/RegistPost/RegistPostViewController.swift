@@ -16,26 +16,35 @@ final class RegistPostViewController: BaseViewController {
     let viewModel = RegistPostViewModel()
     
     var imageList: [Data?] = []
+    var collectionViewImageList: [UIImage?] = []
+    lazy var items = BehaviorRelay(value: collectionViewImageList)
+    //Observable.just(collectionViewImageList)
+
     private var selections = [String: PHPickerResult]()
     private var selectedAssetIdentifiers = [String]()
     
     lazy var cancelButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: nil)
+    lazy var saveButton = UIBarButtonItem(title: "등록", style: .plain, target: self, action: nil)
     
     override func loadView() {
         view = mainView
     }
     
-//    let title: String
-//    let content: String
-//    let content1: String //게시글 분류
-//    let product_id: String //puding-moana22 -> Test용
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = cancelButton
+        navigationItem.rightBarButtonItem = saveButton
         view.backgroundColor = .white
+        mainView.imageCollectionView.register(RegistPostImageCollectionViewCell.self, forCellWithReuseIdentifier: "RegistPostImageCollectionViewCell")
+        updateImages(items: items)
     }
     
+    func updateImages(items: BehaviorRelay<[UIImage?]>) {
+        items
+            .bind(to: mainView.imageCollectionView.rx.items(cellIdentifier: "RegistPostImageCollectionViewCell", cellType: RegistPostImageCollectionViewCell.self)){ (index, model, cell) in
+                cell.updateUI(image: model)
+        }.disposed(by: disposeBag)
+    }
     private func setImage() {
         var configuration = PHPickerConfiguration(photoLibrary: .shared())
         configuration.filter = .any(of: [.images])
@@ -48,17 +57,17 @@ final class RegistPostViewController: BaseViewController {
     }
     
     override func bind() {
+        let catogoryLabel = PublishRelay<String>()
+        
         let input = RegistPostViewModel.Input(
+            postData: catogoryLabel.asObservable(),
             titleText: mainView.titleTextView.rx.text.orEmpty.asObservable(),
             contentText: mainView.contentTextView.rx.text.orEmpty.asObservable(),
-            addPostButtonTapped: mainView.addPostButton.rx.tap.asObservable(),
             addImageButtonTapped: mainView.addImageButton.rx.tap.asObservable(),
             imageList: BehaviorRelay(value: imageList),
-            tmpButtonTapped: mainView.tmpButton.rx.tap.asObservable(),
+            inputSaveButtonTapped: saveButton.rx.tap.asObservable(),
             categoryButtonTapped: mainView.categoryButton.rx.tap.asObservable(), cancalButtonTapped: cancelButton.rx.tap.asObservable())
     
-        
-        
         let output = viewModel.transform(input: input)
         
         output.presentImagePickerView
@@ -81,6 +90,7 @@ final class RegistPostViewController: BaseViewController {
                 vc.closure = { value in
                     print(value)
                     owner.mainView.categoryButton.setTitle(value, for: .normal)
+                    catogoryLabel.accept(value)
                 }
             }
             .disposed(by: disposeBag)
@@ -95,14 +105,29 @@ final class RegistPostViewController: BaseViewController {
                 })
             }
             .disposed(by: disposeBag)
-
+        
+        output.savePost
+            .drive(with: self) { owner, _ in
+                //TODO: Toast로 저장되었습니다! 뜨게 만들기
+                owner.mainView.setInitView()
+                owner.collectionViewImageList.removeAll()
+                owner.imageList.removeAll()
+                owner.viewModel.updateImageList(value: owner.imageList)
+                owner.items.accept(owner.collectionViewImageList)
+                if let tabBarController = owner.navigationController?.tabBarController {
+                    tabBarController.selectedIndex = 0
+                    owner.navigationController?.popViewController(animated: true)
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }
 
 
 
 extension RegistPostViewController: PHPickerViewControllerDelegate {
-    
+    //TODO: 이미 있는 사진이라면 갤러리들어갔을 때, 체크되어있도록 만들기
+    //TODO: 나갔다 들어와도 5개 이상,,,처리,,
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         var newSelections = [String: PHPickerResult]()
@@ -118,51 +143,18 @@ extension RegistPostViewController: PHPickerViewControllerDelegate {
             if itemProvider.canLoadObject(ofClass: UIImage.self) {
                 itemProvider.loadObject(ofClass: UIImage.self) { photo, error in
                     let image = photo as? UIImage
-                   //self.mainView.testImageView.image = image
+                    self.collectionViewImageList.append(image)
+                    self.items.accept(self.collectionViewImageList)
                     let data = image?.jpegData(compressionQuality: 0.5)
                     self.imageList.append(data)
-                    //self.viewModel.imageList.accept(self.imageList)
-                    print(self.imageList, "imageList 확인")
                     self.viewModel.updateImageList(value: self.imageList)
                 }
             }
         }
         
-//        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
-//            itemProvider.loadObject(ofClass: UIImage.self) { photo, error in
-//                DispatchQueue.main.async { [self] in
-//                    let image = photo as? UIImage
-//                    self.mainView.testImageView.image = image
-//                    let data = image?.jpegData(compressionQuality: 0.5)
-//                    imageList = [data]
-//                    //ImageFileManager.shared.saveImageToDocument(imageName: "임시테스트.jpg", image: image!)
-//                }
-//            }
-//        } else {
-//            print(#function, "이미지 입력에 문제생김!!!!")
-//        }
     }
-    
-    
-//    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-//        picker.dismiss(animated: true)
-//        let itemProvider = results.first?.itemProvider
-//        
-//        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
-//            itemProvider.loadObject(ofClass: UIImage.self) { photo, error in
-//                DispatchQueue.main.async { [self] in
-//                    let image = photo as? UIImage
-//                    self.mainView.testImageView.image = image
-//                    let data = image?.jpegData(compressionQuality: 0.5)
-//                    imageList = [data]
-//                    //ImageFileManager.shared.saveImageToDocument(imageName: "임시테스트.jpg", image: image!)
-//                }
-//            }
-//        } else {
-//            print(#function, "이미지 입력에 문제생김!!!!")
-//        }
-//    }
 }
+    
 extension RegistPostViewController: UISheetPresentationControllerDelegate {
     
 }

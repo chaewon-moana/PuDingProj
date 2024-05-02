@@ -18,8 +18,9 @@ enum Section: CaseIterable {
 final class PostDetailViewController: BaseViewController {
     let mainView = PostDetailView()
     let viewModel = PostDetailViewModel()
+    
     var item: inqueryPostModel?
-    var dataSource: UICollectionViewDiffableDataSource<Section, WriteCommentModel>!
+    
     lazy var backButton: UIBarButtonItem = {
         let view = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: nil)
     return view
@@ -33,7 +34,9 @@ final class PostDetailViewController: BaseViewController {
         return view
     }()
     
-    var list: [WriteCommentModel] = [WriteCommentModel(comment_id: "asdf", content: "asdfasdf", createdAt: "asdfasdfasdf", creator: CreatorInfo(user_id: "ddd", nick: "sdfsdfsd", profileImage: nil))]
+    
+    var list: [WriteCommentModel] = []
+    var commentList = PublishRelay<[WriteCommentModel]>()
     
     var commentID: String = ""
     var commentDelete: Void = ()
@@ -41,55 +44,27 @@ final class PostDetailViewController: BaseViewController {
     override func loadView() {
         view = mainView
     }
-    
-    private func cellRegistration() {
-        let cellRegistration = UICollectionView.CellRegistration<CommentCollectionViewCell, WriteCommentModel> { (cell, indexPath, model) in
-            let item = model.creator
-            cell.nicknameLabel.text = model.creator.nick
-//            guard let url = URL(string: APIKey.baseURL.rawValue + item.profileImage!) else { return }
-//                let options: KingfisherOptionsInfo = [
-//                     .requestModifier(ImageDownloadRequest())
-//                 ]
-//            cell.profileImageView.kf.setImage(with: url, options: options)
-            cell.profileImageView.image = UIImage(systemName: "person")
-            cell.contentLabel.text = model.content
-            cell.dateLabel.text = model.createdAt
-        }
-        
-        dataSource = UICollectionViewDiffableDataSource<Section, WriteCommentModel>(collectionView: mainView.commentCollectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
-            let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
-            
-            cell.deleteButton.rx.tap
-                .subscribe(with: self) { owner, _ in
-                    print("cell에 deleteButtonTap함")
-                    //TODO: 삭제했을 때, 다시 받아오는 작업 필요함 - 각 Post
-                    NetworkManager.requestDeleteComment(postID: owner.item!.post_id , commentID: itemIdentifier.comment_id)
-                }
-                .disposed(by: cell.disposeBag)
-            
-            return cell
-        })
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        list = item!.comments
+        commentList.accept(list)
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //mainView.commentCollectionView.delegate = self
         tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .white
         navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItems = [likeButton, settingButton]
         
-        cellRegistration()
-        updateSnapShot()
+        mainView.commentTableView.register(CommentTableViewCell.self, forCellReuseIdentifier: "CommentTableViewCell")
         
-    }
-    
-    private func updateSnapShot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, WriteCommentModel>()
-        snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(list, toSection: .main)
-        dataSource.apply(snapshot) //reloadData의 역할
-        dataSource.applySnapshotUsingReloadData(snapshot)//Realm을 사용할 때 적용할 수 있음
+        commentList
+            .bind(to: mainView.commentTableView.rx.items(cellIdentifier: "CommentTableViewCell", cellType: CommentTableViewCell.self)) { (index, item, cell) in
+                print("이거 실행되고 있는데 왜 안됨?")
+                cell.updateUI(item: item)
+                cell.layoutIfNeeded()
+            }
+            .disposed(by: disposeBag)
     }
     
     override func bind() {
@@ -114,15 +89,13 @@ final class PostDetailViewController: BaseViewController {
             .subscribe(with: self) { owner, model in
                 owner.mainView.updateUI(item: model)
                 owner.list = model.comments
+                owner.commentList.accept(model.comments)
+                owner.mainView.commentTableView.reloadData()
             }
             .disposed(by: disposeBag)
         
         output.backButtonTapped
             .drive(with: self) { owner, _ in
-//                if let tabBarController = owner.navigationController?.tabBarController {
-//                    tabBarController.selectedIndex = 0
-//                    owner.navigationController?.popViewController(animated: true)
-//                }
                 owner.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
@@ -131,6 +104,8 @@ final class PostDetailViewController: BaseViewController {
             .subscribe(with: self) { owner, model in
                 owner.mainView.updateUI(item: model)
                 owner.list = model.comments
+                owner.commentList.accept(model.comments)
+                owner.mainView.commentTableView.reloadData()
             }
             .disposed(by: disposeBag)
         
