@@ -115,7 +115,7 @@ final class RegistPostViewController: BaseViewController {
                 owner.mainView.setInitView()
                 owner.collectionViewImageList.removeAll()
                 owner.imageList.removeAll()
-                //owner.viewModel.updateImageList(value: owner.imageList)
+                owner.viewModel.updateImageList(value: owner.imageList)
                 owner.items.accept(owner.collectionViewImageList)
                 if let tabBarController = owner.navigationController?.tabBarController {
                     tabBarController.selectedIndex = 0
