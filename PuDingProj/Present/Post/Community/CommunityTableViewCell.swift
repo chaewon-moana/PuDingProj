@@ -125,14 +125,6 @@ final class CommunityTableViewCell: UITableViewCell {
         contentLabel.text = item.content
     }
     
-    func setSize(item: inqueryPostModel) -> CGFloat {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.text = item.content
-        label.sizeToFit()
-        return label.frame.height
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         titleLabel.text = nil

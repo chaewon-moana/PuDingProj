@@ -57,11 +57,8 @@ final class RegistPostViewModel {
 //                return UploadPostImageFilesQuery(files: image)
 //            }
         
-        
-        let processImage = images.value
-            .flatMap { images in
-                return UploadPostImageFilesQuery(files: [images])
-            }
+    
+
         
         input.inputSaveButtonTapped
             .flatMap { [weak self] _ -> Observable<UploadPostImageFilesQuery> in
@@ -102,7 +99,7 @@ final class RegistPostViewModel {
                 print("포스트 등록 실패")
             }
             .disposed(by: disposeBag)
-        
+//        
         
         
         

@@ -27,11 +27,13 @@ final class PostDetailView: BaseView {
     
     let imageScrollView = UIScrollView()
     let imageStackView = UIStackView()
+    
     let commentTableView = UITableView(frame: .zero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         commentTableView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor).isActive = true
+        commentTableView.rowHeight = UITableView.automaticDimension
     }
         
     func updateUI(item: inqueryPostModel) {
@@ -57,9 +59,12 @@ final class PostDetailView: BaseView {
                 ]
                 let view = UIImageView()
                 view.kf.setImage(with: url, options: options)
-                view.contentMode = .scaleAspectFit
+                view.contentMode = .scaleAspectFill
+                view.clipsToBounds = true
+                view.layer.cornerRadius = 20
+
                 view.snp.makeConstraints { make in
-                    make.width.equalTo(100)
+                    make.width.equalTo(140)
                 }
                 imageStackView.addArrangedSubview(view)
             }
@@ -96,7 +101,7 @@ final class PostDetailView: BaseView {
             make.top.equalTo(profileImageLogo.snp.bottom).offset(12)
         }
         imageScrollView.snp.makeConstraints { make in
-            make.height.equalTo(120)
+            make.height.equalTo(150)
             make.horizontalEdges.equalToSuperview().inset(8)
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.bottom.equalTo(contentLabel.snp.top).offset(8)
@@ -129,7 +134,6 @@ final class PostDetailView: BaseView {
             //make.bottom.equalTo(backView.snp.bottom)
             make.height.equalTo(300)
         }
-        commentTableView.backgroundColor = .red
         commentMarkImage.snp.makeConstraints { make in
             make.size.equalTo(20)
             make.top.equalTo(contentLabel.snp.bottom).offset(4)
@@ -169,6 +173,7 @@ final class PostDetailView: BaseView {
         scrollView.isScrollEnabled = true
         backView.isUserInteractionEnabled = true
         imageStackView.axis = .horizontal
+        imageStackView.spacing = 10
         commentSendButton.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
         commentTextView.backgroundColor = .yellow
         commentTextView.text = "asdfasdfasdfasdfasdfasdfasdfasdf"
@@ -185,7 +190,6 @@ final class PostDetailView: BaseView {
         titleLabel.text = "타이틀 라벨 테스트"
         titleLabel.numberOfLines = 0
         titleLabel.font = .systemFont(ofSize: 15)
-        imageStackView.backgroundColor = .red
         contentLabel.font = .systemFont(ofSize: 14)
         contentLabel.numberOfLines = 0
         contentLabel.text = "내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트"

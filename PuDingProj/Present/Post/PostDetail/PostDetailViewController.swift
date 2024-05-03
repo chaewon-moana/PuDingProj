@@ -34,7 +34,6 @@ final class PostDetailViewController: BaseViewController {
         return view
     }()
     
-    
     var list: [WriteCommentModel] = []
     var commentList = PublishRelay<[WriteCommentModel]>()
     
@@ -51,6 +50,7 @@ final class PostDetailViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .white
         navigationItem.leftBarButtonItem = backButton
