@@ -19,7 +19,7 @@ final class RegistPostViewController: BaseViewController {
     var collectionViewImageList: [UIImage?] = []
     lazy var items = BehaviorRelay(value: collectionViewImageList)
     //Observable.just(collectionViewImageList)
-
+    var inputTrigger: () = ()
     private var selections = [String: PHPickerResult]()
     private var selectedAssetIdentifiers = [String]()
     
@@ -32,6 +32,7 @@ final class RegistPostViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        inputTrigger = ()
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
         view.backgroundColor = .white
@@ -58,6 +59,7 @@ final class RegistPostViewController: BaseViewController {
     
     override func bind() {
         let catogoryLabel = PublishRelay<String>()
+        let trigger: BehaviorRelay<Void> = BehaviorRelay(value: ())
         
         let input = RegistPostViewModel.Input(
             postData: catogoryLabel.asObservable(),
@@ -66,7 +68,8 @@ final class RegistPostViewController: BaseViewController {
             addImageButtonTapped: mainView.addImageButton.rx.tap.asObservable(),
             imageList: BehaviorRelay(value: imageList),
             inputSaveButtonTapped: saveButton.rx.tap.asObservable(),
-            categoryButtonTapped: mainView.categoryButton.rx.tap.asObservable(), cancalButtonTapped: cancelButton.rx.tap.asObservable())
+            categoryButtonTapped: mainView.categoryButton.rx.tap.asObservable(), cancalButtonTapped: cancelButton.rx.tap.asObservable(),
+            inputTrigger: trigger.asObservable())
     
         let output = viewModel.transform(input: input)
         
@@ -112,7 +115,7 @@ final class RegistPostViewController: BaseViewController {
                 owner.mainView.setInitView()
                 owner.collectionViewImageList.removeAll()
                 owner.imageList.removeAll()
-                owner.viewModel.updateImageList(value: owner.imageList)
+                //owner.viewModel.updateImageList(value: owner.imageList)
                 owner.items.accept(owner.collectionViewImageList)
                 if let tabBarController = owner.navigationController?.tabBarController {
                     tabBarController.selectedIndex = 0

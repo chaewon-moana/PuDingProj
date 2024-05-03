@@ -31,5 +31,6 @@ final class FundingView: BaseView {
     
     override func configureAttribute() {
         titleLabel.text = "기부후원펀딩"
+        tableView.backgroundColor = .yellow
     }
 }
