@@ -29,7 +29,9 @@ final class PostDetailViewModel {
         let postResult: Observable<inqueryPostModel>
         let updatePost: Observable<inqueryPostModel>
         let backButtonTapped: Driver<Void>
+        let commentUpdate: Observable<WriteCommentModel>
     }
+    
     struct CommentOnPost {
         let comment: String
     }
@@ -39,16 +41,21 @@ final class PostDetailViewModel {
         let commentObservable = Observable.combineLatest(input.commentText, input.postItem)
         let comment = Observable.combineLatest(input.postItem, input.deleteComment)
         let likeObservable = Observable.combineLatest(input.postItem, input.likeButtonTapped, input.likeValue)
+        let commentUpdate = PublishRelay<WriteCommentModel>()
+        let postID = BehaviorRelay<String>(value: "")
+        
         
         input.commentSendButtonTapped
             .withLatestFrom(commentObservable)
             .flatMap { value, post in
                 print("버튼 눌림")
+                postID.accept(post.post_id)
                 let item = writeCommentQuery(content: value)
                 return NetworkManager.requestNetwork(router: .comment(.writeComment(parameter: item, id: post.post_id)), modelType: WriteCommentModel.self)
             }
             .subscribe { model in
                 print(model, "댓글달기 성공")
+                commentUpdate.accept(model)
             } onError: { error in
                 print("댓글달기 실패")
             }
@@ -69,14 +76,7 @@ final class PostDetailViewModel {
                 print(error, "삭제 실패")
             }
             .disposed(by: disposeBag)
-        
-//        input.cellDeleataButtonTapped
-//            .subscribe { value in
-//                print("삭제됐어여!", value)
-//            } onError: { error in
-//                print(error, "삭제 안됨여")
-//            }
-//            .disposed(by: disposeBag)
+
 
         likeObservable
             .flatMap { post, value, state  in
@@ -108,7 +108,8 @@ final class PostDetailViewModel {
         
         return Output(postResult: input.postItem,
                       updatePost: updatePostModel.asObservable(),
-                      backButtonTapped: input.backButtonTapped.asDriver(onErrorJustReturn: ()))
+                      backButtonTapped: input.backButtonTapped.asDriver(onErrorJustReturn: ()),
+                      commentUpdate: commentUpdate.asObservable())
     }
 }
 

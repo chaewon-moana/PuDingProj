@@ -43,6 +43,7 @@ final class PostDetailViewController: BaseViewController {
     override func loadView() {
         view = mainView
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         list = item!.comments
@@ -104,10 +105,15 @@ final class PostDetailViewController: BaseViewController {
             .subscribe(with: self) { owner, model in
                 owner.mainView.updateUI(item: model)
                 owner.list = model.comments
-                owner.commentList.accept(model.comments)
+                owner.commentList.accept(owner.list)
                 owner.mainView.commentTableView.reloadData()
             }
             .disposed(by: disposeBag)
-        
+        output.commentUpdate
+            .subscribe(with: self) { owner, model in
+                owner.list.append(model)
+                owner.commentList.accept(owner.list)
+            }
+            .disposed(by: disposeBag)
     }
 }

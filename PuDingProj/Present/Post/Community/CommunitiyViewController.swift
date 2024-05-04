@@ -94,6 +94,7 @@ final class CommunitiyViewController: BaseViewController {
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
+        
     }
     override func loadView() {
         view = mainView
