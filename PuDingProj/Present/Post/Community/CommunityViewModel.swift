@@ -12,6 +12,10 @@ import RxCocoa
 final class CommunityViewModel {
     
     let disposeBag = DisposeBag()
+    let nextCursor = BehaviorRelay<String>(value: "")
+    var tmpResult: [inqueryPostModel] = []
+    let result = PublishRelay<[inqueryPostModel]>()
+    var isLoading = BehaviorRelay(value: false)
     
     struct Input {
         let inputTrigger: PublishRelay<Void>
@@ -21,15 +25,15 @@ final class CommunityViewModel {
     }
     
     struct Output {
-        let inqueryResult: Observable<inqueryUppperPostModel>
+        let inqueryResult: Observable<[inqueryPostModel]>
         let specificPost: Observable<inqueryPostModel>
         let moveToDetail: Observable<inqueryPostModel>
     }
     
     func transform(input: Input) -> Output {
-        let result = PublishRelay<inqueryUppperPostModel>()
         let specificResult = PublishRelay<inqueryPostModel>()
         let moveToDetail = PublishRelay<inqueryPostModel>()
+       
         
         input.searchButtonTapped
             .withLatestFrom(input.searchText)
@@ -60,12 +64,15 @@ final class CommunityViewModel {
         
         input.inputTrigger
             .flatMap { value in
-                return NetworkManager.requestNetwork(router: .post(.inqueryPost), modelType: inqueryUppperPostModel.self)
+                return NetworkManager.requestNetwork(router: .post(.inqueryPost(next: "")), modelType: inqueryUppperPostModel.self)
             }
-            .subscribe { model in
+            .subscribe(with: self) { owner, model in
                 print("포스트 조회 서엉고옹")
-                result.accept(model)
-            } onError: { error in
+                owner.fetchNextPage()
+//                owner.tmpResult.append(contentsOf: model.data)
+//                owner.result.accept(owner.tmpResult)
+//                owner.nextCursor.accept(model.next_cursor)
+            } onError: { error, _  in
                 print("포스트 조회 실패애")
             }
             .disposed(by: disposeBag)
@@ -73,6 +80,26 @@ final class CommunityViewModel {
         return Output(inqueryResult: result.asObservable(), specificPost: specificResult.asObservable(),
                       moveToDetail: moveToDetail.asObservable()
         )
+    }
+    
+    
+    func fetchNextPage() -> Observable<inqueryUppperPostModel> {
+        print("일단 되는지 보자", nextCursor.value)
+        //TODO: 다음 페이지 가져와서 보여주기
+        isLoading.accept(true)
+        let item = NetworkManager.requestNetwork(router: .post(.inqueryPost(next: nextCursor.value)), modelType: inqueryUppperPostModel.self).asObservable()
+        item.subscribe { model in
+            print(model.data)
+            self.tmpResult.append(contentsOf: model.data)
+            self.result.accept(self.tmpResult)
+            self.nextCursor.accept(model.next_cursor)
+            self.isLoading.accept(false)
+        } onError: { error in
+            print(error, "페이지네이션 실패")
+        }
+        .disposed(by: disposeBag)
+    
+        return item
     }
  
 }

@@ -21,7 +21,7 @@ final class CommunitiyViewController: BaseViewController {
     var list: [inqueryPostModel] = []
     var postList = PublishRelay<[inqueryPostModel]>()
     var inputTrigger = PublishRelay<Void>()
-    
+    var isFetchingNextPage = false
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         inputTrigger.accept(())
@@ -40,6 +40,23 @@ final class CommunitiyViewController: BaseViewController {
                 cell.layoutIfNeeded()
             }
             .disposed(by: disposeBag)
+        
+        mainView.tableView.rx.contentOffset
+            .flatMap { [weak self] contentOffset -> Observable<Void> in
+                guard let tableView = self?.mainView.tableView else { return .empty() }
+                guard let self = self else { return .empty() }
+                let visibleHeight = tableView.frame.height - tableView.contentInset.top - tableView.contentInset.bottom
+                let yOffset = contentOffset.y + tableView.contentInset.top
+                let distanceToBottom = tableView.contentSize.height - yOffset - visibleHeight
+                if distanceToBottom < 300, !self.viewModel.isLoading.value {
+                    return .just(())
+                }
+                return .empty()
+            }
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel.fetchNextPage()
+            })
+            .disposed(by: disposeBag)
     }
     override func bind() {
         
@@ -54,8 +71,8 @@ final class CommunitiyViewController: BaseViewController {
         
         output.inqueryResult
             .subscribe(with: self) { owner, model in
-                owner.list = model.data
-                owner.postList.accept(model.data)
+                owner.list = model
+                owner.postList.accept(owner.list)
                 owner.mainView.tableView.reloadData()
             }
             .disposed(by: disposeBag)
@@ -77,32 +94,9 @@ final class CommunitiyViewController: BaseViewController {
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
-//        
-//        inputTrigger
-//            .flatMap { value in
-//                return NetworkManager.requestNetwork(router: .post(.inqueryPost), modelType: inqueryUppperPostModel.self)
-//            }
-//            .subscribe { model in
-//                print("포스트 조회 VC긴하지만 서엉고옹")
-//            } onError: { error in
-//                print("포스트 조회 VC긴하지만 실패애")
-//            }
-//            .disposed(by: disposeBag)
     }
     override func loadView() {
         view = mainView
     }
 }
 
-//extension CommunitiyViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CommunityCollectionViewCell", for: indexPath) as? CommunityCollectionViewCell else {
-//            return .zero
-//        }
-//        
-//        let textSize = cell.setSize(item: list[indexPath.item])
-//        print(textSize, "글자,,,,,,인데,,되낭?")
-//        
-//        return CGSize(width: collectionView.bounds.width, height: 150 + textSize)
-//    }
-//}

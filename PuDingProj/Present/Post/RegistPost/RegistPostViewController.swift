@@ -18,7 +18,6 @@ final class RegistPostViewController: BaseViewController {
     var imageList: [Data?] = []
     var collectionViewImageList: [UIImage?] = []
     lazy var items = BehaviorRelay(value: collectionViewImageList)
-    //Observable.just(collectionViewImageList)
     var inputTrigger: () = ()
     private var selections = [String: PHPickerResult]()
     private var selectedAssetIdentifiers = [String]()
@@ -101,6 +100,11 @@ final class RegistPostViewController: BaseViewController {
         output.cancelButtonTapped
             .drive(with: self) { owner, _ in
                 owner.showAlert(title: "글 작성을 취소할까요?", messgae: "작성 중인 글은 삭제됩니다", action: { _ in
+                    owner.mainView.setInitView()
+                    owner.collectionViewImageList.removeAll()
+                    owner.imageList.removeAll()
+                    owner.viewModel.updateImageList(value: owner.imageList)
+                    owner.items.accept(owner.collectionViewImageList)
                     if let tabBarController = owner.navigationController?.tabBarController {
                         tabBarController.selectedIndex = 0
                         owner.navigationController?.popViewController(animated: true)

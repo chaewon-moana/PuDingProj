@@ -11,7 +11,7 @@ import Alamofire
 enum PostRouter {
     //query -> body로 변경,,ㅠ query1을 query로 두기
     case registerPost(query: RegisterPostQuery)
-    case inqueryPost
+    case inqueryPost(next: String)
     case uploadImage
     case inquerySpecificPost(id: SpecificPostQuery)
     case editPost(query: EditPostQuery, id: String)
@@ -93,8 +93,8 @@ extension PostRouter: TargetType {
         switch self {
         case .registerPost:
             return nil
-        case .inqueryPost:
-            return [URLQueryItem(name: "product_id", value: "puding-moana22")]
+        case .inqueryPost(let next):
+            return [URLQueryItem(name: "product_id", value: "puding-moana22"), URLQueryItem(name: "next", value: next)]
         case .uploadImage:
             return nil
         case .inquerySpecificPost:

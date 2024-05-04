@@ -21,6 +21,8 @@ final class CommunityTableViewCell: UITableViewCell {
     let contentLabel = UILabel()
     let stackView = UIStackView()
     let photoImageView = UIImageView()
+    let commentMarkImageView = UIImageView()
+    let commentCountLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,7 +37,7 @@ final class CommunityTableViewCell: UITableViewCell {
     }
 
     private func configureLayout() {
-        contentView.addSubviews([categoryLabel, profileImageView, nicknameLabel, registerDate, titleLabel, stackView])
+        contentView.addSubviews([categoryLabel, profileImageView, nicknameLabel, registerDate, titleLabel, stackView, commentMarkImageView, commentCountLabel])
         stackView.addArrangedSubview(contentLabel)
         stackView.addArrangedSubview(photoImageView)
 
