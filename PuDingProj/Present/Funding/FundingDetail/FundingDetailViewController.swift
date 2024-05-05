@@ -27,7 +27,7 @@ class FundingDetailViewController: BaseViewController {
                 let day = Int(value)
                 owner.dueDate = "\(value)"
                 owner.mainView.dueDateValueLabel.text = "\(day)일"
-                owner.viewModel.dueDateValue.accept("\(value)")
+                owner.viewModel.dueDateValue.accept("\(day)")
             }
             .disposed(by: disposeBag)
         
@@ -36,7 +36,7 @@ class FundingDetailViewController: BaseViewController {
                 let day = Int(value)
              //   owner.target = "\(value)"
                 owner.mainView.targetValueLabel.text = "\(day)개"
-                owner.viewModel.targetValue.accept("\(value)")
+                owner.viewModel.targetValue.accept("\(day)")
             }
             .disposed(by: disposeBag)
         

@@ -53,8 +53,10 @@ final class LoginView: BaseView {
         checkBox.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
         checkBoxLabel.text = "아이디 저장"
         checkBoxLabel.font = .systemFont(ofSize: 13)
-        loginButton.backgroundColor = .blue
+        loginButton.backgroundColor = .systemYellow
+        loginButton.layer.cornerRadius = 8
         loginButton.setTitle("로그인", for: .normal)
+        loginButton.setTitleColor(.black, for: .normal)
         joinButton.setTitle("회원가입", for: .normal)
         joinButton.setTitleColor(.black, for: .normal)
         emailTextField.keyboardType = .emailAddress
