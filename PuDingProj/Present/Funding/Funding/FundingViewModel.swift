@@ -34,7 +34,7 @@ final class FundingViewModel {
             }
             .subscribe(with: self) { owner, model in
                 print("펀딩포스트 조회 서엉고옹")
-                owner.fetchNextPage()
+               // owner.fetchNextPage()
             } onError: { error, _  in
                 print("펀딩포스트 조회 실패애")
             }

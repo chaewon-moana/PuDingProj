@@ -58,8 +58,10 @@ class FundingViewController: BaseViewController {
                 }
                 return .empty()
             }
-            .subscribe(onNext: { [weak self] _ in
-                self?.viewModel.fetchNextPage()
+            .subscribe(with: self, onNext: { owner, _ in
+                if owner.viewModel.nextCursor.value != "0" {
+                    owner.viewModel.fetchNextPage()
+                }
             })
             .disposed(by: disposeBag)
         

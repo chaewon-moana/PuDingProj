@@ -58,6 +58,7 @@ final class CommunityTableViewCell: UITableViewCell {
             make.leading.equalTo(nicknameLabel.snp.trailing).offset(8)
             make.centerY.equalTo(profileImageView)
         }
+        
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(8)
             make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(12)

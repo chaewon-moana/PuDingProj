@@ -33,8 +33,7 @@ final class CommunityViewModel {
     func transform(input: Input) -> Output {
         let specificResult = PublishRelay<inqueryPostModel>()
         let moveToDetail = PublishRelay<inqueryPostModel>()
-       
-        
+    
         input.searchButtonTapped
             .withLatestFrom(input.searchText)
             .flatMap { value in
@@ -64,11 +63,12 @@ final class CommunityViewModel {
         
         input.inputTrigger
             .flatMap { value in
-                return NetworkManager.requestNetwork(router: .post(.inqueryPost(next: "", productId: "puding-moana22")), modelType: inqueryUppperPostModel.self)
+                return NetworkManager.requestNetwork(router: .post(.inqueryPost(next: "0", productId: "puding-moana22")), modelType: inqueryUppperPostModel.self)
             }
             .subscribe(with: self) { owner, model in
                 print("포스트 조회 서엉고옹")
-                owner.fetchNextPage()
+                owner.result.accept(model.data)
+                owner.nextCursor.accept(model.next_cursor)
             } onError: { error, _  in
                 print("포스트 조회 실패애")
             }
@@ -78,7 +78,6 @@ final class CommunityViewModel {
                       moveToDetail: moveToDetail.asObservable()
         )
     }
-    
     
     func fetchNextPage() -> Observable<inqueryUppperPostModel> {
         print("일단 되는지 보자", nextCursor.value)

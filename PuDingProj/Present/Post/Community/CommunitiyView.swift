@@ -10,8 +10,6 @@ import SnapKit
 
 final class CommunitiyView: BaseView {
 
-    let filterView = UIView() //collectionView로 만들기
-    //lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     let tableView = UITableView(frame: .zero)
     
     override init(frame: CGRect) {

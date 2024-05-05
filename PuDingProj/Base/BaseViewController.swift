@@ -29,6 +29,9 @@ class BaseViewController: UIViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
     
     @available (*, unavailable)
     required init?(coder: NSCoder) {

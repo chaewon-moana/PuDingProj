@@ -9,19 +9,20 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class CommunitiyViewController: BaseViewController {
+final class CommunitiyViewController: BaseViewController, UIScrollViewDelegate {
     let mainView = CommunitiyView()
     let viewModel = CommunityViewModel()
     
     let textField: UISearchBar = {
         let view = UISearchBar()
-        view.placeholder = "텍스트필드 여기있따아아"
+        view.placeholder = "키워드를 검색해보세요"
         return view
     }()
     var list: [inqueryPostModel] = []
     var postList = PublishRelay<[inqueryPostModel]>()
     var inputTrigger = PublishRelay<Void>()
     var isFetchingNextPage = false
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         inputTrigger.accept(())
@@ -53,9 +54,14 @@ final class CommunitiyViewController: BaseViewController {
                 }
                 return .empty()
             }
-            .subscribe(onNext: { [weak self] _ in
-                self?.viewModel.fetchNextPage()
+            .subscribe(with: self, onNext: { owner, _ in
+                if owner.viewModel.nextCursor.value != "0" {
+                    owner.viewModel.fetchNextPage()
+                }
             })
+            .disposed(by: disposeBag)
+        
+        mainView.tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
     }
     override func bind() {
