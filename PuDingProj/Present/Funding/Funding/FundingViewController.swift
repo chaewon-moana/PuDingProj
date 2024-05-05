@@ -62,6 +62,15 @@ class FundingViewController: BaseViewController {
                 self?.viewModel.fetchNextPage()
             })
             .disposed(by: disposeBag)
+        
+        mainView.tableView.rx.modelSelected(inqueryFundingModel.self)
+            .subscribe(with: self) { owner, model in
+                let vc = SponsorViewController()
+                vc.item = model
+                vc.hidesBottomBarWhenPushed = true
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func loadView() {

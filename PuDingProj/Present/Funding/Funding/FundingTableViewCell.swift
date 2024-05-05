@@ -96,11 +96,13 @@ final class FundingTableViewCell: UITableViewCell {
         let imageURL = URL(string: APIKey.baseURL.rawValue + item.creator.profileImage!)
         
         //TODO: 오늘 날짜랑 비교해서 며칠 남았는지 처리
-        dueDateLabel.text = "\(item.content3)일 남음"
-        hostShelterLabel.text = item.content4
+        guard let date = item.content3 else { return }
+        dueDateLabel.text = "\(date)일 남음"
+        hostShelterLabel.text = "| \(item.content4)"
         productNameLabel.text = item.title
         attainmentLabel.text = "달성!!!"
-        priceLabel.text = "\(item.content1)원"
+        guard let price = item.content1 else { return }
+        priceLabel.text = "\(price)원"
     }
 
     required init?(coder: NSCoder) {

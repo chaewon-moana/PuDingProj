@@ -91,6 +91,9 @@
 		DEB14EAD2BD93EE700B7A0AC /* LikeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14EAC2BD93EE700B7A0AC /* LikeRouter.swift */; };
 		DEB14EAF2BD93F3000B7A0AC /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14EAE2BD93F3000B7A0AC /* LikeModel.swift */; };
 		DEB14EB12BD93F3A00B7A0AC /* LikeQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB14EB02BD93F3A00B7A0AC /* LikeQuery.swift */; };
+		DEDDB65C2BE76A5700AAF732 /* SponsorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDDB65B2BE76A5700AAF732 /* SponsorView.swift */; };
+		DEDDB65E2BE76AA200AAF732 /* SponsorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDDB65D2BE76AA200AAF732 /* SponsorViewModel.swift */; };
+		DEDDB6602BE76AB800AAF732 /* SponsorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDDB65F2BE76AB800AAF732 /* SponsorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -174,6 +177,9 @@
 		DEB14EAC2BD93EE700B7A0AC /* LikeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRouter.swift; sourceTree = "<group>"; };
 		DEB14EAE2BD93F3000B7A0AC /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
 		DEB14EB02BD93F3A00B7A0AC /* LikeQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeQuery.swift; sourceTree = "<group>"; };
+		DEDDB65B2BE76A5700AAF732 /* SponsorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorView.swift; sourceTree = "<group>"; };
+		DEDDB65D2BE76AA200AAF732 /* SponsorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorViewModel.swift; sourceTree = "<group>"; };
+		DEDDB65F2BE76AB800AAF732 /* SponsorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,6 +476,7 @@
 		DE8F6D192BDFD42500074A6C /* Funding */ = {
 			isa = PBXGroup;
 			children = (
+				DEDDB65A2BE76A2400AAF732 /* Sponsor */,
 				DE8F90C22BE7192200E41A98 /* FundingDetail */,
 				DE8F6D1A2BDFD78800074A6C /* Funding */,
 			);
@@ -541,6 +548,16 @@
 				DE9CEC152BC646BB00360192 /* Main.storyboard */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		DEDDB65A2BE76A2400AAF732 /* Sponsor */ = {
+			isa = PBXGroup;
+			children = (
+				DEDDB65B2BE76A5700AAF732 /* SponsorView.swift */,
+				DEDDB65D2BE76AA200AAF732 /* SponsorViewModel.swift */,
+				DEDDB65F2BE76AB800AAF732 /* SponsorViewController.swift */,
+			);
+			path = Sponsor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -647,12 +664,14 @@
 				DE8B8F152BCFA1B200AA5A53 /* CommunitiyViewController.swift in Sources */,
 				DE8F6D092BDF91EE00074A6C /* CategoryView.swift in Sources */,
 				DE8B8F5A2BD2408400AA5A53 /* ImageFileManager.swift in Sources */,
+				DEDDB65E2BE76AA200AAF732 /* SponsorViewModel.swift in Sources */,
 				DE8B8F682BD4169F00AA5A53 /* CommentModel.swift in Sources */,
 				DE8B8F6A2BD416D000AA5A53 /* CommentQuery.swift in Sources */,
 				DE8B8EC62BCABA1D00AA5A53 /* MyInfoViewModel.swift in Sources */,
 				DE8B8EBB2BC7E1D700AA5A53 /* JoinModel.swift in Sources */,
 				DE8F6D1E2BDFD7B700074A6C /* FundingView.swift in Sources */,
 				DE8B8F372BD110D900AA5A53 /* RegistPostViewController.swift in Sources */,
+				DEDDB65C2BE76A5700AAF732 /* SponsorView.swift in Sources */,
 				DE8B8F5F2BD3B80300AA5A53 /* PostDetailViewController.swift in Sources */,
 				DE8B8F722BD52EB000AA5A53 /* ProfileModel.swift in Sources */,
 				DE8B8F1E2BCFC68000AA5A53 /* PostModel.swift in Sources */,
@@ -700,6 +719,7 @@
 				DE8B8EAA2BC7C53500AA5A53 /* JoinViewModel.swift in Sources */,
 				DE8F90C62BE7196200E41A98 /* FundingDetailViewController.swift in Sources */,
 				DE8B8EC22BCABA0700AA5A53 /* MyInfoViewController.swift in Sources */,
+				DEDDB6602BE76AB800AAF732 /* SponsorViewController.swift in Sources */,
 				DE8B8F872BD646FF00AA5A53 /* UIViewController+Extension.swift in Sources */,
 				DE8B8F392BD110E500AA5A53 /* RegistPostViewModel.swift in Sources */,
 				DE8F6D162BDFD36A00074A6C /* ShelterListView.swift in Sources */,

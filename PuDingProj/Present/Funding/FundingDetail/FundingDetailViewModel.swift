@@ -22,8 +22,8 @@ final class FundingDetailViewModel {
         
         let productNameText: Observable<String>
         let productPriceText: Observable<String>
-        let targetText: Observable<String>
-        let dueDateText: Observable<String>
+//        let targetText: Observable<String>
+//        let dueDateText: Observable<String>
         let shelterText: Observable<String>
         let productImage: Observable<[Data?]>
         
@@ -76,6 +76,7 @@ final class FundingDetailViewModel {
             }
             .withLatestFrom(fundingObservable)
             .flatMap { name, price, target, dueDate, shelter, image  in
+                
                 let query = RegisterFundungQuery(title: name, content: "내용만들기", content1: price, content2: target, content3: dueDate, content4: shelter, product_id: "moana-funding", files: image.files)
                 return NetworkManager.requestNetwork(router: .post(.registerFunding(query: query)), modelType: RegisterFundingModel.self)
             }
