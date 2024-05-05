@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class FundingTableViewCell: UITableViewCell {
     
@@ -73,7 +74,33 @@ final class FundingTableViewCell: UITableViewCell {
         gaugeBarView.backgroundColor = .yellow
         attainmentLabel.text = "8888% 달성"
         attainmentLabel.font = .systemFont(ofSize: 15)
-        priceLabel.text = "000,000원"
+        priceLabel.text = "888,888원"
+    }
+    
+    func updateUI(item: inqueryFundingModel) {
+        if !item.files.isEmpty {
+            productImageView.isHidden = false
+            guard let url = URL(string: APIKey.baseURL.rawValue + item.files[0]) else {
+                return
+            }
+            let options: KingfisherOptionsInfo = [
+                .requestModifier(ImageDownloadRequest())
+            ]
+            productImageView.kf.setImage(with: url, options: options)
+            productImageView.contentMode = .scaleAspectFill
+            productImageView.clipsToBounds = true
+            productImageView.layer.cornerRadius = 16
+        } else {
+            productImageView.image = UIImage(named: "PudingLogo")
+        }
+        let imageURL = URL(string: APIKey.baseURL.rawValue + item.creator.profileImage!)
+        
+        //TODO: 오늘 날짜랑 비교해서 며칠 남았는지 처리
+        dueDateLabel.text = "\(item.content3)일 남음"
+        hostShelterLabel.text = item.content4
+        productNameLabel.text = item.title
+        attainmentLabel.text = "달성!!!"
+        priceLabel.text = "\(item.content1)원"
     }
 
     required init?(coder: NSCoder) {

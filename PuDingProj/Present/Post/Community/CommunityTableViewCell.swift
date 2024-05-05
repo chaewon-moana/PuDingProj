@@ -121,7 +121,6 @@ final class CommunityTableViewCell: UITableViewCell {
         categoryLabel.text = item.content1
         nicknameLabel.text = item.creator.nick
         let date = DateManager().calculateTimeDifference(item.createdAt)
-        print(item.createdAt, Date(), "여기서 왜 자꾸 에러가 나느뇽")
         registerDate.text = "|  \(date)전"
         titleLabel.text = item.title
         contentLabel.text = item.content

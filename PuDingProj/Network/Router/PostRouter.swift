@@ -11,7 +11,8 @@ import Alamofire
 enum PostRouter {
     //query -> body로 변경,,ㅠ query1을 query로 두기
     case registerPost(query: RegisterPostQuery)
-    case inqueryPost(next: String)
+    case registerFunding(query: RegisterFundungQuery)
+    case inqueryPost(next: String, productId: String)
     case uploadImage
     case inquerySpecificPost(id: SpecificPostQuery)
     case editPost(query: EditPostQuery, id: String)
@@ -39,6 +40,8 @@ extension PostRouter: TargetType {
             return .put
         case .deletePost:
             return .delete
+        case .registerFunding:
+            return .post
         }
     }
     
@@ -56,6 +59,8 @@ extension PostRouter: TargetType {
             return "posts/\(id)"
         case .deletePost(let id):
             return "posts/\(id)"
+        case .registerFunding(query: let query):
+            return "posts"
         }
     }
     
@@ -82,6 +87,10 @@ extension PostRouter: TargetType {
         case .deletePost:
             return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .registerFunding(query: let query):
+            return [HTTPHeader.authorization.rawValue: UserDefault.accessToken,
+                    HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
@@ -93,8 +102,8 @@ extension PostRouter: TargetType {
         switch self {
         case .registerPost:
             return nil
-        case .inqueryPost(let next):
-            return [URLQueryItem(name: "product_id", value: "puding-moana22"), URLQueryItem(name: "next", value: next)]
+        case .inqueryPost(let next, let productId):
+            return [URLQueryItem(name: "product_id", value: productId), URLQueryItem(name: "next", value: next)]
         case .uploadImage:
             return nil
         case .inquerySpecificPost:
@@ -102,6 +111,8 @@ extension PostRouter: TargetType {
         case .editPost:
             return [URLQueryItem(name: "product_id", value: "puding-moana22")]
         case .deletePost:
+            return nil
+        case .registerFunding:
             return nil
         }
     }
@@ -122,6 +133,9 @@ extension PostRouter: TargetType {
             return try? encoder.encode(query)
         case .deletePost:
             return nil
+        case .registerFunding(query: let query):
+            let encoder = JSONEncoder()
+            return try? encoder.encode(query)
         }
     }
 }

@@ -22,6 +22,25 @@ struct RegisterPostModel: Decodable {
     let comments: [RegisterPostComment]?
     
 }
+
+struct RegisterFundingModel: Decodable {
+    let post_id: String
+    let product_id: String
+    let title: String?
+    let content: String?
+    let content1: String
+    let content2: String
+    let content3: String
+    let content4: String
+    let createdAt: String
+    let creator: RegisterPostDetail
+    let files: [String]
+    let likes: [String]
+    let likes2: [String]?
+    let hashTags: [String]?
+    let comments: [RegisterPostComment]?
+    
+}
 struct RegisterPostDetail: Decodable {
     let user_id: String
     let nick: String
@@ -47,6 +66,29 @@ struct inqueryPostModel: Decodable {
     let title: String?
     let content: String?
     let content1: String?
+    let createdAt: String
+    let creator: CreatorInfo
+    let files: [String]
+    let likes: [String]
+    let likes2: [String]
+    let hashTags: [String]
+    let comments: [WriteCommentModel]
+}
+
+struct inqueryUpperFundingModel: Decodable {
+    let data: [inqueryFundingModel]
+    let next_cursor: String
+}
+
+struct inqueryFundingModel: Decodable {
+    let post_id: String
+    let product_id: String?
+    let title: String?
+    let content: String?
+    let content1: String?
+    let content2: String?
+    let content3: String?
+    let content4: String?
     let createdAt: String
     let creator: CreatorInfo
     let files: [String]

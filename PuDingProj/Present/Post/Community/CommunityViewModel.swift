@@ -64,14 +64,11 @@ final class CommunityViewModel {
         
         input.inputTrigger
             .flatMap { value in
-                return NetworkManager.requestNetwork(router: .post(.inqueryPost(next: "")), modelType: inqueryUppperPostModel.self)
+                return NetworkManager.requestNetwork(router: .post(.inqueryPost(next: "", productId: "puding-moana22")), modelType: inqueryUppperPostModel.self)
             }
             .subscribe(with: self) { owner, model in
                 print("포스트 조회 서엉고옹")
                 owner.fetchNextPage()
-//                owner.tmpResult.append(contentsOf: model.data)
-//                owner.result.accept(owner.tmpResult)
-//                owner.nextCursor.accept(model.next_cursor)
             } onError: { error, _  in
                 print("포스트 조회 실패애")
             }
@@ -87,7 +84,7 @@ final class CommunityViewModel {
         print("일단 되는지 보자", nextCursor.value)
         //TODO: 다음 페이지 가져와서 보여주기
         isLoading.accept(true)
-        let item = NetworkManager.requestNetwork(router: .post(.inqueryPost(next: nextCursor.value)), modelType: inqueryUppperPostModel.self).asObservable()
+        let item = NetworkManager.requestNetwork(router: .post(.inqueryPost(next: nextCursor.value, productId: "puding-moana22")), modelType: inqueryUppperPostModel.self).asObservable()
         item.subscribe { model in
             print(model.data)
             self.tmpResult.append(contentsOf: model.data)

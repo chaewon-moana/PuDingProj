@@ -28,16 +28,13 @@ final class EditMyInfoViewModel {
     
     func transform(input: Input) -> Output {
         let imageObservable = PublishRelay<Data?>()
-     
         
         let query = input.editImageResult
             .map { nick, phone, image in
                 let multipartData = MultipartFormData()
-//                multipartData.append(Data(nick.utf8), withName: "nick")
-//                multipartData.append(Data(phone.utf8), withName: "phoneNum")
+                multipartData.append(nick.data(using: .utf8)!, withName: "nick")
+                multipartData.append(phone.data(using: .utf8)!, withName: "phoneNum")
                 multipartData.append(image!, withName: "profile", fileName: "moana\(UUID()).jpg", mimeType: "image/jpg")
-                
-                //return EditProfileQuery(nick: nick, phoneNum: phone, profile: nil)
                 return multipartData
             }
         

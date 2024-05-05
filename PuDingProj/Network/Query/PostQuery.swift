@@ -15,6 +15,17 @@ struct RegisterPostQuery: Encodable {
     let files: [String]?
 }
 
+struct RegisterFundungQuery: Encodable {
+    let title: String
+    let content: String //상품 필요한 내용 간략히 적기
+    let content1: String //상품 가격
+    let content2: String //상품 갯수
+    let content3: String //목표기한
+    let content4: String //shelter 이름
+    let product_id: String
+    let files: [String]
+}
+
 //MARK: 이미지 업로드
 struct UploadPostImageFilesQuery: Encodable {
     let files: [Data?]

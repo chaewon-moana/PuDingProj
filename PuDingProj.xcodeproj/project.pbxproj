@@ -75,6 +75,9 @@
 		DE8F6D202BDFD7D300074A6C /* FundingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D1F2BDFD7D300074A6C /* FundingViewModel.swift */; };
 		DE8F6D342BE1FDE100074A6C /* FundingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D332BE1FDE100074A6C /* FundingTableViewCell.swift */; };
 		DE8F90B82BE37E1F00E41A98 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F90B72BE37E1F00E41A98 /* DateManager.swift */; };
+		DE8F90C42BE7193300E41A98 /* FundingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F90C32BE7193300E41A98 /* FundingDetailView.swift */; };
+		DE8F90C62BE7196200E41A98 /* FundingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F90C52BE7196200E41A98 /* FundingDetailViewController.swift */; };
+		DE8F90C82BE7197200E41A98 /* FundingDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F90C72BE7197200E41A98 /* FundingDetailViewModel.swift */; };
 		DE9CEC102BC646BB00360192 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */; };
 		DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9CEC112BC646BB00360192 /* SceneDelegate.swift */; };
 		DE9CEC172BC646BB00360192 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DE9CEC162BC646BB00360192 /* Base */; };
@@ -153,6 +156,9 @@
 		DE8F6D1F2BDFD7D300074A6C /* FundingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingViewModel.swift; sourceTree = "<group>"; };
 		DE8F6D332BE1FDE100074A6C /* FundingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingTableViewCell.swift; sourceTree = "<group>"; };
 		DE8F90B72BE37E1F00E41A98 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		DE8F90C32BE7193300E41A98 /* FundingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingDetailView.swift; sourceTree = "<group>"; };
+		DE8F90C52BE7196200E41A98 /* FundingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingDetailViewController.swift; sourceTree = "<group>"; };
+		DE8F90C72BE7197200E41A98 /* FundingDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundingDetailViewModel.swift; sourceTree = "<group>"; };
 		DE9CEC0C2BC646BB00360192 /* PuDingProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuDingProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9CEC0F2BC646BB00360192 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9CEC112BC646BB00360192 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -464,6 +470,7 @@
 		DE8F6D192BDFD42500074A6C /* Funding */ = {
 			isa = PBXGroup;
 			children = (
+				DE8F90C22BE7192200E41A98 /* FundingDetail */,
 				DE8F6D1A2BDFD78800074A6C /* Funding */,
 			);
 			path = Funding;
@@ -478,6 +485,16 @@
 				DE8F6D332BE1FDE100074A6C /* FundingTableViewCell.swift */,
 			);
 			path = Funding;
+			sourceTree = "<group>";
+		};
+		DE8F90C22BE7192200E41A98 /* FundingDetail */ = {
+			isa = PBXGroup;
+			children = (
+				DE8F90C32BE7193300E41A98 /* FundingDetailView.swift */,
+				DE8F90C52BE7196200E41A98 /* FundingDetailViewController.swift */,
+				DE8F90C72BE7197200E41A98 /* FundingDetailViewModel.swift */,
+			);
+			path = FundingDetail;
 			sourceTree = "<group>";
 		};
 		DE9CEC032BC646BB00360192 = {
@@ -648,6 +665,7 @@
 				DE8F6D142BDFD34700074A6C /* ShelterListViewController.swift in Sources */,
 				DE8F90B82BE37E1F00E41A98 /* DateManager.swift in Sources */,
 				DE8B8F612BD3B81700AA5A53 /* PostDetailView.swift in Sources */,
+				DE8F90C42BE7193300E41A98 /* FundingDetailView.swift in Sources */,
 				DE8B8EEE2BCD203000AA5A53 /* LoginViewModel.swift in Sources */,
 				DE8B8EA82BC7C4C900AA5A53 /* UIView+Extension.swift in Sources */,
 				DE179CB82BDB2BB9000A74C7 /* EditMyInfoViewModel.swift in Sources */,
@@ -675,10 +693,12 @@
 				DE8B8E962BC7BF1300AA5A53 /* BaseViewController.swift in Sources */,
 				DE8B8F3B2BD110EE00AA5A53 /* RegistPostView.swift in Sources */,
 				DE8B8EC92BCBC81100AA5A53 /* MainTabBarController.swift in Sources */,
+				DE8F90C82BE7197200E41A98 /* FundingDetailViewModel.swift in Sources */,
 				DE8F6D342BE1FDE100074A6C /* FundingTableViewCell.swift in Sources */,
 				DE6A5BD72BE2559500D9578F /* RegistPostImageCollectionViewCell.swift in Sources */,
 				DE179CB42BDB2B31000A74C7 /* EditMyInfoView.swift in Sources */,
 				DE8B8EAA2BC7C53500AA5A53 /* JoinViewModel.swift in Sources */,
+				DE8F90C62BE7196200E41A98 /* FundingDetailViewController.swift in Sources */,
 				DE8B8EC22BCABA0700AA5A53 /* MyInfoViewController.swift in Sources */,
 				DE8B8F872BD646FF00AA5A53 /* UIViewController+Extension.swift in Sources */,
 				DE8B8F392BD110E500AA5A53 /* RegistPostViewModel.swift in Sources */,

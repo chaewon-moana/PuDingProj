@@ -40,7 +40,8 @@ final class PostDetailView: BaseView {
         nicknameLabel.text = item.creator.nick
         titleLabel.text = item.title
         contentLabel.text = item.content
-        registerDateLabel.text = item.createdAt
+        let date = DateManager().calculateTimeDifference(item.createdAt)
+        registerDateLabel.text = "|  \(date)전"
         commentCountLabel.text = "\(item.comments.count)"
         likeCountLabel.text = "\(item.likes.count)"
         let imageURL = URL(string: APIKey.baseURL.rawValue + item.creator.profileImage!)
@@ -48,8 +49,13 @@ final class PostDetailView: BaseView {
         
         if item.files.isEmpty {
             imageStackView.isHidden = true
-            //thumbnailImageView.image = UIImage(systemName: "heart")
+            imageScrollView.snp.makeConstraints { make in
+                make.height.equalTo(0)
+            }
         } else {
+            imageStackView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
             for image in item.files {
                 guard let url = URL(string: APIKey.baseURL.rawValue + image) else {
                     return
@@ -185,6 +191,8 @@ final class PostDetailView: BaseView {
         likeCountLabel.font = .systemFont(ofSize: 11)
         likeMarkImage.image = UIImage(systemName: "heart")
         profileImageLogo.image = UIImage(systemName: "person")
+        profileImageLogo.clipsToBounds = true
+        profileImageLogo.layer.cornerRadius = 14
         nicknameLabel.text = "모아나테스트"
         nicknameLabel.font = .systemFont(ofSize: 13)
         titleLabel.text = "타이틀 라벨 테스트"

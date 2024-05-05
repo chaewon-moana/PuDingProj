@@ -10,7 +10,7 @@ import Alamofire
 
 enum ProfileRouter {
     case inqueryProfile
-    case editProfile//(query: EditProfileQuery)
+    case editProfile
    // case inqueryOtherProfile(parameter: String)
 }
 

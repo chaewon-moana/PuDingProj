@@ -127,7 +127,7 @@ struct NetworkManager {
                do {
                    let urlRequest = try ProfileRouter.editProfile.asURLRequest()
                    print(urlRequest.url)
-                   AF.upload(multipartFormData: query, to: urlRequest.url!, headers: urlRequest.headers)
+                   AF.upload(multipartFormData: query, to: urlRequest.url!, method: .put, headers: urlRequest.headers)
                        .validate(statusCode: 200..<300)
                        .responseDecodable(of: InqueryProfileModel.self) { response in
                            print(response, "프로필 수정 확인")
@@ -136,7 +136,7 @@ struct NetworkManager {
                                print(value, "프로필 수정 수정 성공")
                                single(.success(value))
                            case .failure(let error):
-                               print(response.response?.statusCode, "이미지 올린 것333 실패")
+                               print(response.response?.statusCode, "프로필 올린 것333 실패")
                                single(.failure(error))
                            }
                        }
