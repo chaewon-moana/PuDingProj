@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Kingfisher
+import SnapKit
 
 enum Section: CaseIterable {
     case main
@@ -18,7 +19,6 @@ enum Section: CaseIterable {
 final class PostDetailViewController: BaseViewController {
     let mainView = PostDetailView()
     let viewModel = PostDetailViewModel()
-    
     var item: inqueryPostModel?
     
     lazy var backButton: UIBarButtonItem = {
@@ -52,6 +52,9 @@ final class PostDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+          view.addGestureRecognizer(tapGesture)
+        
         tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .white
         navigationItem.leftBarButtonItem = backButton
@@ -66,6 +69,35 @@ final class PostDetailViewController: BaseViewController {
                 cell.layoutIfNeeded()
             }
             .disposed(by: disposeBag)
+        
+        let keyboardHeight = NotificationCenter.default.rx.notification(UIResponder.keyboardWillChangeFrameNotification)
+            .map { notification -> CGFloat in
+                if let userInfo = notification.userInfo,
+                   let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                    return keyboardFrame.height
+                }
+                return 0
+            }
+        
+        keyboardHeight
+                    .subscribe(onNext: { [weak self] height in
+                        guard let self = self else { return }
+                        self.mainView.commentViewBottomConstraint?.update(offset: -height) // commentView의 하단 제약 조건 업데이트
+                        UIView.animate(withDuration: 0.3) {
+                            self.view.layoutIfNeeded() // 변경된 제약 조건에 따라 레이아웃 업데이트
+                        }
+                    })
+                    .disposed(by: disposeBag)
+
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+        // commentView 위치 초기화
+        mainView.commentViewBottomConstraint?.update(offset: 0)
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     override func bind() {

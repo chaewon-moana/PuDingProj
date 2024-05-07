@@ -17,6 +17,7 @@ final class EditMyInfoViewController: BaseViewController {
     var trigger: () = ()
     var imageData = PublishRelay<Data?>()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         trigger = ()

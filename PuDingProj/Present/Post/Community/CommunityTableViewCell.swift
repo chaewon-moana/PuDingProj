@@ -117,8 +117,13 @@ final class CommunityTableViewCell: UITableViewCell {
         } else {
             photoImageView.isHidden = true
         }
-        let imageURL = URL(string: APIKey.baseURL.rawValue + item.creator.profileImage!)
-        profileImageView.kf.setImage(with: imageURL)
+        if let profile = item.creator.profileImage {
+            let imageURL = URL(string: APIKey.baseURL.rawValue + profile)
+            profileImageView.kf.setImage(with: imageURL)
+        } else {
+            profileImageView.image = UIImage(named: "PudingLogo")
+        }
+    
         categoryLabel.text = item.content1
         nicknameLabel.text = item.creator.nick
         let date = DateManager().calculateTimeDifference(item.createdAt)

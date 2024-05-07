@@ -18,6 +18,9 @@ class ShelterListViewController: BaseViewController {
 
     }
     
+    override func loadView() {
+        view = mainView
+    }
 
 
 

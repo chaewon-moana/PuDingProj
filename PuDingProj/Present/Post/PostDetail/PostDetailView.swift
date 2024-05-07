@@ -29,11 +29,14 @@ final class PostDetailView: BaseView {
     let imageStackView = UIStackView()
     
     let commentTableView = UITableView(frame: .zero)
-    
+    let commentTextPlaceHolder = UILabel()
+    var commentViewBottomConstraint: Constraint?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commentTableView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor).isActive = true
-        commentTableView.rowHeight = UITableView.automaticDimension
+        commentTableView.estimatedRowHeight = 80
+        commentTextView.delegate = self
     }
         
     func updateUI(item: inqueryPostModel) {
@@ -41,11 +44,16 @@ final class PostDetailView: BaseView {
         titleLabel.text = item.title
         contentLabel.text = item.content
         let date = DateManager().calculateTimeDifference(item.createdAt)
-        registerDateLabel.text = "|  \(date)전"
+        registerDateLabel.text = "\(date)전"
         commentCountLabel.text = "\(item.comments.count)"
         likeCountLabel.text = "\(item.likes.count)"
-        let imageURL = URL(string: APIKey.baseURL.rawValue + item.creator.profileImage!)
-        profileImageLogo.kf.setImage(with: imageURL)
+        if let profile = item.creator.profileImage {
+            let imageURL = URL(string: APIKey.baseURL.rawValue + profile)
+            profileImageLogo.kf.setImage(with: imageURL)
+        } else {
+            profileImageLogo.image = UIImage(named: "PudingLogo")
+        }
+
         
         if item.files.isEmpty {
             imageStackView.isHidden = true
@@ -82,7 +90,7 @@ final class PostDetailView: BaseView {
         self.addSubviews([scrollView, commentView])
         scrollView.addSubview(backView)
         backView.addSubviews([profileImageLogo, nicknameLabel, titleLabel, contentLabel, registerDateLabel, likeMarkImage,  likeCountLabel,commentMarkImage, commentCountLabel, imageScrollView, commentTableView])
-        commentView.addSubviews([commentTextView, commentSendButton])
+        commentView.addSubviews([commentTextView, commentSendButton, commentTextPlaceHolder])
         imageScrollView.addSubview(imageStackView)
         
         scrollView.snp.makeConstraints { make in
@@ -92,7 +100,7 @@ final class PostDetailView: BaseView {
         backView.snp.makeConstraints { make in
             make.edges.equalTo(scrollView)
             make.width.equalTo(scrollView)
-            make.height.equalTo(1200)
+            make.height.equalTo(800)
         }
         profileImageLogo.snp.makeConstraints { make in
             make.size.equalTo(28)
@@ -150,20 +158,23 @@ final class PostDetailView: BaseView {
             make.leading.equalTo(commentMarkImage.snp.trailing).offset(4)
         }
         commentView.snp.makeConstraints { make in
-            make.height.equalTo(140)
+            make.height.equalTo(60)
             make.bottom.horizontalEdges.equalTo(self)
+            self.commentViewBottomConstraint = make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).constraint
         }
         commentTextView.snp.makeConstraints { make in
             make.leading.bottom.equalToSuperview().inset(12)
-            make.trailing.equalTo(commentSendButton.snp.leading).inset(8)
-            make.height.equalTo(50)
+            make.trailing.equalTo(commentSendButton.snp.leading).inset(10)
+            make.height.greaterThanOrEqualTo(30)
         }
         commentSendButton.snp.makeConstraints { make in
             make.size.equalTo(32)
             make.bottom.trailing.equalToSuperview().inset(8)
         }
+        commentTextPlaceHolder.snp.makeConstraints { make in
+            make.top.leading.equalTo(commentTextView).offset(8)
+        }
     }
-
  
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -173,17 +184,14 @@ final class PostDetailView: BaseView {
         }
     }
     
-   
-    
     override func configureAttribute() {
+        commentTextPlaceHolder.text = "댓글을 입력해주세요"
         scrollView.isScrollEnabled = true
         backView.isUserInteractionEnabled = true
         imageStackView.axis = .horizontal
         imageStackView.spacing = 10
         commentSendButton.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
-        commentTextView.backgroundColor = .yellow
-        commentTextView.text = "asdfasdfasdfasdfasdfasdfasdfasdf"
-        commentView.backgroundColor = .blue
+        commentSendButton.tintColor = .systemYellow
         commentMarkImage.image = UIImage(systemName: "bubble.left")
         
         commentCountLabel.font = .systemFont(ofSize: 11)
@@ -200,8 +208,16 @@ final class PostDetailView: BaseView {
         titleLabel.font = .systemFont(ofSize: 15)
         contentLabel.font = .systemFont(ofSize: 14)
         contentLabel.numberOfLines = 0
-        contentLabel.text = "내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트내용테스트"
+        contentLabel.text = "내용테스트"
         registerDateLabel.font = .systemFont(ofSize: 12)
         registerDateLabel.text = "2888.88.88"
+        
+    }
+}
+extension PostDetailView: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if textView == commentTextView {
+            commentTextPlaceHolder.isHidden = !commentTextView.text.isEmpty
+        }
     }
 }

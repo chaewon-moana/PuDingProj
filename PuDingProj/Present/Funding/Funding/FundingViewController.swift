@@ -39,6 +39,7 @@ class FundingViewController: BaseViewController {
         navigationItem.rightBarButtonItem = addButton
         mainView.tableView.register(FundingTableViewCell.self, forCellReuseIdentifier: "FundingTableViewCell")
         view.backgroundColor = .white
+        navigationItem.title = "기부 후원 펀딩"
         
         fundingList
             .bind(to: mainView.tableView.rx.items(cellIdentifier: "FundingTableViewCell", cellType: FundingTableViewCell.self)) { (index, item, cell) in

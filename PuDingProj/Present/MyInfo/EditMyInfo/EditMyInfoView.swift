@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
+
 
 final class EditMyInfoView: BaseView {
     
@@ -18,7 +20,8 @@ final class EditMyInfoView: BaseView {
     let button: UIButton = {
        let view = UIButton()
         view.setTitle("수정", for: .normal)
-        view.backgroundColor = .red
+        view.backgroundColor = .systemYellow
+        view.layer.cornerRadius = 16
         return view
     }()
     var image = UIImage(systemName: "person")
@@ -56,17 +59,28 @@ final class EditMyInfoView: BaseView {
     
     override func configureAttribute() {
         editImageButton.setTitle("프로필 사진 변경", for: .normal)
+        editImageButton.titleLabel?.font = .systemFont(ofSize: 14)
+        editImageButton.setTitleColor(.lightGray, for: .normal)
         editImageButton.tintColor = .yellow
-        editImageButton.backgroundColor = .green
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = 75
         profileImageView.contentMode = .scaleAspectFill
-        profileImageView.image = UIImage(systemName: "person")
+        profileImageView.image = UIImage(named: "PudingLogo")
         phoneNumTextField.keyboardType = .numberPad
     }
     
     func updateUI(data: InqueryProfileModel) {
         nicknameTextField.text = data.nick
         phoneNumTextField.text = data.phoneNum
+        if let profile = data.profileImage {
+            guard let url = URL(string: APIKey.baseURL.rawValue + profile) else { return }
+                let options: KingfisherOptionsInfo = [
+                     .requestModifier(ImageDownloadRequest())
+                 ]
+            profileImageView.kf.setImage(with: url, options: options)
+        } else {
+            profileImageView.image = UIImage(named: "PudingLogo")
+        }
+        
     }
 }

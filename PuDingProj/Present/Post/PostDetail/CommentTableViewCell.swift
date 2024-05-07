@@ -22,13 +22,13 @@ final class CommentTableViewCell: UITableViewCell {
     let tmpUIView = UILabel()
     
     let buttonTap = PublishSubject<Void>()
-//
+
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 0))
         configureLayout()
     }
-//    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureLayout()
@@ -43,8 +43,12 @@ final class CommentTableViewCell: UITableViewCell {
     }
     
     func updateUI(item: WriteCommentModel) {
-        let imageURL = URL(string: APIKey.baseURL.rawValue + item.creator.profileImage!)
-        profileImageView.kf.setImage(with: imageURL)
+        if let profile = item.creator.profileImage {
+            let imageURL = URL(string: APIKey.baseURL.rawValue + profile)
+            profileImageView.kf.setImage(with: imageURL)
+        } else {
+            profileImageView.image = UIImage(named: "PudingLogo")
+        }
         nicknameLabel.text = item.creator.nick
         contentLabel.text = item.content
         contentLabel.numberOfLines = 0
@@ -61,7 +65,7 @@ final class CommentTableViewCell: UITableViewCell {
         nicknameLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(8)
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
-            make.height.greaterThanOrEqualTo(24)
+            make.height.greaterThanOrEqualTo(20)
         }
 
         contentLabel.snp.makeConstraints { make in
@@ -69,20 +73,20 @@ final class CommentTableViewCell: UITableViewCell {
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
             make.trailing.equalTo(contentView).offset(-8)
             //make.bottom.equalTo(dateLabel.snp.top)
-          make.height.greaterThanOrEqualTo(50)
+            make.height.greaterThanOrEqualTo(20)
         }
         dateLabel.snp.makeConstraints { make in
             make.top.equalTo(contentLabel.snp.bottom).offset(4)
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
             make.trailing.equalTo(contentView).offset(-8)
-           
-           make.height.equalTo(20)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-4)
+            make.height.equalTo(20)
         }
         tmpUIView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(contentView)
             make.top.equalTo(dateLabel.snp.bottom)
-            make.bottom.equalTo(self).offset(-5)
-            // make.height.equalTo(20)
+            //make.bottom.equalTo(self).offset(-5)
+            make.height.equalTo(20)
         }
         deleteButton.snp.makeConstraints { make in
             make.top.trailing.equalTo(self.safeAreaLayoutGuide).inset(8)

@@ -15,7 +15,7 @@ final class FundingTableViewCell: UITableViewCell {
     let dueDateLabel = UILabel()
     let hostShelterLabel = UILabel()
     let productNameLabel = UILabel()
-    let gaugeBarView = UIView()
+   // let gaugeBarView = UIView()
     let attainmentLabel = UILabel()
     let priceLabel = UILabel()
     
@@ -26,7 +26,7 @@ final class FundingTableViewCell: UITableViewCell {
     }
     
     private func configureLayout() {
-        contentView.addSubviews([productImageView, dueDateLabel, hostShelterLabel, productNameLabel, gaugeBarView, attainmentLabel, priceLabel])
+        contentView.addSubviews([productImageView, dueDateLabel, hostShelterLabel, productNameLabel, attainmentLabel, priceLabel])
         productImageView.snp.makeConstraints { make in
             make.width.equalTo(100)
             make.height.equalTo(150)
@@ -46,14 +46,8 @@ final class FundingTableViewCell: UITableViewCell {
             make.leading.equalTo(productImageView.snp.trailing).offset(12)
             make.trailing.equalTo(self.safeAreaLayoutGuide).inset(12)
         }
-        gaugeBarView.snp.makeConstraints { make in
-            make.bottom.equalTo(productImageView.snp.bottom)
-            make.height.equalTo(20)
-            make.leading.equalTo(productImageView.snp.trailing).offset(12)
-            make.trailing.equalTo(self.safeAreaInsets).inset(20)
-        }
         attainmentLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(gaugeBarView.snp.top).offset(-8)
+            make.bottom.equalTo(contentView).offset(-16)
             make.leading.equalTo(productImageView.snp.trailing).offset(12)
         }
         priceLabel.snp.makeConstraints { make in
@@ -71,7 +65,6 @@ final class FundingTableViewCell: UITableViewCell {
         productImageView.image = UIImage(systemName: "star")
         productNameLabel.text = "더마독 가수분해 단백질 강아지 애견 연어 오리 건강사료, 피부/털, 3kg, 1개"
         productNameLabel.numberOfLines = 2
-        gaugeBarView.backgroundColor = .yellow
         attainmentLabel.text = "8888% 달성"
         attainmentLabel.font = .systemFont(ofSize: 15)
         priceLabel.text = "888,888원"
@@ -93,16 +86,21 @@ final class FundingTableViewCell: UITableViewCell {
         } else {
             productImageView.image = UIImage(named: "PudingLogo")
         }
-        let imageURL = URL(string: APIKey.baseURL.rawValue + item.creator.profileImage!)
         
         //TODO: 오늘 날짜랑 비교해서 며칠 남았는지 처리
         guard let date = item.content3 else { return }
         dueDateLabel.text = "\(date)일 남음"
-        hostShelterLabel.text = "| \(item.content4)"
+        guard let shelter = item.content4 else { return }
+        hostShelterLabel.text = "| \(shelter)"
         productNameLabel.text = item.title
-        attainmentLabel.text = "달성!!!"
+        attainmentLabel.text = "목표금액"
         guard let price = item.content1 else { return }
-        priceLabel.text = "\(price)원"
+        let intPrice = Int(price)
+        guard let count = item.content2 else { return }
+        let intCount = Int(count)
+        let totalPrice = Int((intPrice ?? 0) * (intCount ?? 0))
+        let result = MoneyFormatter.shared.string(from: totalPrice as NSNumber)
+        priceLabel.text = "\(result)원"
     }
 
     required init?(coder: NSCoder) {

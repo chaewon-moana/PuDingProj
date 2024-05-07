@@ -17,21 +17,12 @@ final class MyInfoView: BaseView {
     let followerLabel = UILabel()
     let followingLabel = UILabel()
     let firstUnderLine = UIView()
-    let donationView = UIView()
-    let donationLabel = UILabel()
-    let donationPriceLabel = UILabel()
-    let supportView = UIView()
-    let supportLabel = UILabel()
-    let supportCountLabel = UILabel()
     let mypostLabel = UILabel()
     let withdrawButton = UIButton()
-   // let collectionView = UICollectionView()
+    let mypostTableView = UITableView()
     
     override func configureViewLayout() {
-        self.addSubviews([profileImageView, nicknameLabel, followerLabel, followingLabel, settingButton, firstUnderLine, donationView, supportView, mypostLabel, withdrawButton])
-        donationView.addSubviews([donationLabel, donationPriceLabel])
-        supportView.addSubviews([supportLabel, supportCountLabel])
-        
+        self.addSubviews([profileImageView, nicknameLabel, followerLabel, followingLabel, settingButton, firstUnderLine, mypostLabel, withdrawButton, mypostTableView])
         profileImageView.snp.makeConstraints { make in
             make.size.equalTo(80)
             make.top.leading.equalTo(self.safeAreaLayoutGuide).offset(16)
@@ -56,58 +47,45 @@ final class MyInfoView: BaseView {
             make.height.equalTo(1)
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(8)
         }
-        donationView.snp.makeConstraints { make in
-            make.top.equalTo(firstUnderLine.snp.bottom).offset(8)
-            make.leading.equalTo(self.safeAreaLayoutGuide).offset(20)
-            make.height.equalTo(60)
-            make.width.equalTo(150)
-        }
-        donationLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(4)
-        }
-        donationPriceLabel.snp.makeConstraints { make in
-            make.top.equalTo(donationLabel.snp.bottom).offset(4)
-            make.horizontalEdges.equalToSuperview()
-        }
-        supportView.snp.makeConstraints { make in
-            make.top.equalTo(firstUnderLine.snp.bottom).offset(8)
-            make.trailing.equalTo(self.safeAreaLayoutGuide).inset(20)
-            make.height.equalTo(60)
-            make.width.equalTo(150)
-        }
-        supportLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(4)
-        }
-        supportCountLabel.snp.makeConstraints { make in
-            make.top.equalTo(donationLabel.snp.bottom).offset(4)
-            make.horizontalEdges.equalToSuperview()
-        }
         withdrawButton.snp.makeConstraints { make in
             make.size.equalTo(40)
-            make.top.equalTo(self.safeAreaLayoutGuide).inset(12)
-            make.trailing.equalTo(settingButton.snp.leading).offset(-8)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-12)
+            make.centerX.equalTo(self.safeAreaLayoutGuide)
         }
+        mypostLabel.snp.makeConstraints { make in
+            make.top.equalTo(firstUnderLine.snp.bottom).offset(16)
+            make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
+        }
+        mypostTableView.snp.makeConstraints { make in
+            make.top.equalTo(mypostLabel.snp.bottom)
+            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(12)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-20)
+        }
+        
     }
     
     func updateUI(item: InqueryProfileModel) {
-        nicknameLabel.text = item.email
-        followerLabel.text = item.phoneNum
-        guard let url = URL(string: APIKey.baseURL.rawValue + item.profileImage!) else { return }
-            let options: KingfisherOptionsInfo = [
-                 .requestModifier(ImageDownloadRequest())
-             ]
-        profileImageView.kf.setImage(with: url, options: options)
-        //followerLabel.text = "팔로워 \(item.followers.count)"
-        followingLabel.text = "팔로잉 \(item.following.count)"
+        nicknameLabel.text = item.nick
+        followerLabel.text = item.email
+        if let profile = item.profileImage {
+            guard let url = URL(string: APIKey.baseURL.rawValue + profile) else { return }
+                let options: KingfisherOptionsInfo = [
+                     .requestModifier(ImageDownloadRequest())
+                 ]
+            profileImageView.kf.setImage(with: url, options: options)
+        } else {
+            profileImageView.image = UIImage(named: "PudingLogo")
+        }
+       
         
     }
     
     
     override func configureAttribute() {
+        mypostLabel.text = "MY POST"
         withdrawButton.setTitle("탈퇴", for: .normal)
-        withdrawButton.setTitleColor(.black, for: .normal)
+        withdrawButton.titleLabel?.font = .systemFont(ofSize: 12)
+        withdrawButton.setTitleColor(.gray, for: .normal)
         profileImageView.layer.cornerRadius = 40
         profileImageView.layer.borderColor = UIColor.lightGray.cgColor
         profileImageView.layer.borderWidth = 1
@@ -117,25 +95,25 @@ final class MyInfoView: BaseView {
         followerLabel.font = .systemFont(ofSize: 13)
         followingLabel.font = .systemFont(ofSize: 13)
         settingButton.setTitleColor(.black, for: .normal)
-        settingButton.setTitle("설정", for: .normal)
+        settingButton.setTitle("수정", for: .normal)
         firstUnderLine.backgroundColor = .lightGray
         firstUnderLine.layer.borderColor = UIColor.lightGray.cgColor
         firstUnderLine.layer.borderWidth = 1
-        donationView.backgroundColor = .blue
-        donationLabel.textAlignment = .center
-        donationPriceLabel.textAlignment = .center
-        supportView.backgroundColor = .purple
-        supportLabel.textAlignment = .center
-        supportCountLabel.textAlignment = .center
+//        donationView.backgroundColor = .blue
+//        donationLabel.textAlignment = .center
+//        donationPriceLabel.textAlignment = .center
+//        supportView.backgroundColor = .purple
+//        supportLabel.textAlignment = .center
+//        supportCountLabel.textAlignment = .center
         
         //MARK: dummy data
-        profileImageView.image = UIImage(systemName: "star")
+        profileImageView.image = UIImage(named: "PudingLogo")
         nicknameLabel.text = "닉네임 없음"
         followerLabel.text = "팔로워 8888"
-        followingLabel.text = "팔로잉 8888"
-        donationLabel.text = "후원 금액"
-        donationPriceLabel.text = "₩ 88,888,888"
-        supportLabel.text = "물품 후원"
-        supportCountLabel.text = "88 건"
+        followingLabel.text = ""
+//        donationLabel.text = "후원 금액"
+//        donationPriceLabel.text = "₩ 88,888,888"
+//        supportLabel.text = "물품 후원"
+//        supportCountLabel.text = "88 건"
     }
 }

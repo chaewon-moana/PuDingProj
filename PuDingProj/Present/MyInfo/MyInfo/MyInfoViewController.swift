@@ -13,25 +13,35 @@ class MyInfoViewController: BaseViewController {
 
     let mainView = MyInfoView()
     let viewModel = MyInfoViewModel()
-
-    var trigger: () = ()
+    var trigger = PublishRelay<Void>()
+    var postList = PublishRelay<[String]>()
     
     override func loadView() {
         view = mainView
     }
+    
+    
   
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        mainView.mypostTableView.register(MyInfoTableViewCell.self, forCellReuseIdentifier: "MyInfoTableViewCell")
+       
+        postList
+            .bind(to: mainView.mypostTableView.rx.items(cellIdentifier: "MyInfoTableViewCell", cellType: MyInfoTableViewCell.self)) { (index, item, cell) in
+                
+               //cell.updateUI(item: item)
+                cell.layoutIfNeeded()
+            }
+            .disposed(by: disposeBag)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        trigger = ()
+        trigger.accept(())
     }
     override func bind() {
-        let inputTrigger = Observable.of(trigger)
         
-        let input = MyInfoViewModel.Input(inputTrigger: inputTrigger,
+        let input = MyInfoViewModel.Input(inputTrigger: trigger.asObservable(),
                                           withdrawButtonTapped: mainView.withdrawButton.rx.tap.asObservable(),
                                           settingButtonTapped: mainView.settingButton.rx.tap.asObservable())
         
@@ -40,6 +50,7 @@ class MyInfoViewController: BaseViewController {
         output.profileInfo
             .subscribe(with: self) { owner, model in
                 owner.mainView.updateUI(item: model)
+                
             }
             .disposed(by: disposeBag)
         

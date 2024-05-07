@@ -15,3 +15,23 @@ enum categoryData: String, CaseIterable {
     case smallTalk = "잡담"
     
 }
+
+class MoneyFormatter {
+    static let shared = MoneyFormatter()
+    
+    private let formatter: NumberFormatter
+    
+    private init() {
+        formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = ""
+        formatter.currencyGroupingSeparator = "," // 천 단위 구분 기호
+        formatter.maximumFractionDigits = 0
+    }
+    
+    func string(from number: NSNumber) -> String {
+        return formatter.string(from: number)!
+    }
+}
+
+

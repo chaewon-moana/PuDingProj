@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class FundingView: BaseView {
-    let titleLabel = UILabel()
+    //let titleLabel = UILabel()
     let tableView = UITableView(frame: .zero)
     
     override init(frame: CGRect) {
@@ -18,19 +18,13 @@ final class FundingView: BaseView {
     }
     
     override func configureViewLayout() {
-        self.addSubviews([titleLabel, tableView])
-        titleLabel.snp.makeConstraints { make in
-            make.top.leading.equalTo(self.safeAreaLayoutGuide).offset(8)
-        }
+        self.addSubviews([tableView])
+  
         tableView.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(8)
-            make.top.equalTo(titleLabel.snp.bottom)
-            make.bottom.equalTo(self.safeAreaLayoutGuide).inset(8)
+            make.edges.equalTo(self.safeAreaLayoutGuide).inset(8)
         }
     }
     
     override func configureAttribute() {
-        titleLabel.text = "기부후원펀딩"
-        tableView.backgroundColor = .yellow
     }
 }

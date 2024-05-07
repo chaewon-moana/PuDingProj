@@ -73,7 +73,7 @@ final class SponsorView: BaseView {
         } else {
             productImageView.image = UIImage(named: "PudingLogo")
         }
-        let imageURL = URL(string: APIKey.baseURL.rawValue + item.creator.profileImage!)
+//        let imageURL = URL(string: APIKey.baseURL.rawValue + item.creator.profileImage!)
         
         //TODO: 오늘 날짜랑 비교해서 며칠 남았는지 처리
         guard let date = item.content3 else { return }

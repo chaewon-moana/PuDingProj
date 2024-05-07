@@ -94,6 +94,7 @@
 		DEDDB65C2BE76A5700AAF732 /* SponsorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDDB65B2BE76A5700AAF732 /* SponsorView.swift */; };
 		DEDDB65E2BE76AA200AAF732 /* SponsorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDDB65D2BE76AA200AAF732 /* SponsorViewModel.swift */; };
 		DEDDB6602BE76AB800AAF732 /* SponsorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDDB65F2BE76AB800AAF732 /* SponsorViewController.swift */; };
+		DEDDB6622BE7B49E00AAF732 /* MyInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDDB6612BE7B49E00AAF732 /* MyInfoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,6 +181,7 @@
 		DEDDB65B2BE76A5700AAF732 /* SponsorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorView.swift; sourceTree = "<group>"; };
 		DEDDB65D2BE76AA200AAF732 /* SponsorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorViewModel.swift; sourceTree = "<group>"; };
 		DEDDB65F2BE76AB800AAF732 /* SponsorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorViewController.swift; sourceTree = "<group>"; };
+		DEDDB6612BE7B49E00AAF732 /* MyInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +207,7 @@
 				DE8B8EC52BCABA1D00AA5A53 /* MyInfoViewModel.swift */,
 				DE8B8EC12BCABA0700AA5A53 /* MyInfoViewController.swift */,
 				DE8B8EC32BCABA1500AA5A53 /* MyInfoView.swift */,
+				DEDDB6612BE7B49E00AAF732 /* MyInfoTableViewCell.swift */,
 			);
 			path = MyInfo;
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 				DEB14E962BD6A52700B7A0AC /* CommentTableViewCell.swift in Sources */,
 				DE8B8F832BD634C900AA5A53 /* NetworkErrorManager.swift in Sources */,
 				DE8B8EAC2BC7C65700AA5A53 /* AccountRouter.swift in Sources */,
+				DEDDB6622BE7B49E00AAF732 /* MyInfoTableViewCell.swift in Sources */,
 				DE8B8F172BCFA1C200AA5A53 /* CommunityViewModel.swift in Sources */,
 				DE8F6D142BDFD34700074A6C /* ShelterListViewController.swift in Sources */,
 				DE8F90B82BE37E1F00E41A98 /* DateManager.swift in Sources */,
@@ -801,7 +805,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -858,7 +862,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -878,6 +882,7 @@
 				DEVELOPMENT_TEAM = X32GZ3NKQ8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PuDingProj/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "조채원";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -911,6 +916,7 @@
 				DEVELOPMENT_TEAM = X32GZ3NKQ8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PuDingProj/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "조채원";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -17,7 +17,6 @@ final class MainTabBarController: UITabBarController {
         let vc3 = RegistPostViewController()
         let vc4 = FundingViewController()
         let vc5 = MyInfoViewController()
-        
         vc3.hidesBottomBarWhenPushed = true
         
         vc1.tabBarItem.image = UIImage(systemName: "calendar")
@@ -25,6 +24,8 @@ final class MainTabBarController: UITabBarController {
         vc3.tabBarItem.image = UIImage(systemName: "plus")
         vc4.tabBarItem.image = UIImage(systemName: "heart")
         vc5.tabBarItem.image = UIImage(systemName: "person")
+        
+        tabBar.tintColor = .systemYellow
         
         let nav1 = UINavigationController(rootViewController: vc1)
         let nav2 = UINavigationController(rootViewController: vc2)

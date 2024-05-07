@@ -79,13 +79,11 @@ final class CommunityViewModel {
         )
     }
     
+    @discardableResult
     func fetchNextPage() -> Observable<inqueryUppperPostModel> {
-        print("일단 되는지 보자", nextCursor.value)
-        //TODO: 다음 페이지 가져와서 보여주기
         isLoading.accept(true)
         let item = NetworkManager.requestNetwork(router: .post(.inqueryPost(next: nextCursor.value, productId: "puding-moana22")), modelType: inqueryUppperPostModel.self).asObservable()
         item.subscribe { model in
-            print(model.data)
             self.tmpResult.append(contentsOf: model.data)
             self.result.accept(self.tmpResult)
             self.nextCursor.accept(model.next_cursor)
