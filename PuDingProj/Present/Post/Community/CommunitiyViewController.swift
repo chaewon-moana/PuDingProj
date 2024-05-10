@@ -35,8 +35,10 @@ final class CommunitiyViewController: BaseViewController, UIScrollViewDelegate {
         mainView.tableView.register(CommunityTableViewCell.self, forCellReuseIdentifier: "CommunityTableViewCell")
         navigationItem.titleView = textField
         tabBarController?.tabBar.isHidden = false
+        
         postList
             .bind(to: mainView.tableView.rx.items(cellIdentifier: "CommunityTableViewCell", cellType: CommunityTableViewCell.self)) { (index, item, cell) in
+        
                 cell.updateUI(item: item)
                 cell.layoutIfNeeded()
             }
@@ -65,8 +67,6 @@ final class CommunitiyViewController: BaseViewController, UIScrollViewDelegate {
             .disposed(by: disposeBag)
     }
     override func bind() {
-        
-        
         let input = CommunityViewModel.Input(inputTrigger: inputTrigger,
                                              searchText: textField.rx.text.orEmpty.asObservable(),
                                              searchButtonTapped: textField.rx.searchButtonClicked.asObservable(),

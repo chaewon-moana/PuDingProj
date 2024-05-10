@@ -13,6 +13,7 @@ enum Router {
     case comment(CommentRouter)
     case profile(ProfileRouter)
     case like(LikeRouter)
+    case payment(PaymentRouter)
     
     func asURLRequest() throws -> URLRequest {
         switch self {
@@ -26,6 +27,8 @@ enum Router {
             return try profileRouter.asURLRequest()
         case .like(let likeRouter):
             return try likeRouter.asURLRequest()
+        case .payment(let paymentRouter):
+            return try paymentRouter.asURLRequest()
         }
     }
 }

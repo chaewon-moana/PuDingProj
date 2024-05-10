@@ -10,7 +10,7 @@ import SnapKit
 
 final class FundingDetailView: BaseView {
     
-    let scrollView = UIScrollView()
+  //  let scrollView = UIScrollView()
     let backView = UIView()
     let productImageView = UIImageView()
     let productImageAddButton = UIButton()
@@ -30,17 +30,17 @@ final class FundingDetailView: BaseView {
     let contentTextPlaceHolder = UILabel()
     
     override func configureViewLayout() {
-        self.addSubviews([scrollView, saveButton])
-        scrollView.addSubview(backView)
-        backView.addSubviews([productImageView, productImageAddButton, productNameTextField, productPriceTextField, targetNumberLabel, targetValueLabel,targetStepper, dueDateLabel, dueDateValueLabel, dueDateStepper, shelterLabel, shelterTextField, contentTextView,contentTextPlaceHolder])
+//        self.addSubviews([scrollView, saveButton])
+//        scrollView.addSubview(backView)
+        self.addSubviews([productImageView, productImageAddButton, productNameTextField, productPriceTextField, targetNumberLabel, targetValueLabel,targetStepper, dueDateLabel, dueDateValueLabel, dueDateStepper, shelterLabel, shelterTextField, contentTextView,contentTextPlaceHolder, saveButton])
         
-        scrollView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(8)
-            make.bottom.equalTo(saveButton.snp.top).offset(-4)
-        }
-        backView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+//        scrollView.snp.makeConstraints { make in
+//            make.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(8)
+//            make.bottom.equalTo(saveButton.snp.top).offset(-4)
+//        }
+//        backView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//        }
         productImageView.snp.makeConstraints { make in
             make.size.equalTo(180)
             make.centerX.equalToSuperview()
