@@ -15,6 +15,7 @@ class MyInfoViewController: BaseViewController {
     let viewModel = MyInfoViewModel()
     var trigger = PublishRelay<Void>()
     var postList = PublishRelay<[RegisterPostModel]>()
+    lazy var editButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: nil, action: nil)
     
     override func loadView() {
         view = mainView
@@ -24,7 +25,8 @@ class MyInfoViewController: BaseViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         mainView.mypostTableView.register(MyInfoTableViewCell.self, forCellReuseIdentifier: "MyInfoTableViewCell")
-        mainView.mypostTableView.rowHeight = 100
+        mainView.mypostTableView.rowHeight = 120
+        navigationItem.rightBarButtonItem = editButton
         postList
             .bind(to: mainView.mypostTableView.rx.items(cellIdentifier: "MyInfoTableViewCell", cellType: MyInfoTableViewCell.self)) { (index, item, cell) in
                 cell.updateUI(item: item)
@@ -39,7 +41,7 @@ class MyInfoViewController: BaseViewController {
         
         let input = MyInfoViewModel.Input(inputTrigger: trigger.asObservable(),
                                           withdrawButtonTapped: mainView.withdrawButton.rx.tap.asObservable(),
-                                          settingButtonTapped: mainView.settingButton.rx.tap.asObservable())
+                                          settingButtonTapped: editButton.rx.tap.asObservable())
         
         let output = viewModel.transform(input: input)
         

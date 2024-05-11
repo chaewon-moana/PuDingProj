@@ -14,10 +14,12 @@ class DateManager {
     func processData(date: String) -> String {
                 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm" // 2020-08-13 16:30
-        dateFormatter.locale = Locale(identifier:"ko_KR")
-        let convertDate = dateFormatter.date(from: date) // Date 타입으로 변환
-        let convertStr = dateFormatter.string(from: convertDate ?? Date())
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let convertDate = dateFormatter.date(from: date)
+        let resultDateFormatter = DateFormatter()
+        resultDateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        resultDateFormatter.locale = Locale(identifier:"ko_KR")
+        let convertStr = resultDateFormatter.string(from: convertDate!)
         return convertStr
     }
     
@@ -38,9 +40,9 @@ class DateManager {
         
         if minute == 0 {
             return "방금 "
-        } else if minute < 60 && hour == 0{
+        } else if minute < 60 && hour == 0 && day == 0 {
             return "\(minute)분"
-        } else if hour >= 1 && hour < 24 {
+        } else if day == 0 && hour >= 1 && hour < 24 {
             return "\(hour)시간"
         } else {
             return "\(day)일"

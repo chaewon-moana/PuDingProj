@@ -32,12 +32,13 @@ final class MyInfoTableViewCell: UITableViewCell {
         titleLabel.text = item.title
         contentLabel.text = item.content
         let date = item.createdAt
-        let result = DateManager.shared.calculateTimeDifference(date)
+        let result = DateManager.shared.processData(date: date)
         dateLabel.text = result
         commentCountLabel.text = "\(item.comments!.count)"
         if let profile = item.files?.first {
             let imageURL = URL(string: APIKey.baseURL.rawValue + profile)
             postImageView.kf.setImage(with: imageURL)
+            postImageView.contentMode = .scaleAspectFit 
             contentLabel.snp.makeConstraints { make in
                 make.top.equalTo(titleLabel.snp.bottom).offset(4)
                 make.trailing.equalTo(self.snp.trailing).inset(8)
@@ -45,7 +46,7 @@ final class MyInfoTableViewCell: UITableViewCell {
             }
             postImageView.snp.makeConstraints { make in
                 make.top.equalTo(titleLabel.snp.bottom).offset(4)
-                make.leading.equalTo(self.safeAreaLayoutGuide).inset(4)
+                make.leading.equalTo(self.safeAreaLayoutGuide).inset(8)
                 make.size.equalTo(72)
             }
         } else {
@@ -59,32 +60,31 @@ final class MyInfoTableViewCell: UITableViewCell {
     private func configureView() {
         contentView.addSubviews([titleLabel, contentLabel, dateLabel, commentImageView, commentCountLabel, postImageView])
         titleLabel.snp.makeConstraints { make in
-            make.top.leading.equalTo(self.safeAreaLayoutGuide).offset(8)
-            make.leading.equalTo(self.safeAreaLayoutGuide).offset(8)
+            make.top.leading.equalTo(contentView.safeAreaLayoutGuide).offset(8)
+            make.leading.equalTo(contentView.safeAreaLayoutGuide).offset(8)
             make.trailing.equalTo(commentImageView.snp.leading).inset(12)
         }
         contentLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
-            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(8)
+            make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(8)
         }
         postImageView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
-            make.leading.equalTo(self.safeAreaLayoutGuide).inset(4)
+            make.leading.equalTo(contentView.safeAreaLayoutGuide).inset(12)
             make.size.equalTo(72)
             
         }
         dateLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(self.snp.trailing).offset(-8)
-            make.bottom.equalTo(self.snp.bottom).offset(8)
+            make.trailing.equalTo(contentView.snp.trailing).offset(-8)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-8)
         }
         commentImageView.snp.makeConstraints { make in
             make.size.equalTo(16)
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(8)
+            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(8)
             make.trailing.equalTo(commentCountLabel.snp.leading).offset(-4)
         }
         commentCountLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(self.snp.trailing).offset(-8)
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(8)
+            make.top.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(8)
         }
     }
     
@@ -93,7 +93,7 @@ final class MyInfoTableViewCell: UITableViewCell {
         contentView.layer.cornerRadius = 4
         contentView.layer.borderWidth = 1
         contentView.layer.borderColor = UIColor.lightGray.cgColor
-        titleLabel.font = .systemFont(ofSize: 15)
+        titleLabel.font = .systemFont(ofSize: 15, weight: .bold)
         titleLabel.numberOfLines = 0
         contentLabel.numberOfLines = 4
         contentLabel.font = .systemFont(ofSize: 13)
@@ -104,6 +104,7 @@ final class MyInfoTableViewCell: UITableViewCell {
         commentCountLabel.textColor = .gray
         postImageView.clipsToBounds = true
         postImageView.layer.cornerRadius = 8
+        
     }
     override func prepareForReuse() {
         super.prepareForReuse()

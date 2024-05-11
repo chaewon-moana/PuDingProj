@@ -21,7 +21,7 @@ final class LoginView: BaseView {
         emailTextField.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(50)
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(50)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(100)
         }
         passwordTextField.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)

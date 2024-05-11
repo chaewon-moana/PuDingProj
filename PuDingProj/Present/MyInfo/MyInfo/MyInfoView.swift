@@ -11,7 +11,7 @@ import Kingfisher
 
 final class MyInfoView: BaseView {
     
-    let settingButton = UIButton()
+    //let settingButton = UIButton()
     let profileImageView = UIImageView()
     let nicknameLabel = UILabel()
     let followerLabel = UILabel()
@@ -20,9 +20,11 @@ final class MyInfoView: BaseView {
     let mypostLabel = UILabel()
     let withdrawButton = UIButton()
     let mypostTableView = UITableView()
+    let fundingInfoLabel = UILabel()
+    let fundingPriceLabel = UILabel()
     
     override func configureViewLayout() {
-        self.addSubviews([profileImageView, nicknameLabel, followerLabel, followingLabel, settingButton, firstUnderLine, mypostLabel, withdrawButton, mypostTableView])
+        self.addSubviews([profileImageView, nicknameLabel, followerLabel, followingLabel, firstUnderLine, mypostLabel, withdrawButton, mypostTableView, fundingInfoLabel, fundingPriceLabel])
         profileImageView.snp.makeConstraints { make in
             make.size.equalTo(80)
             make.top.leading.equalTo(self.safeAreaLayoutGuide).offset(16)
@@ -39,13 +41,20 @@ final class MyInfoView: BaseView {
             make.leading.equalTo(followerLabel.snp.trailing).offset(4)
             make.top.equalTo(nicknameLabel.snp.bottom).offset(4)
         }
-        settingButton.snp.makeConstraints { make in
-            make.top.trailing.equalTo(self.safeAreaLayoutGuide).inset(12)
-        }
+
         firstUnderLine.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(12)
             make.height.equalTo(1)
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(8)
+        }
+        fundingInfoLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.safeAreaLayoutGuide).inset(8)
+            make.top.equalTo(firstUnderLine.snp.bottom).offset(4)
+        }
+        fundingPriceLabel.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
+            make.top.equalTo(fundingInfoLabel.snp.bottom).offset(4)
+            make.height.equalTo(40)
         }
         withdrawButton.snp.makeConstraints { make in
             make.size.equalTo(40)
@@ -53,7 +62,7 @@ final class MyInfoView: BaseView {
             make.centerX.equalTo(self.safeAreaLayoutGuide)
         }
         mypostLabel.snp.makeConstraints { make in
-            make.top.equalTo(firstUnderLine.snp.bottom).offset(16)
+            make.top.equalTo(fundingPriceLabel.snp.bottom).offset(16)
             make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
         }
         mypostTableView.snp.makeConstraints { make in
@@ -76,8 +85,6 @@ final class MyInfoView: BaseView {
         } else {
             profileImageView.image = UIImage(named: "PudingLogo")
         }
-       
-        
     }
     
     
@@ -94,26 +101,19 @@ final class MyInfoView: BaseView {
         nicknameLabel.font = .systemFont(ofSize: 15, weight: .bold)
         followerLabel.font = .systemFont(ofSize: 13)
         followingLabel.font = .systemFont(ofSize: 13)
-        settingButton.setTitleColor(.black, for: .normal)
-        settingButton.setTitle("수정", for: .normal)
+        fundingPriceLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        fundingPriceLabel.layer.cornerRadius = 4
+        fundingPriceLabel.layer.borderWidth = 1
+        fundingPriceLabel.layer.borderColor = UIColor.lightGray.cgColor
+        fundingPriceLabel.textAlignment = .center
+        
+        let item = MoneyFormatter.shared.string(from: 528000)
+        fundingPriceLabel.text = "\(item)원"
+        
         firstUnderLine.backgroundColor = .lightGray
         firstUnderLine.layer.borderColor = UIColor.lightGray.cgColor
         firstUnderLine.layer.borderWidth = 1
-//        donationView.backgroundColor = .blue
-//        donationLabel.textAlignment = .center
-//        donationPriceLabel.textAlignment = .center
-//        supportView.backgroundColor = .purple
-//        supportLabel.textAlignment = .center
-//        supportCountLabel.textAlignment = .center
-        
-        //MARK: dummy data
-        profileImageView.image = UIImage(named: "PudingLogo")
-        nicknameLabel.text = "닉네임 없음"
-        followerLabel.text = "팔로워 8888"
-        followingLabel.text = ""
-//        donationLabel.text = "후원 금액"
-//        donationPriceLabel.text = "₩ 88,888,888"
-//        supportLabel.text = "물품 후원"
-//        supportCountLabel.text = "88 건"
+        fundingInfoLabel.text = "총 후원 금액"
+        fundingInfoLabel.font = .systemFont(ofSize: 14)
     }
 }

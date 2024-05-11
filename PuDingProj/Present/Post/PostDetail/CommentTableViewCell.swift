@@ -73,7 +73,7 @@ final class CommentTableViewCell: UITableViewCell {
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
             make.trailing.equalTo(contentView).offset(-8)
             //make.bottom.equalTo(dateLabel.snp.top)
-            make.height.greaterThanOrEqualTo(20)
+            make.height.greaterThanOrEqualTo(30)
         }
         dateLabel.snp.makeConstraints { make in
             make.top.equalTo(contentLabel.snp.bottom).offset(4)
