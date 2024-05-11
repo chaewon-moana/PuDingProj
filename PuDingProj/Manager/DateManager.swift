@@ -9,6 +9,8 @@ import Foundation
 
 class DateManager {
     
+    static let shared = DateManager()
+    
     func processData(date: String) -> String {
                 
         let dateFormatter = DateFormatter()

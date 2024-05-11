@@ -38,7 +38,7 @@ final class CommunityViewModel {
             .withLatestFrom(input.searchText)
             .flatMap { value in
                 let item = SpecificPostQuery(next: nil, limit: nil, post_id: value)
-                return NetworkManager.requestNetwork(router: .post(.inquerySpecificPost(id: item)), modelType: inqueryPostModel.self)
+                return NetworkManager.requestNetwork(router: .post(.inquerySpecificPost(id: value)), modelType: inqueryPostModel.self)
             }
             .subscribe { model in
                 print(model, "특정 포스트 조회 성공")

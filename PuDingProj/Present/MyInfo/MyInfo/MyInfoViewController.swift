@@ -14,24 +14,20 @@ class MyInfoViewController: BaseViewController {
     let mainView = MyInfoView()
     let viewModel = MyInfoViewModel()
     var trigger = PublishRelay<Void>()
-    var postList = PublishRelay<[String]>()
+    var postList = PublishRelay<[RegisterPostModel]>()
     
     override func loadView() {
         view = mainView
     }
     
-    
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         mainView.mypostTableView.register(MyInfoTableViewCell.self, forCellReuseIdentifier: "MyInfoTableViewCell")
-       
+        mainView.mypostTableView.rowHeight = 100
         postList
             .bind(to: mainView.mypostTableView.rx.items(cellIdentifier: "MyInfoTableViewCell", cellType: MyInfoTableViewCell.self)) { (index, item, cell) in
-                
-               //cell.updateUI(item: item)
-                cell.layoutIfNeeded()
+                cell.updateUI(item: item)
             }
             .disposed(by: disposeBag)
     }
@@ -59,6 +55,13 @@ class MyInfoViewController: BaseViewController {
                 let vc = EditMyInfoViewController()
                 vc.item = model
                 owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        output.resultList
+            .drive(with: self) { owner, postList in
+                owner.postList.accept(postList)
+                owner.mainView.mypostTableView.reloadData()
             }
             .disposed(by: disposeBag)
     }

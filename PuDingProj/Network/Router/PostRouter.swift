@@ -14,7 +14,7 @@ enum PostRouter {
     case registerFunding(query: RegisterFundungQuery)
     case inqueryPost(next: String, productId: String)
     case uploadImage
-    case inquerySpecificPost(id: SpecificPostQuery)
+    case inquerySpecificPost(id: String)
     case editPost(query: EditPostQuery, id: String)
     case deletePost(id: String)
 }
@@ -54,7 +54,7 @@ extension PostRouter: TargetType {
         case .uploadImage:
             return "posts/files"
         case .inquerySpecificPost(let id):
-            return "posts/\(id.post_id)"
+            return "posts/\(id)"
         case .editPost(let query, let id):
             return "posts/\(id)"
         case .deletePost(let id):

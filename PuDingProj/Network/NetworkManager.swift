@@ -35,6 +35,7 @@ struct NetworkManager {
                         }
                     }
             } catch {
+                print("안돼안돼!")
                 single(.failure(error))
             }
             return Disposables.create()
