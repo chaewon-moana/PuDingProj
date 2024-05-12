@@ -29,12 +29,12 @@ final class SponsorView: BaseView {
             make.horizontalEdges.equalToSuperview().inset(20)
             make.top.equalTo(productImageView.snp.bottom).offset(20)
         }
-        attainmentLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(12)
-            make.leading.equalTo(self.safeAreaInsets).offset(20)
-        }
+//        attainmentLabel.snp.makeConstraints { make in
+//            make.top.equalTo(titleLabel.snp.bottom).offset(12)
+//            make.leading.equalTo(self.safeAreaInsets).offset(20)
+//        }
         priceLabel.snp.makeConstraints { make in
-            make.leading.equalTo(attainmentLabel.snp.trailing).offset(20)
+            make.leading.equalTo(self.safeAreaInsets).offset(20)
             make.top.equalTo(titleLabel.snp.bottom).offset(12)
         }
         contentView.snp.makeConstraints { make in
@@ -49,7 +49,10 @@ final class SponsorView: BaseView {
     
     override func configureAttribute() {
         titleLabel.numberOfLines = 0
+        titleLabel.font = .systemFont(ofSize: 17, weight: .bold)
         contentView.numberOfLines = 0
+        priceLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        contentView.font = .systemFont(ofSize: 15)
         sponsorButton.setTitle("후원하기", for: .normal)
         sponsorButton.setTitleColor(.black, for: .normal)
         sponsorButton.backgroundColor = .systemYellow
@@ -80,9 +83,9 @@ final class SponsorView: BaseView {
      //   dueDateLabel.text = "\(date)일 남음"
       //  hostShelterLabel.text = "| \(item.content4)"
         titleLabel.text = item.title
-        attainmentLabel.text = "달성!!!"
+     //   attainmentLabel.text = "달성!!!"
         guard let price = item.content1 else { return }
         priceLabel.text = "\(price)원"
-        contentView.text = "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용"
+        contentView.text = item.content
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import UIKit
 
 final class NetworkErrorManager {
     
@@ -70,6 +71,22 @@ final class NetworkErrorManager {
     private func moveToLoginView() {
         print("리프레시토큰만료 확인!")
         //TODO: loginView로 이동
+        guard let window = UIApplication.shared.windows.first,
+              let rootViewController = window.rootViewController else {
+            print("루트 뷰 컨트롤러를 가져올 수 없습니다.")
+            return
+        }
+        let loginViewController = LoginViewController()
+        if let navigationController = rootViewController as? UINavigationController {
+               // 로그인 뷰 컨트롤러를 푸시하여 화면 전환합니다.
+               navigationController.pushViewController(loginViewController, animated: true)
+           } else {
+               // 현재 루트 뷰 컨트롤러가 UINavigationController가 아닌 경우 UINavigationController로 감싸서 네비게이션 스택을 만들고 로그인 뷰 컨트롤러를 푸시합니다.
+               let navigationController = UINavigationController(rootViewController: loginViewController)
+               window.rootViewController = navigationController
+               window.makeKeyAndVisible()
+           }
     }
 }
+
 

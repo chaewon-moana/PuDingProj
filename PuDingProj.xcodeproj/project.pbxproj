@@ -10,6 +10,8 @@
 		DE179CB42BDB2B31000A74C7 /* EditMyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE179CB32BDB2B31000A74C7 /* EditMyInfoView.swift */; };
 		DE179CB62BDB2BA3000A74C7 /* EditMyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE179CB52BDB2BA3000A74C7 /* EditMyInfoViewController.swift */; };
 		DE179CB82BDB2BB9000A74C7 /* EditMyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE179CB72BDB2BB9000A74C7 /* EditMyInfoViewModel.swift */; };
+		DE3A10862BF061CE005DD177 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A10852BF061CE005DD177 /* TokenManager.swift */; };
+		DE3A10882BF064A2005DD177 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A10872BF064A2005DD177 /* AccountModel.swift */; };
 		DE5A87E42BEC556C00DB7D9D /* PaymentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */; };
 		DE5A882B2BEC89D000DB7D9D /* PaymentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */; };
 		DE5A882D2BEC8A1C00DB7D9D /* PaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */; };
@@ -108,6 +110,8 @@
 		DE179CB32BDB2B31000A74C7 /* EditMyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyInfoView.swift; sourceTree = "<group>"; };
 		DE179CB52BDB2BA3000A74C7 /* EditMyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyInfoViewController.swift; sourceTree = "<group>"; };
 		DE179CB72BDB2BB9000A74C7 /* EditMyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyInfoViewModel.swift; sourceTree = "<group>"; };
+		DE3A10852BF061CE005DD177 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		DE3A10872BF064A2005DD177 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRouter.swift; sourceTree = "<group>"; };
 		DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentQuery.swift; sourceTree = "<group>"; };
 		DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModel.swift; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				DE8B8F822BD634C900AA5A53 /* NetworkErrorManager.swift */,
+				DE3A10852BF061CE005DD177 /* TokenManager.swift */,
 			);
 			path = NetworkErrorManager;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				DE8B8F712BD52EB000AA5A53 /* ProfileModel.swift */,
 				DEB14EAE2BD93F3000B7A0AC /* LikeModel.swift */,
 				DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */,
+				DE3A10872BF064A2005DD177 /* AccountModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -697,6 +703,7 @@
 				DE9CEC102BC646BB00360192 /* AppDelegate.swift in Sources */,
 				DE8B8F152BCFA1B200AA5A53 /* CommunitiyViewController.swift in Sources */,
 				DE8F6D092BDF91EE00074A6C /* CategoryView.swift in Sources */,
+				DE3A10862BF061CE005DD177 /* TokenManager.swift in Sources */,
 				DE8B8F5A2BD2408400AA5A53 /* ImageFileManager.swift in Sources */,
 				DEDDB65E2BE76AA200AAF732 /* SponsorViewModel.swift in Sources */,
 				DE8B8F682BD4169F00AA5A53 /* CommentModel.swift in Sources */,
@@ -714,6 +721,7 @@
 				DE8F6D1C2BDFD79600074A6C /* FundingViewController.swift in Sources */,
 				DEB14E962BD6A52700B7A0AC /* CommentTableViewCell.swift in Sources */,
 				DE8B8F832BD634C900AA5A53 /* NetworkErrorManager.swift in Sources */,
+				DE3A10882BF064A2005DD177 /* AccountModel.swift in Sources */,
 				DEA63C4B2BEE0BD300B586CB /* FundingPaymentViewController.swift in Sources */,
 				DE8B8EAC2BC7C65700AA5A53 /* AccountRouter.swift in Sources */,
 				DE5A882B2BEC89D000DB7D9D /* PaymentQuery.swift in Sources */,
