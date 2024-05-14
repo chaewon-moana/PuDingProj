@@ -105,7 +105,6 @@
 
 ### Enum과 제네릭으로 Router 및 메서드 관리
 <img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/b8eb2bbb-7433-462e-9bfa-5df1e5f6b24c" width="30%" height="30%">
-<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/83fee7ec-df0f-409f-997c-b2971d689f28" width="30%" height="40%">
 
 ```swift
  static func requestNetwork<Model: Decodable>(router: Router, modelType: Model.Type) -> Single<Model> {
