@@ -106,31 +106,52 @@
 ### Enum과 제네릭으로 Router 및 메서드 관리
 <img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/b8eb2bbb-7433-462e-9bfa-5df1e5f6b24c" width="30%" height="30%">
 <img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/83fee7ec-df0f-409f-997c-b2971d689f28" width="30%" height="40%">
+
 ```swift
-
-
+ static func requestNetwork<Model: Decodable>(router: Router, modelType: Model.Type) -> Single<Model> {
+        return Single<Model>.create { single in
+            do {
+                let urlRequest = try router.asURLRequest()
+                AF.request(urlRequest)
+                    .validate(statusCode: 200..<300)
+                    .responseDecodable(of: Model.self) { response in
+                        print(response)
+                        switch response.result {
+                        case .success(let value):
+                            single(.success(value))
+                        case .failure(let error):
+                            guard let code = response.response?.statusCode else { return }
+                            if let networkError = NetworkErrorManager.NetworkError(rawValue: code) {
+                                networkError.handleNetworkError(code)
+                            } else {
+                                single(.failure(error))
+                            }
+                        }
+                    }
+            } catch {
+                single(.failure(error))
+            }
+            return Disposables.create()
+        }
+    }
 ```
 
 - 문제 상황 : 서버에 요청하는 메서드가 너무 많아, 코드가 길어지도 중복 코드가 많았습니다.
 - 해결방안 : 열거형으로 Router를 관리하며 코드 가독성을 높이고 유지보수에 용이하도록 구현하였습니다. 또, 제네릭을 이용해 서버에 요쳥하는 메서드를 구현해 코드 재사용성을 높였습니다.
 
 ### Property Wrapper를 이용한 UserDefaults 관리
-
-![Untitled](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/Untitled%204.png)
+<img width="629" alt="Untitled 4" src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/ddb8b894-e8fd-4aa1-a4ae-325654a2fcd0">
 
 열거형과 property wrapper를 활용해 UserDefaults를 관리하였습니다. 
 
 ### CustomUI 활용
-
-![Untitled](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/Untitled%205.png)
-
-![Untitled](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/Untitled%206.png)
+<img width="364" alt="Untitled 5" src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/e1ac545c-4c63-415e-b76c-d7ea41d981b0">
 
 자주 쓰이는 화면은 CustomView로 만들어 유지보수가 쉽도록 하였고, 코드 가독성을 높였습니다.
 
 ### HTTP StatusCode 및 Token 관리
 
-![Untitled](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/Untitled%207.png)
+<img width="600" alt="Untitled 7" src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/9e31b53f-d4cf-4ebd-b48e-fe82d57fbf59">
 
 ```swift
   private func tokenRefresh() {
