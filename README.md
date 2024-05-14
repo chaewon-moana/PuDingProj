@@ -49,7 +49,6 @@
 
 # 앱 화면
 
-![%E1%84%86%E1%85%AE%E1%84%8C%E1%85%A6 001](https://github.com/chaewon-moana/PuDingProj/assets/127464395/3ad1c6b4-ef17-4c53-82fb-cf5d71b98ccf)
 
 ### 회원가입 및 로그인
 
@@ -60,9 +59,10 @@
 - 회원가입, 로그인, 이메일 중복 확인 API
 - Toast 라이브러리
 - UserDefaults로 이메일 저장 기능 구현
+![Simulator Screen Recording - iPhone 15 - 17 4 - 2024-05-12 at 17 16 10](https://github.com/chaewon-moana/PuDingProj/assets/127464395/213244d6-0d62-4ada-9660-010ae8a87443)
 
 ### 커뮤니티 포스트
-<img src="" width="30%" height="30%">
+<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/3ad1c6b4-ef17-4c53-82fb-cf5d71b98ccf" width="30%" height="30%">
 <img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/a01fb5b1-4372-492e-8cfc-f3e13d446928" width="30%" height="30%">
 <img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/6243795c-a9a8-4bc4-b1ce-415efe5ce7c7" width="30%" height="30%">
 
