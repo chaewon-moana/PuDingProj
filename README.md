@@ -66,49 +66,30 @@
 <img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/a01fb5b1-4372-492e-8cfc-f3e13d446928" width="30%" height="30%">
 <img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/6243795c-a9a8-4bc4-b1ce-415efe5ce7c7" width="30%" height="30%">
 
-
 - 포스트 확인, 댓글 작성, 삭제 기능
 - contentOff 기반의 페이지네이션 구현
-![SimulatorScreenRecording-iPhone15-17 4-2024-05-12at17 28 57-ezgif com-video-to-gif-converter](https://github.com/chaewon-moana/PuDingProj/assets/127464395/061df291-094c-478a-b30b-0f607c92b1c2)
 
 ### 포스트 작성
-<img src="" width="30%" height="30%">
-<img src="" width="30%" height="30%">
-<img src="" width="30%" height="30%">
 
-![Simulator Screenshot - iPhone 15 - 17.4 - 2024-05-12 at 16.49.55.png](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/Simulator_Screenshot_-_iPhone_15_-_17.4_-_2024-05-12_at_16.49.55.png)
+<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/0023f2c7-c9c5-418f-a854-a6bdefc78248" width="30%" height="30%">
+<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/e01f7e1c-d02f-4f91-b8ca-312b5249f86c" width="30%" height="30%">
+<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/d4b1199f-aca8-4a6f-a127-a1040147c80b" width="30%" height="30%">
 
-![Simulator Screenshot - iPhone 15 - 17.4 - 2024-05-12 at 16.52.02.png](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/Simulator_Screenshot_-_iPhone_15_-_17.4_-_2024-05-12_at_16.52.02.png)
-
-![Simulator Screenshot - iPhone 15 - 17.4 - 2024-05-12 at 16.52.09.png](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/Simulator_Screenshot_-_iPhone_15_-_17.4_-_2024-05-12_at_16.52.09.png)
 
 - 카테고리 분류별로 포스트 작성
 - 사진 5장까지 추가 가능
 
 ### 펀딩 화면 및 포트원 결제
-<img src="" width="25%" height="30%">
-<img src="" width="25%" height="30%">
-<img src="" width="25%" height="30%">
-<img src="" width="25%" height="30%">
-
-
-![SimulatorScreenRecording-iPhone15-17.4-2024-05-12at17.28.57-ezgif.com-video-to-gif-converter.gif](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/SimulatorScreenRecording-iPhone15-17.4-2024-05-12at17.28.57-ezgif.com-video-to-gif-converter.gif)
-
-![KakaoTalk_Photo_2024-05-12-18-46-22 001.jpeg](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/KakaoTalk_Photo_2024-05-12-18-46-22_001.jpeg)
-
-![KakaoTalk_Photo_2024-05-12-18-46-22 002.jpeg](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/KakaoTalk_Photo_2024-05-12-18-46-22_002.jpeg)
-
-![KakaoTalk_Photo_2024-05-12-18-46-23 003.jpeg](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/KakaoTalk_Photo_2024-05-12-18-46-23_003.jpeg)
-
-![Simulator Screenshot - iPhone 15 - 17.4 - 2024-05-12 at 17.24.20.png](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/Simulator_Screenshot_-_iPhone_15_-_17.4_-_2024-05-12_at_17.24.20.png)
+<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/b0fe3836-598e-4c78-995a-488ab7bf9e90" width="20%" height="30%">
+<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/8b92e539-ce5a-480c-a113-1e2f6802082b" width="20%" height="30%">
+<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/81f96c95-6f39-48ef-9bdf-4a14f66174f9" width="20%" height="30%">
+<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/02ef6309-1204-4473-b08d-136e73c57a0d" width="20%" height="30%">
 
 - 포트원 결제 활용
 
 ### 내 정보
 
-<img src="" width="30%" height="30%">
-
-![Simulator Screenshot - iPhone 15 - 17.4 - 2024-05-12 at 17.24.48.png](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/Simulator_Screenshot_-_iPhone_15_-_17.4_-_2024-05-12_at_17.24.48.png)
+<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/544a2c5f-d713-4d7a-9acb-2966859d79f2" width="30%" height="30%">
 
 - 개인 정보 수정 및 My Post 확인
 - 총 후원금액 확인 가능
@@ -116,19 +97,19 @@
 # 트러블 슈팅
 
 ## contentOffset 기반 Pagination
-
-![Untitled](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/Untitled.png)
-
-![Untitled](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/Untitled%201.png)
+<img width="700" alt="Untitled" src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/99b47c0c-b9f2-49f0-916c-9f59de650ce7">
+<img width="700" alt="Untitled 1" src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/f83e6af7-859a-4dc6-acb9-4408dc8347c4">
 
 - 문제 상황 : contentOffset 기반이라 다음 post들이 호출되기 전 여러 번 fetchNextPage 메서드가 호출되는 문제 발생했습니다.
 - 해결방안 : isLoading이라는 변수를 두어, 호출되기 전에 true로 값을 지정, 호출되는 동안 false로 두어 여러 번 호출되는 것을 방지했습니다.
 
 ### Enum과 제네릭으로 Router 및 메서드 관리
+<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/b8eb2bbb-7433-462e-9bfa-5df1e5f6b24c" width="30%" height="30%">
+<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/83fee7ec-df0f-409f-997c-b2971d689f28" width="30%" height="40%">
+```swift
 
-![Untitled](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/Untitled%202.png)
 
-![Untitled](Puding%20ReadMe%201b4e048acfce423dbc05845b55e5a927/Untitled%203.png)
+```
 
 - 문제 상황 : 서버에 요청하는 메서드가 너무 많아, 코드가 길어지도 중복 코드가 많았습니다.
 - 해결방안 : 열거형으로 Router를 관리하며 코드 가독성을 높이고 유지보수에 용이하도록 구현하였습니다. 또, 제네릭을 이용해 서버에 요쳥하는 메서드를 구현해 코드 재사용성을 높였습니다.
