@@ -23,12 +23,12 @@ struct ShelterBody: Decodable {
     let numOfRows, pageNo, totalCount: Int
 }
 
-struct Items: Codable {
+struct Items: Decodable {
     let item: [Item]
 }
 
 // MARK: - Item
-struct Item: Codable {
+struct Item: Hashable, Decodable {
     let desertionNo: String
     let filename: String //이미지 화질 안 좋음,,,,
     let happenDt, happenPlace, kindCD, colorCD: String
@@ -36,7 +36,7 @@ struct Item: Codable {
     let popfile: String //이미지 파일
     let processState: String
     let sexCD: String //F, M
-    let neuterYn: NeuterYn //중성화 유무?
+    let neuterYn: String //중성화 유무? N, U
     let specialMark, careNm, careTel, careAddr: String
     let orgNm, chargeNm: String //orgNm -> ㅇㅇ시 ㅇㅇ구
     let officetel: String //전화번호
@@ -61,7 +61,7 @@ enum NeuterYn: String, Codable {
 //    case m = "M"
 //}
 
-struct Header: Codable {
+struct Header: Decodable {
     let reqNo: Int
     let resultCode, resultMsg: String
 }

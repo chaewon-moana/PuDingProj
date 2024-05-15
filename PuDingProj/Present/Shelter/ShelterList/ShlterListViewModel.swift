@@ -14,22 +14,25 @@ final class ShelterListViewModel {
     let disposeBag = DisposeBag()
     
     struct Input {
-        let buttonTap: Observable<Void>
+        let Trigger: Observable<Void>
     }
     
     struct Output {
-        
+        let itemList: Observable<ShelterResponse>
     }
     
     func transform(input: Input) -> Output {
+        let result = PublishRelay<ShelterResponse>()
         
-        input.buttonTap
+        input.Trigger
             .subscribe(with: self) { owner, _ in
-                ShelterNetworkManager.shared.request()
+                ShelterNetworkManager.shared.request { response in
+                    result.accept(response.response)
+                }
             }
             .disposed(by: disposeBag)
         
         
-        return Output()
+        return Output(itemList: result.asObservable())
     }
 }

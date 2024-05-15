@@ -16,6 +16,8 @@
 		DE3A10FB2BF4956A005DD177 /* ShelterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A10FA2BF4956A005DD177 /* ShelterModel.swift */; };
 		DE3A10FD2BF4975A005DD177 /* ShelterNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A10FC2BF4975A005DD177 /* ShelterNetworkManager.swift */; };
 		DE3A11002BF499C9005DD177 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE3A10FF2BF499C9005DD177 /* Alamofire */; };
+		DE3A11022BF4A3D1005DD177 /* ShelterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11012BF4A3D1005DD177 /* ShelterCollectionViewCell.swift */; };
+		DE3A11042BF4DC2B005DD177 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11032BF4DC2B005DD177 /* PinterestLayout.swift */; };
 		DE5A87E42BEC556C00DB7D9D /* PaymentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */; };
 		DE5A882B2BEC89D000DB7D9D /* PaymentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */; };
 		DE5A882D2BEC8A1C00DB7D9D /* PaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */; };
@@ -116,6 +118,8 @@
 		DE3A10872BF064A2005DD177 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		DE3A10FA2BF4956A005DD177 /* ShelterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterModel.swift; sourceTree = "<group>"; };
 		DE3A10FC2BF4975A005DD177 /* ShelterNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterNetworkManager.swift; sourceTree = "<group>"; };
+		DE3A11012BF4A3D1005DD177 /* ShelterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE3A11032BF4DC2B005DD177 /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRouter.swift; sourceTree = "<group>"; };
 		DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentQuery.swift; sourceTree = "<group>"; };
 		DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModel.swift; sourceTree = "<group>"; };
@@ -509,6 +513,8 @@
 				DE8F6D132BDFD34700074A6C /* ShelterListViewController.swift */,
 				DE8F6D152BDFD36A00074A6C /* ShelterListView.swift */,
 				DE8F6D172BDFD38700074A6C /* ShlterListViewModel.swift */,
+				DE3A11012BF4A3D1005DD177 /* ShelterCollectionViewCell.swift */,
+				DE3A11032BF4DC2B005DD177 /* PinterestLayout.swift */,
 			);
 			path = ShelterList;
 			sourceTree = "<group>";
@@ -734,6 +740,7 @@
 				DE8B8F722BD52EB000AA5A53 /* ProfileModel.swift in Sources */,
 				DE8B8F1E2BCFC68000AA5A53 /* PostModel.swift in Sources */,
 				DE8B8F632BD3B82C00AA5A53 /* PostDetailViewModel.swift in Sources */,
+				DE3A11042BF4DC2B005DD177 /* PinterestLayout.swift in Sources */,
 				DEA63C4F2BEE1E7800B586CB /* FudingPaymentViewModel.swift in Sources */,
 				DE8F6D1C2BDFD79600074A6C /* FundingViewController.swift in Sources */,
 				DEB14E962BD6A52700B7A0AC /* CommentTableViewCell.swift in Sources */,
@@ -757,6 +764,7 @@
 				DE8B8EA62BC7C27000AA5A53 /* BaseView.swift in Sources */,
 				DE8B8EBD2BC7E1FE00AA5A53 /* NetworkManager.swift in Sources */,
 				DE8B8F1A2BCFC5DB00AA5A53 /* PostRouter.swift in Sources */,
+				DE3A11022BF4A3D1005DD177 /* ShelterCollectionViewCell.swift in Sources */,
 				DE8B8F6C2BD4173A00AA5A53 /* CreatorModel.swift in Sources */,
 				DE8B8E942BC7BE9D00AA5A53 /* JoinViewController.swift in Sources */,
 				DEB14EAD2BD93EE700B7A0AC /* LikeRouter.swift in Sources */,
