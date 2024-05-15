@@ -9,12 +9,12 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class ShlterListViewModel {
+final class ShelterListViewModel {
     
     let disposeBag = DisposeBag()
     
     struct Input {
-        
+        let buttonTap: Observable<Void>
     }
     
     struct Output {
@@ -22,6 +22,14 @@ final class ShlterListViewModel {
     }
     
     func transform(input: Input) -> Output {
+        
+        input.buttonTap
+            .subscribe(with: self) { owner, _ in
+                ShelterNetworkManager.shared.request()
+            }
+            .disposed(by: disposeBag)
+        
+        
         return Output()
     }
 }

@@ -13,6 +13,9 @@
 		DE3A10862BF061CE005DD177 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A10852BF061CE005DD177 /* TokenManager.swift */; };
 		DE3A10882BF064A2005DD177 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A10872BF064A2005DD177 /* AccountModel.swift */; };
 		DE3A108B2BF0AF37005DD177 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = DE3A108A2BF0AF37005DD177 /* Toast */; };
+		DE3A10FB2BF4956A005DD177 /* ShelterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A10FA2BF4956A005DD177 /* ShelterModel.swift */; };
+		DE3A10FD2BF4975A005DD177 /* ShelterNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A10FC2BF4975A005DD177 /* ShelterNetworkManager.swift */; };
+		DE3A11002BF499C9005DD177 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE3A10FF2BF499C9005DD177 /* Alamofire */; };
 		DE5A87E42BEC556C00DB7D9D /* PaymentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */; };
 		DE5A882B2BEC89D000DB7D9D /* PaymentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */; };
 		DE5A882D2BEC8A1C00DB7D9D /* PaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */; };
@@ -20,7 +23,6 @@
 		DE6A5BD72BE2559500D9578F /* RegistPostImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6A5BD62BE2559500D9578F /* RegistPostImageCollectionViewCell.swift */; };
 		DE8B8E942BC7BE9D00AA5A53 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8E932BC7BE9D00AA5A53 /* JoinViewController.swift */; };
 		DE8B8E962BC7BF1300AA5A53 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8E952BC7BF1300AA5A53 /* BaseViewController.swift */; };
-		DE8B8E992BC7BF2F00AA5A53 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE8B8E982BC7BF2F00AA5A53 /* Alamofire */; };
 		DE8B8E9C2BC7BF3700AA5A53 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DE8B8E9B2BC7BF3700AA5A53 /* Kingfisher */; };
 		DE8B8E9F2BC7BF4700AA5A53 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DE8B8E9E2BC7BF4700AA5A53 /* RxCocoa */; };
 		DE8B8EA12BC7BF4700AA5A53 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE8B8EA02BC7BF4700AA5A53 /* RxSwift */; };
@@ -112,6 +114,8 @@
 		DE179CB72BDB2BB9000A74C7 /* EditMyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyInfoViewModel.swift; sourceTree = "<group>"; };
 		DE3A10852BF061CE005DD177 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		DE3A10872BF064A2005DD177 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
+		DE3A10FA2BF4956A005DD177 /* ShelterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterModel.swift; sourceTree = "<group>"; };
+		DE3A10FC2BF4975A005DD177 /* ShelterNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterNetworkManager.swift; sourceTree = "<group>"; };
 		DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRouter.swift; sourceTree = "<group>"; };
 		DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentQuery.swift; sourceTree = "<group>"; };
 		DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModel.swift; sourceTree = "<group>"; };
@@ -206,11 +210,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE3A108B2BF0AF37005DD177 /* Toast in Frameworks */,
+				DE3A11002BF499C9005DD177 /* Alamofire in Frameworks */,
 				DE8B8E9F2BC7BF4700AA5A53 /* RxCocoa in Frameworks */,
 				DE8B8E9C2BC7BF3700AA5A53 /* Kingfisher in Frameworks */,
 				DE8B8EA12BC7BF4700AA5A53 /* RxSwift in Frameworks */,
 				DE8B8F062BCE71D200AA5A53 /* TextFieldEffects in Frameworks */,
-				DE8B8E992BC7BF2F00AA5A53 /* Alamofire in Frameworks */,
 				DE5A883D2BECB23500DB7D9D /* iamport-ios in Frameworks */,
 				DE8B8EA42BC7BF5000AA5A53 /* SnapKit in Frameworks */,
 			);
@@ -240,6 +244,14 @@
 			path = EditMyInfo;
 			sourceTree = "<group>";
 		};
+		DE3A10F92BF49512005DD177 /* AbandonShelter */ = {
+			isa = PBXGroup;
+			children = (
+				DE3A10FC2BF4975A005DD177 /* ShelterNetworkManager.swift */,
+			);
+			path = AbandonShelter;
+			sourceTree = "<group>";
+		};
 		DE527F5F2BD685690081C68E /* NetworkErrorManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +278,7 @@
 		DE8B8E8A2BC76ED300AA5A53 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				DE3A10F92BF49512005DD177 /* AbandonShelter */,
 				DE527F5F2BD685690081C68E /* NetworkErrorManager */,
 				DE8B8F182BCFBED100AA5A53 /* Router */,
 				DE8B8EB92BC7E1CB00AA5A53 /* Model */,
@@ -353,6 +366,7 @@
 				DEB14EAE2BD93F3000B7A0AC /* LikeModel.swift */,
 				DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */,
 				DE3A10872BF064A2005DD177 /* AccountModel.swift */,
+				DE3A10FA2BF4956A005DD177 /* ShelterModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -613,7 +627,6 @@
 			);
 			name = PuDingProj;
 			packageProductDependencies = (
-				DE8B8E982BC7BF2F00AA5A53 /* Alamofire */,
 				DE8B8E9B2BC7BF3700AA5A53 /* Kingfisher */,
 				DE8B8E9E2BC7BF4700AA5A53 /* RxCocoa */,
 				DE8B8EA02BC7BF4700AA5A53 /* RxSwift */,
@@ -621,6 +634,7 @@
 				DE8B8F052BCE71D200AA5A53 /* TextFieldEffects */,
 				DE5A883C2BECB23500DB7D9D /* iamport-ios */,
 				DE3A108A2BF0AF37005DD177 /* Toast */,
+				DE3A10FF2BF499C9005DD177 /* Alamofire */,
 			);
 			productName = PuDingProj;
 			productReference = DE9CEC0C2BC646BB00360192 /* PuDingProj.app */;
@@ -651,13 +665,13 @@
 			);
 			mainGroup = DE9CEC032BC646BB00360192;
 			packageReferences = (
-				DE8B8E972BC7BF2F00AA5A53 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				DE8B8E9A2BC7BF3700AA5A53 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				DE8B8E9D2BC7BF4700AA5A53 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				DE8B8EA22BC7BF5000AA5A53 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				DE8B8F042BCE71D200AA5A53 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				DE5A883B2BECB23500DB7D9D /* XCRemoteSwiftPackageReference "iamport-ios" */,
 				DE3A10892BF0AF37005DD177 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				DE3A10FE2BF499C9005DD177 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = DE9CEC0D2BC646BB00360192 /* Products */;
 			projectDirPath = "";
@@ -709,9 +723,11 @@
 				DEDDB65E2BE76AA200AAF732 /* SponsorViewModel.swift in Sources */,
 				DE8B8F682BD4169F00AA5A53 /* CommentModel.swift in Sources */,
 				DE8B8F6A2BD416D000AA5A53 /* CommentQuery.swift in Sources */,
+				DE3A10FD2BF4975A005DD177 /* ShelterNetworkManager.swift in Sources */,
 				DE8B8EC62BCABA1D00AA5A53 /* MyInfoViewModel.swift in Sources */,
 				DE8B8EBB2BC7E1D700AA5A53 /* JoinModel.swift in Sources */,
 				DE8F6D1E2BDFD7B700074A6C /* FundingView.swift in Sources */,
+				DE3A10FB2BF4956A005DD177 /* ShelterModel.swift in Sources */,
 				DE8B8F372BD110D900AA5A53 /* RegistPostViewController.swift in Sources */,
 				DEDDB65C2BE76A5700AAF732 /* SponsorView.swift in Sources */,
 				DE8B8F5F2BD3B80300AA5A53 /* PostDetailViewController.swift in Sources */,
@@ -1016,20 +1032,20 @@
 				minimumVersion = 5.1.1;
 			};
 		};
+		DE3A10FE2BF499C9005DD177 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
 		DE5A883B2BECB23500DB7D9D /* XCRemoteSwiftPackageReference "iamport-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/iamport/iamport-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.4.1;
-			};
-		};
-		DE8B8E972BC7BF2F00AA5A53 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.9.1;
 			};
 		};
 		DE8B8E9A2BC7BF3700AA5A53 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -1072,15 +1088,15 @@
 			package = DE3A10892BF0AF37005DD177 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
 		};
+		DE3A10FF2BF499C9005DD177 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE3A10FE2BF499C9005DD177 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		DE5A883C2BECB23500DB7D9D /* iamport-ios */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DE5A883B2BECB23500DB7D9D /* XCRemoteSwiftPackageReference "iamport-ios" */;
 			productName = "iamport-ios";
-		};
-		DE8B8E982BC7BF2F00AA5A53 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DE8B8E972BC7BF2F00AA5A53 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
 		};
 		DE8B8E9B2BC7BF3700AA5A53 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
