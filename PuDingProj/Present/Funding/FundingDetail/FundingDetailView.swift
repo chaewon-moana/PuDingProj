@@ -100,7 +100,7 @@ final class FundingDetailView: BaseView {
         }
         saveButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(40)
-            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(20)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-20)
         }
     
     }
@@ -116,7 +116,9 @@ final class FundingDetailView: BaseView {
         targetNumberLabel.text = "목표 갯수"
         dueDateLabel.text = "목표 기한"
         shelterLabel.text = "후원보호소"
-        saveButton.backgroundColor = .red
+        saveButton.backgroundColor = .systemYellow
+        saveButton.clipsToBounds = true
+        saveButton.layer.cornerRadius = 8
         saveButton.setTitle("저장", for: .normal)
         dueDateStepper.value = 0
         dueDateStepper.stepValue = 1

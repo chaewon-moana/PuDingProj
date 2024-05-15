@@ -13,7 +13,6 @@ extension UIViewController {
                 print("This view controller is not embedded in a navigation controller.")
                 return
             }
-            //navigationController.setViewControllers([LoginViewController()], animated: true)
         navigationController.present(LoginViewController(), animated: true, completion: nil)
 
         }

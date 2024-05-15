@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Toast
 
 final class JoinViewController: BaseViewController {
 
@@ -57,13 +58,19 @@ final class JoinViewController: BaseViewController {
             .drive(mainView.emailValidationButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-//        output.emailValidationButton
-//            .drive(with: self) { owner, value in
-//                print(value, "중복버튼 확인 완")
-//            }
-//            .disposed(by: disposeBag)
+        output.emailValidationButton
+            .drive(with: self) { owner, value in
+                owner.toast()
+            }
+            .disposed(by: disposeBag)
         
         output.backButtonTapped
+            .drive(with: self) { owner, _ in
+                owner.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        output.joinSuccessTrigger
             .drive(with: self) { owner, _ in
                 owner.dismiss(animated: true)
             }
@@ -72,5 +79,14 @@ final class JoinViewController: BaseViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
+    
+    private func toast() {
+        var style = ToastStyle()
+        style.messageColor = .systemYellow
+        self.view.makeToast("이메일 인증 성공했습니다.", duration: 2.0, position: .center, style: style)
+    }
 }
+
+
+
 

@@ -39,7 +39,7 @@ final class SponsorView: BaseView {
         }
         contentView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(20)
-            make.top.equalTo(attainmentLabel.snp.bottom).offset(20)
+            make.top.equalTo(priceLabel.snp.bottom).offset(20)
         }
         sponsorButton.snp.makeConstraints { make in
             make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-40)

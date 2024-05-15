@@ -18,7 +18,6 @@ final class TokenManager: RequestInterceptor {
         let accessToken = UserDefault.accessToken
         if !accessToken.isEmpty {
             urlRequest.setValue(accessToken, forHTTPHeaderField: HTTPHeader.authorization.rawValue)
-            print("토큰토큰 성공")
         }
     }
     
@@ -31,7 +30,6 @@ final class TokenManager: RequestInterceptor {
             .subscribe { model in
                 UserDefault.accessToken = model.accessToken
                 completion(.retry)
-                print("토큰토큰 성공성공")
             } onFailure: { error in
                 completion(.doNotRetryWithError(error))
             }

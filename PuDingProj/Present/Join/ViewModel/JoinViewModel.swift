@@ -29,6 +29,7 @@ final class JoinViewModel {
         let emailValidationButton: Driver<Void>
         let joinButtonValid: Driver<Bool>
         let backButtonTapped: Driver<Void>
+        let successJoin: Driver<Void>
     }
     
     func transform(input: Input) -> Output {
@@ -110,7 +111,8 @@ final class JoinViewModel {
                       joinSuccessTrigger: joinSuccessTrigger.asDriver(onErrorJustReturn: ()),
                       emailValidationButton: emailValidation.asDriver(onErrorJustReturn: ()), 
                       joinButtonValid: joinValid.asDriver(), 
-                      backButtonTapped: input.backButtonTapped.asDriver(onErrorJustReturn: ())
+                      backButtonTapped: input.backButtonTapped.asDriver(onErrorJustReturn: ()),
+                      successJoin: joinSuccessTrigger.asDriver(onErrorJustReturn: ())
         )
     }
 }

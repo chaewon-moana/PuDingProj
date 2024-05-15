@@ -27,7 +27,6 @@ final class EditMyInfoViewModel {
     }
     
     func transform(input: Input) -> Output {
-        let imageObservable = PublishRelay<Data?>()
         
         let query = input.editImageResult
             .map { nick, phone, image in
@@ -41,9 +40,7 @@ final class EditMyInfoViewModel {
         input.editDoneButtonTapped
             .withLatestFrom(query)
             .flatMap { query in
-                print(query, "뭐가 없다는거느뇽")
                 return NetworkManager.editProfile(query: query)
-//                return NetworkManager.requestNetwork(router: .profile(.editProfile(query: query)), modelType: InqueryProfileModel.self)
             }
             .subscribe { model in
                 print(model, "프로필 수정 성공")

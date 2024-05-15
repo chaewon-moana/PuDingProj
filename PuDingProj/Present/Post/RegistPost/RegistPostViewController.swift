@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import PhotosUI
+import Toast
 
 final class RegistPostViewController: BaseViewController {
 

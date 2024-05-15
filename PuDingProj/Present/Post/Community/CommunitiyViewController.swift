@@ -44,24 +44,14 @@ final class CommunitiyViewController: BaseViewController, UIScrollViewDelegate {
             }
             .disposed(by: disposeBag)
         
-        mainView.tableView.rx.contentOffset
-            .flatMap { [weak self] contentOffset -> Observable<Void> in
-                guard let tableView = self?.mainView.tableView else { return .empty() }
-                guard let self = self else { return .empty() }
-                let visibleHeight = tableView.frame.height - tableView.contentInset.top - tableView.contentInset.bottom
-                let yOffset = contentOffset.y + tableView.contentInset.top
-                let distanceToBottom = tableView.contentSize.height - yOffset - visibleHeight
-                if distanceToBottom < 300, !self.viewModel.isLoading.value {
-                    return .just(())
-                }
-                return .empty()
-            }
-            .subscribe(with: self, onNext: { owner, _ in
-                if owner.viewModel.nextCursor.value != "0" {
+        mainView.tableView.rx.willDisplayCell
+            .subscribe(with: self) { owner, event in
+                if( event.indexPath.row == owner.list.count - 1) && owner.viewModel.nextCursor.value != "0" {
                     owner.viewModel.fetchNextPage()
                 }
-            })
+            }
             .disposed(by: disposeBag)
+    
         
         mainView.tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)

@@ -12,6 +12,7 @@
 		DE179CB82BDB2BB9000A74C7 /* EditMyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE179CB72BDB2BB9000A74C7 /* EditMyInfoViewModel.swift */; };
 		DE3A10862BF061CE005DD177 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A10852BF061CE005DD177 /* TokenManager.swift */; };
 		DE3A10882BF064A2005DD177 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A10872BF064A2005DD177 /* AccountModel.swift */; };
+		DE3A108B2BF0AF37005DD177 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = DE3A108A2BF0AF37005DD177 /* Toast */; };
 		DE5A87E42BEC556C00DB7D9D /* PaymentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */; };
 		DE5A882B2BEC89D000DB7D9D /* PaymentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */; };
 		DE5A882D2BEC8A1C00DB7D9D /* PaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */; };
@@ -66,7 +67,6 @@
 		DE8B8F702BD52D2000AA5A53 /* ProfileQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F6F2BD52D2000AA5A53 /* ProfileQuery.swift */; };
 		DE8B8F722BD52EB000AA5A53 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F712BD52EB000AA5A53 /* ProfileModel.swift */; };
 		DE8B8F832BD634C900AA5A53 /* NetworkErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F822BD634C900AA5A53 /* NetworkErrorManager.swift */; };
-		DE8B8F852BD636B100AA5A53 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F842BD636B100AA5A53 /* TestViewController.swift */; };
 		DE8B8F872BD646FF00AA5A53 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B8F862BD646FF00AA5A53 /* UIViewController+Extension.swift */; };
 		DE8F6D072BDF906300074A6C /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D062BDF906300074A6C /* CategoryDetailViewController.swift */; };
 		DE8F6D092BDF91EE00074A6C /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F6D082BDF91EE00074A6C /* CategoryView.swift */; };
@@ -159,7 +159,6 @@
 		DE8B8F6F2BD52D2000AA5A53 /* ProfileQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileQuery.swift; sourceTree = "<group>"; };
 		DE8B8F712BD52EB000AA5A53 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		DE8B8F822BD634C900AA5A53 /* NetworkErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorManager.swift; sourceTree = "<group>"; };
-		DE8B8F842BD636B100AA5A53 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		DE8B8F862BD646FF00AA5A53 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		DE8F6D062BDF906300074A6C /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		DE8F6D082BDF91EE00074A6C /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -206,6 +205,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE3A108B2BF0AF37005DD177 /* Toast in Frameworks */,
 				DE8B8E9F2BC7BF4700AA5A53 /* RxCocoa in Frameworks */,
 				DE8B8E9C2BC7BF3700AA5A53 /* Kingfisher in Frameworks */,
 				DE8B8EA12BC7BF4700AA5A53 /* RxSwift in Frameworks */,
@@ -561,7 +561,6 @@
 				DE9CEC262BC6473500360192 /* APIKey.swift */,
 				DE9CEC1D2BC646BD00360192 /* Info.plist */,
 				DE9CEC182BC646BD00360192 /* Assets.xcassets */,
-				DE8B8F842BD636B100AA5A53 /* TestViewController.swift */,
 			);
 			path = PuDingProj;
 			sourceTree = "<group>";
@@ -621,6 +620,7 @@
 				DE8B8EA32BC7BF5000AA5A53 /* SnapKit */,
 				DE8B8F052BCE71D200AA5A53 /* TextFieldEffects */,
 				DE5A883C2BECB23500DB7D9D /* iamport-ios */,
+				DE3A108A2BF0AF37005DD177 /* Toast */,
 			);
 			productName = PuDingProj;
 			productReference = DE9CEC0C2BC646BB00360192 /* PuDingProj.app */;
@@ -657,6 +657,7 @@
 				DE8B8EA22BC7BF5000AA5A53 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				DE8B8F042BCE71D200AA5A53 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				DE5A883B2BECB23500DB7D9D /* XCRemoteSwiftPackageReference "iamport-ios" */,
+				DE3A10892BF0AF37005DD177 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = DE9CEC0D2BC646BB00360192 /* Products */;
 			projectDirPath = "";
@@ -743,7 +744,6 @@
 				DE8B8F6C2BD4173A00AA5A53 /* CreatorModel.swift in Sources */,
 				DE8B8E942BC7BE9D00AA5A53 /* JoinViewController.swift in Sources */,
 				DEB14EAD2BD93EE700B7A0AC /* LikeRouter.swift in Sources */,
-				DE8B8F852BD636B100AA5A53 /* TestViewController.swift in Sources */,
 				DE8B8F6E2BD52CCB00AA5A53 /* ProfileRouter.swift in Sources */,
 				DEB14EA92BD8E7AB00B7A0AC /* FollowRouter.swift in Sources */,
 				DEA63C4D2BEE1E6E00B586CB /* FudingPaymentView.swift in Sources */,
@@ -1008,6 +1008,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DE3A10892BF0AF37005DD177 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
 		DE5A883B2BECB23500DB7D9D /* XCRemoteSwiftPackageReference "iamport-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/iamport/iamport-ios.git";
@@ -1059,6 +1067,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DE3A108A2BF0AF37005DD177 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE3A10892BF0AF37005DD177 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
 		DE5A883C2BECB23500DB7D9D /* iamport-ios */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DE5A883B2BECB23500DB7D9D /* XCRemoteSwiftPackageReference "iamport-ios" */;

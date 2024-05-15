@@ -16,6 +16,7 @@ final class FundingViewModel {
     var tmpResult: [inqueryFundingModel] = []
     let result = PublishRelay<[inqueryFundingModel]>()
     var isLoading = BehaviorRelay(value: false)
+    let productId = "moana-funding"
     
     struct Input {
         let fundingAddButton: Observable<Void>
@@ -44,11 +45,10 @@ final class FundingViewModel {
         return Output(fundingAddButton: input.fundingAddButton.asDriver(onErrorJustReturn: ()), inqueryFunding: result.asObservable())
     }
     
+    @discardableResult
     func fetchNextPage() -> Observable<inqueryUpperFundingModel> {
-        print("일단 되는지 보자", nextCursor.value)
-        //TODO: 다음 페이지 가져와서 보여주기
         isLoading.accept(true)
-        let item = NetworkManager.requestNetwork(router: .post(.inqueryPost(next: nextCursor.value, productId: "moana-funding")), modelType: inqueryUpperFundingModel.self).asObservable()
+        let item = NetworkManager.requestNetwork(router: .post(.inqueryPost(next: nextCursor.value, productId: productId)), modelType: inqueryUpperFundingModel.self).asObservable()
         item.subscribe { model in
             print(model.data)
             self.tmpResult.append(contentsOf: model.data)

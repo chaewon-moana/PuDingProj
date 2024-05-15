@@ -10,7 +10,6 @@ import Alamofire
 import RxSwift
 
 struct NetworkManager {
-    //MARK: Query - query, Model - Model
     static func requestNetwork<Model: Decodable>(router: Router, modelType: Model.Type) -> Single<Model> {
         return Single<Model>.create { single in
             do {
@@ -21,21 +20,17 @@ struct NetworkManager {
                         print(response)
                         switch response.result {
                         case .success(let value):
-                            print("router 서엉고옹")
                             single(.success(value))
                         case .failure(let error):
-                            print(response.response?.statusCode)
                             guard let code = response.response?.statusCode else { return }
                             if let networkError = NetworkErrorManager.NetworkError(rawValue: code) {
                                 networkError.handleNetworkError(code)
                             } else {
-                                print("NetWorkError 처리 못하는 에러어발생")
                                 single(.failure(error))
                             }
                         }
                     }
             } catch {
-                print("안돼안돼!")
                 single(.failure(error))
             }
             return Disposables.create()
@@ -57,6 +52,7 @@ struct NetworkManager {
             print("catch error")
         }
     }
+    
     static func requestDeleteComment(postID: String, commentID: String) {
         do {
             let urlRequest = try Router.comment(.deleteComment(postID: postID, commentID: commentID)).asURLRequest()
@@ -72,10 +68,7 @@ struct NetworkManager {
             print("catch error")
         }
     }
-    
-   
-  
-    
+
 //    static func requestPostText() -> Single<inqueryUppperPostModel> {
 //            return Single<inqueryUppperPostModel>.create { single in
 //                do {
@@ -127,7 +120,6 @@ struct NetworkManager {
            return Single<InqueryProfileModel>.create { single in
                do {
                    let urlRequest = try ProfileRouter.editProfile.asURLRequest()
-                   print(urlRequest.url)
                    AF.upload(multipartFormData: query, to: urlRequest.url!, method: .put, headers: urlRequest.headers)
                        .validate(statusCode: 200..<300)
                        .responseDecodable(of: InqueryProfileModel.self) { response in
@@ -137,7 +129,7 @@ struct NetworkManager {
                                print(value, "프로필 수정 수정 성공")
                                single(.success(value))
                            case .failure(let error):
-                               print(response.response?.statusCode, "프로필 올린 것333 실패")
+
                                single(.failure(error))
                            }
                        }

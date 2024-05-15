@@ -7,12 +7,11 @@
 
 import Foundation
 
-class DateManager {
+final class DateManager {
     
     static let shared = DateManager()
     
     func processData(date: String) -> String {
-                
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         let convertDate = dateFormatter.date(from: date)

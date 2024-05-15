@@ -8,7 +8,7 @@
 import UIKit
 import TextFieldEffects
 
-class LoginTextField: HoshiTextField {
+final class LoginTextField: HoshiTextField {
     init(placeHolderText: String) {
         super.init(frame: .zero)
         placeholderColor = .lightGray

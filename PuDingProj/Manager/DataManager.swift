@@ -16,7 +16,12 @@ enum categoryData: String, CaseIterable {
     
 }
 
-class MoneyFormatter {
+enum ProductID: String {
+    case PostId = "puding-moana22"
+    case fundingId = "moana-funding"
+}
+
+final class MoneyFormatter {
     static let shared = MoneyFormatter()
     
     private let formatter: NumberFormatter

@@ -12,7 +12,7 @@ import RxCocoa
 final class CommunityViewModel {
     
     let disposeBag = DisposeBag()
-    let nextCursor = BehaviorRelay<String>(value: "")
+    let nextCursor = BehaviorRelay<String>(value: "0")
     var tmpResult: [inqueryPostModel] = []
     let result = PublishRelay<[inqueryPostModel]>()
     var isLoading = BehaviorRelay(value: false)
@@ -63,11 +63,12 @@ final class CommunityViewModel {
         
         input.inputTrigger
             .flatMap { value in
-                return NetworkManager.requestNetwork(router: .post(.inqueryPost(next: "0", productId: "puding-moana22")), modelType: inqueryUppperPostModel.self)
+                return NetworkManager.requestNetwork(router: .post(.inqueryPost(next: self.nextCursor.value, productId: "puding-moana22")), modelType: inqueryUppperPostModel.self)
             }
             .subscribe(with: self) { owner, model in
-                print("포스트 조회 서엉고옹")
-                owner.result.accept(model.data)
+                owner.result.accept([])
+                owner.tmpResult.append(contentsOf: model.data)
+                owner.result.accept(owner.tmpResult)
                 owner.nextCursor.accept(model.next_cursor)
             } onError: { error, _  in
                 print("포스트 조회 실패애")
@@ -87,7 +88,6 @@ final class CommunityViewModel {
             self.tmpResult.append(contentsOf: model.data)
             self.result.accept(self.tmpResult)
             self.nextCursor.accept(model.next_cursor)
-            self.isLoading.accept(false)
         } onError: { error in
             print(error, "페이지네이션 실패")
         }
