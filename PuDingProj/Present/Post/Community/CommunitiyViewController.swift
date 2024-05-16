@@ -21,7 +21,7 @@ final class CommunitiyViewController: BaseViewController, UIScrollViewDelegate {
     var list: [inqueryPostModel] = []
     var postList = PublishRelay<[inqueryPostModel]>()
     var inputTrigger = PublishRelay<Void>()
-    var isFetchingNextPage = false
+    var paginationTrigger = PublishRelay<Void>()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,7 +38,6 @@ final class CommunitiyViewController: BaseViewController, UIScrollViewDelegate {
         
         postList
             .bind(to: mainView.tableView.rx.items(cellIdentifier: "CommunityTableViewCell", cellType: CommunityTableViewCell.self)) { (index, item, cell) in
-        
                 cell.updateUI(item: item)
                 cell.layoutIfNeeded()
             }
@@ -46,30 +45,35 @@ final class CommunitiyViewController: BaseViewController, UIScrollViewDelegate {
         
         mainView.tableView.rx.willDisplayCell
             .subscribe(with: self) { owner, event in
-                if( event.indexPath.row == owner.list.count - 1) && owner.viewModel.nextCursor.value != "0" {
-                    owner.viewModel.fetchNextPage()
+                if(event.indexPath.row == owner.list.count - 1) && owner.viewModel.nextCursor.value != "0" {
+                    owner.paginationTrigger.accept(())
                 }
             }
             .disposed(by: disposeBag)
-    
-        
-        mainView.tableView.rx.setDelegate(self)
-            .disposed(by: disposeBag)
+
+//        mainView.tableView.rx.setDelegate(self)
+//            .disposed(by: disposeBag)
     }
     override func bind() {
         let input = CommunityViewModel.Input(inputTrigger: inputTrigger,
                                              searchText: textField.rx.text.orEmpty.asObservable(),
                                              searchButtonTapped: textField.rx.searchButtonClicked.asObservable(),
-                                             postSelected: mainView.tableView.rx.modelSelected(inqueryPostModel.self)
-        )
+                                             postSelected: mainView.tableView.rx.modelSelected(inqueryPostModel.self),
+                                             pagination: paginationTrigger.asObservable())
         
         let output = viewModel.transform(input: input)
+        
+        output.inputTrigger
+            .subscribe(with: self) { owner, model in
+                owner.list = model
+                owner.postList.accept(owner.list)
+            }
+            .disposed(by: disposeBag)
         
         output.inqueryResult
             .subscribe(with: self) { owner, model in
                 owner.list = model
                 owner.postList.accept(owner.list)
-                owner.mainView.tableView.reloadData()
             }
             .disposed(by: disposeBag)
         
@@ -82,7 +86,6 @@ final class CommunitiyViewController: BaseViewController, UIScrollViewDelegate {
         
         output.moveToDetail
             .subscribe(with: self) { owner, model in
-                //TODO: TabBarController가
                 let vc = PostDetailViewController()
                 //TODO: 왜 이걸 해줘야,,,되는건가,,?
                 vc.hidesBottomBarWhenPushed = true

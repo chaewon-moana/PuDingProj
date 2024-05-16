@@ -22,12 +22,14 @@ final class CommunityViewModel {
         let searchText: Observable<String>
         let searchButtonTapped: Observable<Void>
         let postSelected: ControlEvent<inqueryPostModel>
+        let pagination: Observable<Void>
     }
     
     struct Output {
         let inqueryResult: Observable<[inqueryPostModel]>
         let specificPost: Observable<inqueryPostModel>
         let moveToDetail: Observable<inqueryPostModel>
+        let inputTrigger: Observable<[inqueryPostModel]>
     }
     
     func transform(input: Input) -> Output {
@@ -63,10 +65,10 @@ final class CommunityViewModel {
         
         input.inputTrigger
             .flatMap { value in
-                return NetworkManager.requestNetwork(router: .post(.inqueryPost(next: self.nextCursor.value, productId: "puding-moana22")), modelType: inqueryUppperPostModel.self)
+                return NetworkManager.requestNetwork(router: .post(.inqueryPost(next: "0", productId: ProductID.PostId.rawValue)), modelType: inqueryUppperPostModel.self)
             }
             .subscribe(with: self) { owner, model in
-                owner.result.accept([])
+                owner.tmpResult = []
                 owner.tmpResult.append(contentsOf: model.data)
                 owner.result.accept(owner.tmpResult)
                 owner.nextCursor.accept(model.next_cursor)
@@ -75,8 +77,25 @@ final class CommunityViewModel {
             }
             .disposed(by: disposeBag)
         
-        return Output(inqueryResult: result.asObservable(), specificPost: specificResult.asObservable(),
-                      moveToDetail: moveToDetail.asObservable()
+        
+        input.pagination
+            .flatMap { value in
+                return NetworkManager.requestNetwork(router: .post(.inqueryPost(next: self.nextCursor.value, productId: ProductID.PostId.rawValue)), modelType: inqueryUppperPostModel.self)
+            }
+            .subscribe(with: self) { owner, model in
+                owner.tmpResult.append(contentsOf: model.data)
+                owner.result.accept(owner.tmpResult)
+                owner.nextCursor.accept(model.next_cursor)
+                owner.fetchNextPage()
+            } onError: { error, _  in
+                print("포스트 조회 실패애")
+            }
+            .disposed(by: disposeBag)
+        
+        return Output(inqueryResult: result.asObservable(), 
+                      specificPost: specificResult.asObservable(),
+                      moveToDetail: moveToDetail.asObservable(), 
+                      inputTrigger: result.asObservable()
         )
     }
     

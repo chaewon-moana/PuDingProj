@@ -112,7 +112,8 @@ final class PostDetailViewController: BaseViewController {
                                               commentText: mainView.commentTextView.rx.text.orEmpty.asObservable(),
                                               settingButtonTapped: settingButton.rx.tap.asObservable(),
                                               cellDeleataButtonTapped: commentTapped,
-                                              deleteComment: commentID, likeButtonTapped: likeButton.rx.tap.asObservable(),
+                                              deleteComment: commentID, 
+                                              likeButtonTapped: likeButton.rx.tap.asObservable(),
                                               likeValue: likeObservable
         )
         
