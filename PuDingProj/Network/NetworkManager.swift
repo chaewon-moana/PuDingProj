@@ -13,7 +13,6 @@ struct NetworkManager {
     static func requestNetwork<Model: Decodable>(router: Router, modelType: Model.Type) -> Single<Model> {
         return Single<Model>.create { single in
             do {
-                
                 let urlRequest = try router.asURLRequest()
                 AF.request(urlRequest)
                     .validate(statusCode: 200..<300)

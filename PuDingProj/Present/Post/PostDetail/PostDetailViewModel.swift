@@ -23,6 +23,7 @@ final class PostDetailViewModel {
         let deleteComment: Observable<String>
         let likeButtonTapped: Observable<Void>
         let likeValue: Observable<Bool>
+        let deleteTapped: Observable<Void>
     }
     
     struct Output {
@@ -30,6 +31,9 @@ final class PostDetailViewModel {
         let updatePost: Observable<inqueryPostModel>
         let backButtonTapped: Driver<Void>
         let commentUpdate: Observable<WriteCommentModel>
+        let showDeleteAlert: Driver<Void>
+        let moveToPost: Driver<Void>
+        
     }
     
     struct CommentOnPost {
@@ -43,6 +47,8 @@ final class PostDetailViewModel {
         let likeObservable = Observable.combineLatest(input.postItem, input.likeButtonTapped, input.likeValue)
         let commentUpdate = PublishRelay<WriteCommentModel>()
         let postID = BehaviorRelay<String>(value: "")
+        let showDeleteAlert = PublishRelay<Void>()
+        let moveToPost = PublishRelay<Void>()
         
         
         input.commentSendButtonTapped
@@ -61,19 +67,22 @@ final class PostDetailViewModel {
             }
             .disposed(by: disposeBag)
         
-        //TODO: 되긴하나, 바로바로 반영이 안됨
-        input.settingButtonTapped
+        input.deleteTapped
             .withLatestFrom(input.postItem)
-            .flatMap { post in
-                print(post.post_id, "input이 제로랭")
-                return NetworkManager.requestNetwork(router: .post(.deletePost(id: post.post_id)), modelType: inqueryPostModel.self)
-                //return NetworkManager.requestDeletePost(router: .post(.deletePost(id: post.post_id)))
+            .map { post in
+                NetworkManager.requestDeletePost(router: .post(.deletePost(id: post.post_id)))
             }
-            .subscribe { value in
-                updatePostModel.accept(value)
+            .subscribe { _ in
                 print("삭제 성공")
+                moveToPost.accept(())
             } onError: { error in
                 print(error, "삭제 실패")
+            }
+            .disposed(by: disposeBag)
+        
+        input.settingButtonTapped
+            .subscribe { _ in
+                showDeleteAlert.accept(())
             }
             .disposed(by: disposeBag)
 
@@ -109,7 +118,9 @@ final class PostDetailViewModel {
         return Output(postResult: input.postItem,
                       updatePost: updatePostModel.asObservable(),
                       backButtonTapped: input.backButtonTapped.asDriver(onErrorJustReturn: ()),
-                      commentUpdate: commentUpdate.asObservable())
+                      commentUpdate: commentUpdate.asObservable(), 
+                      showDeleteAlert: showDeleteAlert.asDriver(onErrorJustReturn: ()), 
+                      moveToPost: moveToPost.asDriver(onErrorJustReturn: ()))
     }
 }
 

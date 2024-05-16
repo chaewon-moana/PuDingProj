@@ -28,4 +28,16 @@ extension UIViewController {
         
         present(alert, animated: true)
     }
+    
+    
+    func setAlertDelete(title: String, message: String, action: @escaping () -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "삭제", style: .destructive) { _ in
+            action()
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        self.present(alert, animated: true)
+    }
 }

@@ -211,6 +211,7 @@ final class PostDetailView: BaseView {
         contentLabel.text = "내용테스트"
         registerDateLabel.font = .systemFont(ofSize: 12)
         registerDateLabel.text = "2888.88.88"
+      
         
     }
 }

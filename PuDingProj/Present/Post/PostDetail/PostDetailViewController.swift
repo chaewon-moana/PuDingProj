@@ -64,7 +64,6 @@ final class PostDetailViewController: BaseViewController {
         
         commentList
             .bind(to: mainView.commentTableView.rx.items(cellIdentifier: "CommentTableViewCell", cellType: CommentTableViewCell.self)) { (index, item, cell) in
-                print("이거 실행되고 있는데 왜 안됨?")
                 cell.updateUI(item: item)
                 cell.layoutIfNeeded()
             }
@@ -105,6 +104,7 @@ final class PostDetailViewController: BaseViewController {
         let commentTapped = Observable.just(commentDelete)
         let like = item?.likes.contains(UserDefault.userID) ?? false
         let likeObservable = Observable.just(like)
+        let alertDeleteTapped = PublishRelay<Void>()
         
         let input = PostDetailViewModel.Input(postItem: Observable.of(item!),
                                               backButtonTapped: backButton.rx.tap.asObservable(),
@@ -114,11 +114,26 @@ final class PostDetailViewController: BaseViewController {
                                               cellDeleataButtonTapped: commentTapped,
                                               deleteComment: commentID, 
                                               likeButtonTapped: likeButton.rx.tap.asObservable(),
-                                              likeValue: likeObservable
+                                              likeValue: likeObservable,
+                                              deleteTapped: alertDeleteTapped.asObservable()
         )
         
         let output = viewModel.transform(input: input)
         
+        output.moveToPost
+            .drive(with: self) { owner, _ in
+                owner.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        output.showDeleteAlert
+            .drive(with: self) { owner, _ in
+                owner.setAlertDelete(title: "삭제하시겠습니까?", message: "삭제삭제") {
+                    print("이게 실행되는건가")
+                    alertDeleteTapped.accept(())
+                }
+            }
+            .disposed(by: disposeBag)
         output.postResult
             .subscribe(with: self) { owner, model in
                 owner.mainView.updateUI(item: model)
