@@ -9,8 +9,7 @@ import UIKit
 import SnapKit
 
 final class ShelterListView: BaseView {
-    let button = UIButton()
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
     
     override func configureViewLayout() {
         self.addSubview(collectionView)
@@ -21,17 +20,26 @@ final class ShelterListView: BaseView {
     
     override func configureAttribute() {
     }
-    
-    
-    func collectionViewLayout() -> UICollectionViewFlowLayout {
-        let layout = UICollectionViewFlowLayout()
-        let itemWidth: CGFloat = (UIScreen.main.bounds.width / 2) - 20
-        let itemHeight: CGFloat = 100
-        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-        layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    func createCompositionalLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0 / 2.0), heightDimension: .fractionalHeight(0.7))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.4))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
+    
+//    func collectionViewLayout() -> UICollectionViewFlowLayout {
+//        let layout = UICollectionViewFlowLayout()
+//        let itemWidth: CGFloat = (UIScreen.main.bounds.width / 2) - 20
+//        let itemHeight: CGFloat = 200
+//        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+//        layout.scrollDirection = .vertical
+//        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+//        return layout
+//    }
 
 
     

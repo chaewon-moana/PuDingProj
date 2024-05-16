@@ -33,8 +33,10 @@ class ShelterCollectionViewCell: UICollectionViewCell {
         let url = URL(string: item.popfile)!
         downloadImageAndRetrieveSize(from: url) { image, size in
             self.profileImageView.image = image
+            self.profileImageView.frame = CGRect(x: 0, y: 0, width: size!.width, height: size!.height)
         }
         profileImageView.kf.setImage(with: url)
+        
         regionTag.text = item.careTel
     }
     
@@ -55,9 +57,10 @@ class ShelterCollectionViewCell: UICollectionViewCell {
     private func configureAttribute() {
         regionTag.text = "서울"
         regionTag.backgroundColor = .purple
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.cornerRadius = 8
+        profileImageView.contentMode = .scaleAspectFill
     }
-    
-
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -18,6 +18,7 @@
 		DE3A11002BF499C9005DD177 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE3A10FF2BF499C9005DD177 /* Alamofire */; };
 		DE3A11022BF4A3D1005DD177 /* ShelterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11012BF4A3D1005DD177 /* ShelterCollectionViewCell.swift */; };
 		DE3A11042BF4DC2B005DD177 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11032BF4DC2B005DD177 /* PinterestLayout.swift */; };
+		DE3A11062BF588BC005DD177 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11052BF588BC005DD177 /* UIImage+Extension.swift */; };
 		DE5A87E42BEC556C00DB7D9D /* PaymentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */; };
 		DE5A882B2BEC89D000DB7D9D /* PaymentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */; };
 		DE5A882D2BEC8A1C00DB7D9D /* PaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */; };
@@ -120,6 +121,7 @@
 		DE3A10FC2BF4975A005DD177 /* ShelterNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterNetworkManager.swift; sourceTree = "<group>"; };
 		DE3A11012BF4A3D1005DD177 /* ShelterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterCollectionViewCell.swift; sourceTree = "<group>"; };
 		DE3A11032BF4DC2B005DD177 /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
+		DE3A11052BF588BC005DD177 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRouter.swift; sourceTree = "<group>"; };
 		DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentQuery.swift; sourceTree = "<group>"; };
 		DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModel.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 			children = (
 				DE8B8EA72BC7C4C900AA5A53 /* UIView+Extension.swift */,
 				DE8B8F862BD646FF00AA5A53 /* UIViewController+Extension.swift */,
+				DE3A11052BF588BC005DD177 /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -764,6 +767,7 @@
 				DE8B8EA62BC7C27000AA5A53 /* BaseView.swift in Sources */,
 				DE8B8EBD2BC7E1FE00AA5A53 /* NetworkManager.swift in Sources */,
 				DE8B8F1A2BCFC5DB00AA5A53 /* PostRouter.swift in Sources */,
+				DE3A11062BF588BC005DD177 /* UIImage+Extension.swift in Sources */,
 				DE3A11022BF4A3D1005DD177 /* ShelterCollectionViewCell.swift in Sources */,
 				DE8B8F6C2BD4173A00AA5A53 /* CreatorModel.swift in Sources */,
 				DE8B8E942BC7BE9D00AA5A53 /* JoinViewController.swift in Sources */,

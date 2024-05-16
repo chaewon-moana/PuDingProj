@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 protocol PinterestLayoutDelegate: AnyObject {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat
+    func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat
+    //func reloadLayoutForIndexPath(_ indexPath: IndexPath)
+    func collectionView(_ collectionView: UICollectionView, didUpatedHeight height: CGFloat, at indexPath: IndexPath)
 }
 
 class PinterestLayout: UICollectionViewFlowLayout {
@@ -19,7 +19,7 @@ class PinterestLayout: UICollectionViewFlowLayout {
     weak var delegate: PinterestLayoutDelegate?
     
     private var contentHeight: CGFloat = 0
-    
+    var imageHeight: [IndexPath: CGFloat] = [:]
     private var contentWidth: CGFloat {
         guard let collectionView = collectionView else {
             return 0
@@ -35,8 +35,10 @@ class PinterestLayout: UICollectionViewFlowLayout {
     }
     
     override func prepare() {
-        guard let collectionView = collectionView, cache.isEmpty else { return }
-        
+        super.prepare()
+        guard let collectionView = collectionView, collectionView.numberOfSections > 0, collectionView.numberOfItems(inSection: 0) > 0, cache.isEmpty else { return }
+        cache.removeAll()
+        print("prepare 나옴?")
         let numberOfColumns: Int = 2
         let cellPadding: CGFloat = 2
         let cellWidth: CGFloat = contentWidth / CGFloat(numberOfColumns)
@@ -48,8 +50,8 @@ class PinterestLayout: UICollectionViewFlowLayout {
         
         for item in 0..<collectionView.numberOfItems(inSection: 0) {
             let indexPath = IndexPath(item: item, section: 0)
-            
             let imageHeight = delegate?.collectionView(collectionView, heightForPhotoAtIndexPath: indexPath) ?? 180
+            print("왜 0 나옴", imageHeight)
             let height = cellPadding * 2 + imageHeight
             
             let frame = CGRect(x: xOffSet[column],
@@ -78,7 +80,6 @@ class PinterestLayout: UICollectionViewFlowLayout {
                 visibleLayoutAttributes.append(attributes)
             }
         }
-        
         return visibleLayoutAttributes
     }
     
@@ -86,4 +87,5 @@ class PinterestLayout: UICollectionViewFlowLayout {
     -> UICollectionViewLayoutAttributes? {
         return cache[indexPath.item]
     }
+    
 }
