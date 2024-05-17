@@ -12,9 +12,9 @@ struct ShelterNetworkManager {
     
     static let shared = ShelterNetworkManager()
     
-    func request(completionHandler: @escaping (MainResponse) -> Void) {
+    func request(pageNo: Int, completionHandler: @escaping (MainResponse) -> Void) {
         let url = APIKey.shelterURL.rawValue
-        let parameter: Parameters = ["serviceKey": APIKey.shelterID.rawValue, "_type": "json", "numOfRows": "20"]
+        let parameter: Parameters = ["serviceKey": APIKey.shelterID.rawValue, "_type": "json", "numOfRows": "20", "pageNo": "\(pageNo)"]
         AF.request(url, parameters: parameter).responseDecodable(of: MainResponse.self) { response in
             switch response.result {
             case .success(let success):

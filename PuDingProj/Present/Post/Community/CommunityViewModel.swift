@@ -79,18 +79,11 @@ final class CommunityViewModel {
         
         
         input.pagination
-            .flatMap { value in
-                return NetworkManager.requestNetwork(router: .post(.inqueryPost(next: self.nextCursor.value, productId: ProductID.PostId.rawValue)), modelType: inqueryUppperPostModel.self)
-            }
-            .subscribe(with: self) { owner, model in
-                owner.tmpResult.append(contentsOf: model.data)
-                owner.result.accept(owner.tmpResult)
-                owner.nextCursor.accept(model.next_cursor)
+            .subscribe(with: self, onNext: { owner, _ in
                 owner.fetchNextPage()
-            } onError: { error, _  in
-                print("포스트 조회 실패애")
-            }
+            })
             .disposed(by: disposeBag)
+  
         
         return Output(inqueryResult: result.asObservable(), 
                       specificPost: specificResult.asObservable(),

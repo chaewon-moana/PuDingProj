@@ -128,8 +128,7 @@ final class PostDetailViewController: BaseViewController {
         
         output.showDeleteAlert
             .drive(with: self) { owner, _ in
-                owner.setAlertDelete(title: "삭제하시겠습니까?", message: "삭제삭제") {
-                    print("이게 실행되는건가")
+                owner.setAlertDelete(title: "삭제하시겠습니까?", message: "") {
                     alertDeleteTapped.accept(())
                 }
             }

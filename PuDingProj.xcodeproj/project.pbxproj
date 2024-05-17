@@ -19,6 +19,10 @@
 		DE3A11022BF4A3D1005DD177 /* ShelterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11012BF4A3D1005DD177 /* ShelterCollectionViewCell.swift */; };
 		DE3A11042BF4DC2B005DD177 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11032BF4DC2B005DD177 /* PinterestLayout.swift */; };
 		DE3A11062BF588BC005DD177 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11052BF588BC005DD177 /* UIImage+Extension.swift */; };
+		DE3A11092BF61641005DD177 /* CustomPinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11082BF61641005DD177 /* CustomPinterestLayout.swift */; };
+		DE3A110C2BF61D61005DD177 /* ShelterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A110B2BF61D61005DD177 /* ShelterDetailView.swift */; };
+		DE3A110E2BF61ECE005DD177 /* ShelterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A110D2BF61ECE005DD177 /* ShelterDetailViewController.swift */; };
+		DE3A11102BF61EE5005DD177 /* ShelterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A110F2BF61EE5005DD177 /* ShelterDetailViewModel.swift */; };
 		DE5A87E42BEC556C00DB7D9D /* PaymentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */; };
 		DE5A882B2BEC89D000DB7D9D /* PaymentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */; };
 		DE5A882D2BEC8A1C00DB7D9D /* PaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */; };
@@ -122,6 +126,10 @@
 		DE3A11012BF4A3D1005DD177 /* ShelterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterCollectionViewCell.swift; sourceTree = "<group>"; };
 		DE3A11032BF4DC2B005DD177 /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		DE3A11052BF588BC005DD177 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		DE3A11082BF61641005DD177 /* CustomPinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPinterestLayout.swift; sourceTree = "<group>"; };
+		DE3A110B2BF61D61005DD177 /* ShelterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterDetailView.swift; sourceTree = "<group>"; };
+		DE3A110D2BF61ECE005DD177 /* ShelterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterDetailViewController.swift; sourceTree = "<group>"; };
+		DE3A110F2BF61EE5005DD177 /* ShelterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterDetailViewModel.swift; sourceTree = "<group>"; };
 		DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRouter.swift; sourceTree = "<group>"; };
 		DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentQuery.swift; sourceTree = "<group>"; };
 		DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModel.swift; sourceTree = "<group>"; };
@@ -256,6 +264,16 @@
 				DE3A10FC2BF4975A005DD177 /* ShelterNetworkManager.swift */,
 			);
 			path = AbandonShelter;
+			sourceTree = "<group>";
+		};
+		DE3A110A2BF61D4C005DD177 /* ShelterDetail */ = {
+			isa = PBXGroup;
+			children = (
+				DE3A110B2BF61D61005DD177 /* ShelterDetailView.swift */,
+				DE3A110D2BF61ECE005DD177 /* ShelterDetailViewController.swift */,
+				DE3A110F2BF61EE5005DD177 /* ShelterDetailViewModel.swift */,
+			);
+			path = ShelterDetail;
 			sourceTree = "<group>";
 		};
 		DE527F5F2BD685690081C68E /* NetworkErrorManager */ = {
@@ -505,6 +523,7 @@
 		DE8F6D112BDFD31800074A6C /* Shelter */ = {
 			isa = PBXGroup;
 			children = (
+				DE3A110A2BF61D4C005DD177 /* ShelterDetail */,
 				DE8F6D122BDFD33500074A6C /* ShelterList */,
 			);
 			path = Shelter;
@@ -518,6 +537,7 @@
 				DE8F6D172BDFD38700074A6C /* ShlterListViewModel.swift */,
 				DE3A11012BF4A3D1005DD177 /* ShelterCollectionViewCell.swift */,
 				DE3A11032BF4DC2B005DD177 /* PinterestLayout.swift */,
+				DE3A11082BF61641005DD177 /* CustomPinterestLayout.swift */,
 			);
 			path = ShelterList;
 			sourceTree = "<group>";
@@ -719,6 +739,7 @@
 				DE8B8EF02BCD203D00AA5A53 /* LoginView.swift in Sources */,
 				DE8B8EB72BC7CF6400AA5A53 /* JoinView.swift in Sources */,
 				DE8F6D072BDF906300074A6C /* CategoryDetailViewController.swift in Sources */,
+				DE3A110E2BF61ECE005DD177 /* ShelterDetailViewController.swift in Sources */,
 				DE8F6D0C2BDF932A00074A6C /* CategoryDetailCollectionViewCell.swift in Sources */,
 				DE8B8F1C2BCFC62100AA5A53 /* PostQuery.swift in Sources */,
 				DE179CB62BDB2BA3000A74C7 /* EditMyInfoViewController.swift in Sources */,
@@ -733,6 +754,7 @@
 				DE8B8F682BD4169F00AA5A53 /* CommentModel.swift in Sources */,
 				DE8B8F6A2BD416D000AA5A53 /* CommentQuery.swift in Sources */,
 				DE3A10FD2BF4975A005DD177 /* ShelterNetworkManager.swift in Sources */,
+				DE3A11092BF61641005DD177 /* CustomPinterestLayout.swift in Sources */,
 				DE8B8EC62BCABA1D00AA5A53 /* MyInfoViewModel.swift in Sources */,
 				DE8B8EBB2BC7E1D700AA5A53 /* JoinModel.swift in Sources */,
 				DE8F6D1E2BDFD7B700074A6C /* FundingView.swift in Sources */,
@@ -764,6 +786,7 @@
 				DE9CEC272BC6473500360192 /* APIKey.swift in Sources */,
 				DEB14EAF2BD93F3000B7A0AC /* LikeModel.swift in Sources */,
 				DE8F6D0E2BDF964900074A6C /* CategoryViewModel.swift in Sources */,
+				DE3A110C2BF61D61005DD177 /* ShelterDetailView.swift in Sources */,
 				DE8B8EA62BC7C27000AA5A53 /* BaseView.swift in Sources */,
 				DE8B8EBD2BC7E1FE00AA5A53 /* NetworkManager.swift in Sources */,
 				DE8B8F1A2BCFC5DB00AA5A53 /* PostRouter.swift in Sources */,
@@ -772,6 +795,7 @@
 				DE8B8F6C2BD4173A00AA5A53 /* CreatorModel.swift in Sources */,
 				DE8B8E942BC7BE9D00AA5A53 /* JoinViewController.swift in Sources */,
 				DEB14EAD2BD93EE700B7A0AC /* LikeRouter.swift in Sources */,
+				DE3A11102BF61EE5005DD177 /* ShelterDetailViewModel.swift in Sources */,
 				DE8B8F6E2BD52CCB00AA5A53 /* ProfileRouter.swift in Sources */,
 				DEB14EA92BD8E7AB00B7A0AC /* FollowRouter.swift in Sources */,
 				DEA63C4D2BEE1E6E00B586CB /* FudingPaymentView.swift in Sources */,

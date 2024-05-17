@@ -62,6 +62,7 @@ final class LoginView: BaseView {
         emailTextField.keyboardType = .emailAddress
         emailTextField.text = UserDefault.saveEmail
         passwordTextField.isSecureTextEntry = true
+        passwordTextField.text = "1234"
     }
    
 }
