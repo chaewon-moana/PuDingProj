@@ -85,7 +85,8 @@ final class SponsorView: BaseView {
         titleLabel.text = item.title
      //   attainmentLabel.text = "달성!!!"
         guard let price = item.content1 else { return }
-        priceLabel.text = "\(price)원"
+        guard let count = item.content2 else { return }
+        priceLabel.text = "\(price)원 * \(count)개 = 목표달성 치 \(Int(price)! * Int(count)!)"
         contentView.text = item.content
     }
 }

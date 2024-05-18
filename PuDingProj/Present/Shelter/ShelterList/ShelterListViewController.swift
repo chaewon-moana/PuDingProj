@@ -46,9 +46,8 @@ class ShelterListViewController: BaseViewController {
     let viewModel = ShelterListViewModel()
     
     var list: [Item] = [] 
-    
-    var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
     var heightList: [CGFloat] = []
+    var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
     var itemList = PublishRelay<[Item]>()
     var pagination = PublishRelay<Void>()
     var trigger: () = ()
@@ -60,6 +59,20 @@ class ShelterListViewController: BaseViewController {
         trigger = ()
     }
     
+    func createPinterestLayout(heightList: [CGFloat]) -> UICollectionViewLayout {
+        return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0 / 2.1), heightDimension: .fractionalHeight(1.0))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+            print(sectionIndex)
+            let groupHeight = heightList.isEmpty ? 200 : heightList[sectionIndex]
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(groupHeight))
+               let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+               let layout = NSCollectionLayoutSection(group: group)
+               return layout
+           }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -67,19 +80,18 @@ class ShelterListViewController: BaseViewController {
        // updateSnapshot()
        // sectionSnapshot()
         mainView.collectionView.register(ShelterCollectionViewCell.self, forCellWithReuseIdentifier: "ShelterCollectionViewCell")
-
+       
         mainView.collectionView.rx.willDisplayCell
             .subscribe { [weak self] cell, indexPath in
                 guard let self = self else { return }
-                let value = self.nextPage * 20 - 4
-                print(value, indexPath.item, "페이지네이션 끝")
+                let value = self.nextPage * 20 - 6
                 if value == indexPath.item {
-                    print("페이지네이션", self.list.count, indexPath.item)
                     self.pagination.accept(())
                 }
             }
             .disposed(by: disposeBag)
- 
+        
+        
     }
 
     override func loadView() {
@@ -87,7 +99,7 @@ class ShelterListViewController: BaseViewController {
     }
 
     override func bind() {
-        var inputTrigger = BehaviorRelay(value: trigger)
+        let inputTrigger = BehaviorRelay(value: trigger)
         
         let input = ShelterListViewModel.Input(Trigger: inputTrigger.asObservable(), paginationTrigger: pagination.asObservable())
         
@@ -168,88 +180,40 @@ extension ShelterListViewController {
  
 }
 
-//    private func fetchPhoto() {
-//
-//        let url = "https://picsum.photos/v2/list"
-//        AF.request(url).validate(statusCode: 200...500).responseDecodable(of: [CellInfo].self) { response in
-//            switch response.result {
-//            case .success(let value):
-//                for item in 0...value.count - 1 {
-//                    self.list.append(value[item])
-//                }
-//                self.sectionSnapshot()
-//            case .failure(let failure):
-//                print(failure)
-//            }
-//        }
-//    }
-//extension ShelterListViewController: PinterestLayoutDelegate {
-//
-//    func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-//        let cellWidth: CGFloat = (view.bounds.width - 10) / 2
-//        let url = URL(string: list[indexPath.item].popfile)!
-//        var imageRatio: Double = 0
-//        downloadImageAndRetrieveSize(from: url) { image, size in
-//            guard let size = size else { return }
-//            imageRatio = size.width / size.height
-//            self.pinterestLayout.imageHeight[indexPath] = CGFloat(size.height)
-//            print(imageRatio, cellWidth, "변경됐음??")
-//        }
-//        return CGFloat(imageRatio) * cellWidth
-//    }
-//
-//    func reloadLayoutForIndexPath(_ indexPath: IndexPath) {
-//        self.pinterestLayout.invalidateLayout()
-//        self.mainView.collectionView.reloadItems(at: [indexPath])
-//    }
-//
-//    private func downloadImageAndRetrieveSize(from url: URL, completion: @escaping (UIImage?, CGSize?) -> Void) {
-//        KingfisherManager.shared.retrieveImage(with: url) { result in
-//            switch result {
-//            case .success(let imageResult):
-//                let image = imageResult.image
-//                let size = image.size
-//                completion(image, size)
-//            case .failure(let error):
-//                print("Error downloading image: \(error)")
-//                completion(nil, nil)
-//            }
-//        }
-//    }
-//}
+
+extension ShelterListViewController {
+
+    func fetchImageSize(completionHandler: @escaping ([CGFloat]) -> Void) {
+        let group = DispatchGroup()
+        var heightList: [CGFloat] = []
+        let cellWidth: CGFloat = (view.bounds.width - 10) / 2
+        for item in list {
+            let url = URL(string: item.popfile)!
+            var imageRatio: Double = 0
+            downloadImageAndRetrieveSize(from: url) { image, size in
+                guard let size = size else { return }
+                imageRatio = (size.width / size.height) * cellWidth
+                heightList.append(imageRatio)
+                print(imageRatio, cellWidth, "변경됐음??")
+            }
+        }
+        completionHandler(heightList)
+        
+    }
+
+    private func downloadImageAndRetrieveSize(from url: URL, completion: @escaping (UIImage?, CGSize?) -> Void) {
+        KingfisherManager.shared.retrieveImage(with: url) { result in
+            switch result {
+            case .success(let imageResult):
+                let image = imageResult.image
+                let size = image.size
+                print("킹피셔 됨?")
+                completion(image, size)
+            case .failure(let error):
+                print("Error downloading image: \(error)")
+                completion(nil, nil)
+            }
+        }
+    }
+}
  
-//
-//    private func configureDataSource() {
-//        let cellRegistration = cellRegistration()
-//
-//        dataSource = UICollectionViewDiffableDataSource(collectionView: mainView.collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
-//
-//            if let section = Section(rawValue: indexPath.section) {
-//                switch section {
-//                case .main :
-//                    let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
-//                    return cell
-//                }
-//            } else {
-//                return nil
-//            }
-//        })
-//    }
-//
-//    private func updateSnapshot() {
-//        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-//        snapshot.appendSections(Section.allCases)
-//        //        snapshot.appendItems(list, toSection: .main)
-//        //        snapshot.appendItems(photoList, toSection: .sub)
-//        dataSource.apply(snapshot) //reloadData의 역할
-//        dataSource.applySnapshotUsingReloadData(snapshot)//Realm을 사용할 때 적용할 수 있음
-//            //Diff을 안쓰고, reloadData로 동작하고 있음
-//    }
-//
-//    private func sectionSnapshot() {
-//        var snapshot = NSDiffableDataSourceSectionSnapshot<Item>()
-//        snapshot.append(list)
-//        dataSource.apply(snapshot, to: .main)
-//
-//    }
-//

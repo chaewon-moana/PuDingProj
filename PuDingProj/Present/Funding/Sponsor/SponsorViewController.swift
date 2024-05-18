@@ -13,7 +13,7 @@ class SponsorViewController: BaseViewController {
 
     let mainView = SponsorView()
     let viewModel = SponsorViewModel()
-    var item: inqueryFundingModel?
+    var item: inqueryFundingModel!
     var inputTrigger = PublishRelay<Void>()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +43,7 @@ class SponsorViewController: BaseViewController {
                 //TODO: post-id 넘겨야함
                 let vc = FundingPaymentViewController()
                 vc.postID = owner.item?.post_id ?? ""
+                vc.item = owner.item
                 owner.present(vc, animated: true)
             }
             .disposed(by: disposeBag)

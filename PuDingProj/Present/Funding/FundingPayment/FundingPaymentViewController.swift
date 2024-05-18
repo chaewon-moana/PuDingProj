@@ -16,6 +16,7 @@ final class FundingPaymentViewController: BaseViewController {
     let viewModel = FudingPaymentViewModel()
     var inputTrigger: () = ()
     var postID: String = ""
+    var item: inqueryFundingModel!
 
     lazy var wkWebView: WKWebView = {
         var view = WKWebView()
@@ -28,16 +29,16 @@ final class FundingPaymentViewController: BaseViewController {
         inputTrigger = ()
     }
     
-
-
     override func bind() {
         let trigger = BehaviorSubject(value: inputTrigger)
         let postIDObservable = BehaviorSubject(value: postID)
+        let itemObservable = BehaviorSubject(value: item!)
         let webView = BehaviorSubject(value: wkWebView)
         
         let input = FudingPaymentViewModel.Input(inputTrigger: trigger.asObservable(),
                                                  inputPostId: postIDObservable.asObservable(),
-                                                 inputWebView: webView.asObservable())
+                                                 inputWebView: webView.asObservable(),
+                                                 inputItem: itemObservable.asObservable())
         
         let output = viewModel.transform(input: input)
         
@@ -51,10 +52,6 @@ final class FundingPaymentViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         congifureView()
-        
-   
-        
-
     }
     
     private func congifureView() {
@@ -63,7 +60,4 @@ final class FundingPaymentViewController: BaseViewController {
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
-
-   
-
 }

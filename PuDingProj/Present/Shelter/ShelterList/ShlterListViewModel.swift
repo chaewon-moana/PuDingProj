@@ -26,11 +26,12 @@ final class ShelterListViewModel {
     func transform(input: Input) -> Output {
         let result = PublishRelay<[Item]>()
         var tmpResult: [Item] = []
+        var heightList: [CGFloat] = []
         let nextPage = PublishRelay<Int>()
         
         input.Trigger
             .subscribe(with: self) { owner, _ in
-                ShelterNetworkManager.shared.request(pageNo: 1) { response in
+                ShelterNetworkManager.shared.request(heightList: heightList, pageNo: 1) { response in
                     tmpResult = response.response.body.items.item
                     result.accept(tmpResult)
                     nextPage.accept(response.response.body.pageNo+1)
@@ -41,7 +42,7 @@ final class ShelterListViewModel {
         input.paginationTrigger
             .withLatestFrom(nextPage)
             .subscribe { value in
-                ShelterNetworkManager.shared.request(pageNo: value) { response in
+                ShelterNetworkManager.shared.request(heightList: heightList, pageNo: value) { response in
                     tmpResult.append(contentsOf: response.response.body.items.item)
                     result.accept(response.response.body.items.item)
                     nextPage.accept(response.response.body.pageNo+1)
