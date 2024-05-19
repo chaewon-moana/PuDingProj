@@ -35,7 +35,7 @@ final class FudingPaymentViewModel {
     }
     
     func transform(input: Input) -> Output {
-        
+        let outputTrigger = PublishRelay<Void>()
         let validaionObservable = Observable.combineLatest(input.inputWebView, input.inputPostId, input.inputItem)
         let impId = PublishRelay<String>()
         var query = PaymentValidationQuery(imp_uid: "", post_id: "", productName: "", price: 0)
@@ -53,7 +53,7 @@ final class FudingPaymentViewModel {
         
         input.inputTrigger
             .withLatestFrom(validaionObservable)
-            .flatMapLatest { (web, postid, item) -> Observable<PaymentValidationModel> in
+            .flatMapLatest { (web, postid, item) -> Observable<PaymentValidationQuery> in
                 return Observable.create { observer in
                     let resultPayment = IamportPayment(
                         pg: PG.html5_inicis.makePgRawName(pgId: "INIpayTest"),
@@ -65,45 +65,33 @@ final class FudingPaymentViewModel {
                         $0.buyer_name = "조채원"
                         $0.app_scheme = "Puding"
                     }
-
-                    Iamport.shared.paymentWebView(
-                        webViewMode: web,
-                        userCode: "imp57573124",
-                        payment: resultPayment
-                    ) { iamportResponse in
-                        guard let response = iamportResponse else {
-                            observer.onError(NSError(domain: "IamportErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "No response from Iamport"]))
-                            return
-                        }
-
-                        let impindex = response.imp_uid!
-                        let postindex = postid
-                        print(impindex, postindex, "결제 진행중인가부다아아아")
-
+                    Iamport.shared.paymentWebView(webViewMode: web,
+                                                  userCode: "imp57573124",
+                                                  payment: resultPayment) { iamportResponse in
+                        guard let response = iamportResponse else { return }
+                        print(response.success!, "성공함?")
+//                        let impindex = response.imp_uid!
+//                        let postindex = postid
+                        print(response.imp_uid!, item.post_id, "결제 진행중인가부다아아아")
                         let price = Int(item.content1!) ?? 0
-                        let query = PaymentValidationQuery(imp_uid: impindex, post_id: postindex, productName: item.title!, price: 101)
+                        let query = PaymentValidationQuery(imp_uid: response.imp_uid!, post_id: item.post_id, productName: item.title!, price: 101)
                         print(query, "된건가된건가")
-
                         observer.onNext(query)
                         observer.onCompleted()
+                        outputTrigger.accept(())
                     }
-
                     return Disposables.create()
                 }
-                .flatMap { query in
-                  //  print(query, "flatmap 넘어옴")
-                    return NetworkManager.requestNetwork(router: .payment(.validation(query: query)), modelType: PaymentValidationModel.self)
-                    //return result
-                }
-                .catch { error in
-                    print(error, "에러났음..ㅠ")
-                    return Observable.empty()
-                }
+            }
+            .flatMap { query in
+                print(query, "flatmap 넘어옴")
+                return NetworkManager.requestNetwork(router: .payment(.validation(query: query)), modelType: PaymentValidationModel.self)
+                //return result
             }
             .subscribe(onNext: { model in
                 print(model, "서엉고옹")
             }, onError: { error in
-                print("흐음")
+                print(error, "흐음")
             })
             .disposed(by: disposeBag)
 
@@ -295,6 +283,6 @@ final class FudingPaymentViewModel {
             }
             .disposed(by: disposeBag)
         
-        return Output(outputTrigger: input.inputTrigger.asDriver(onErrorJustReturn: ()))
+        return Output(outputTrigger: outputTrigger.asDriver(onErrorJustReturn: ()))
     }
 }

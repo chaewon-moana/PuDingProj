@@ -44,6 +44,7 @@ class SponsorViewController: BaseViewController {
                 let vc = FundingPaymentViewController()
                 vc.postID = owner.item?.post_id ?? ""
                 vc.item = owner.item
+                //owner.navigationController?.pushViewController(vc, animated: true)
                 owner.present(vc, animated: true)
             }
             .disposed(by: disposeBag)

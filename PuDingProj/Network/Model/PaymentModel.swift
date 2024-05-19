@@ -8,10 +8,13 @@
 import Foundation
 
 struct PaymentValidationModel: Decodable {
-    let imp_uid: String
+    let payment_id: String
+    let buyer_id: String
     let post_id: String
+    let merchant_uid: String
     let productName: String
     let price: Int
+    let paidAt: String
 }
 
 struct PaymentsModel: Decodable {
