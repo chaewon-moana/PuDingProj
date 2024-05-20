@@ -3,7 +3,7 @@
 # 앱 소개
 
 <img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/2b264d11-e4e7-4875-a73b-099ba6ed829d" width="200" height="200"/>
-
+<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/3ad1c6b4-ef17-4c53-82fb-cf5d71b98ccf" width="100%" height="30%">
 - 앱 한줄 소개
     - 유기견 보호소 관련 커뮤니티 앱
 
@@ -50,10 +50,6 @@
 
 # 앱 화면
 
-### 전체 스크린샷
-
-
-<img src="https://github.com/chaewon-moana/PuDingProj/assets/127464395/3ad1c6b4-ef17-4c53-82fb-cf5d71b98ccf" width="100%" height="30%">
 
 ### 회원가입 및 로그인
 
