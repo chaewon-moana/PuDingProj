@@ -23,6 +23,15 @@
 		DE3A110C2BF61D61005DD177 /* ShelterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A110B2BF61D61005DD177 /* ShelterDetailView.swift */; };
 		DE3A110E2BF61ECE005DD177 /* ShelterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A110D2BF61ECE005DD177 /* ShelterDetailViewController.swift */; };
 		DE3A11102BF61EE5005DD177 /* ShelterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A110F2BF61EE5005DD177 /* ShelterDetailViewModel.swift */; };
+		DE3A113B2BFC2575005DD177 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A113A2BFC2575005DD177 /* ChatView.swift */; };
+		DE3A113D2BFC2593005DD177 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A113C2BFC2593005DD177 /* ChatViewModel.swift */; };
+		DE3A113F2BFC25AB005DD177 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A113E2BFC25AB005DD177 /* ChatViewController.swift */; };
+		DE3A11412BFC2945005DD177 /* ChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11402BFC2945005DD177 /* ChatRouter.swift */; };
+		DE3A11432BFC3519005DD177 /* ChatQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11422BFC3518005DD177 /* ChatQuery.swift */; };
+		DE3A11452BFCB07A005DD177 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11442BFCB07A005DD177 /* ChatModel.swift */; };
+		DE3A11472BFCB67B005DD177 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11462BFCB67B005DD177 /* ChatTableViewCell.swift */; };
+		DE3A11492BFCC386005DD177 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A11482BFCC386005DD177 /* SocketIOManager.swift */; };
+		DE3A114C2BFCC3C1005DD177 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = DE3A114B2BFCC3C1005DD177 /* SocketIO */; };
 		DE5A87E42BEC556C00DB7D9D /* PaymentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */; };
 		DE5A882B2BEC89D000DB7D9D /* PaymentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */; };
 		DE5A882D2BEC8A1C00DB7D9D /* PaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */; };
@@ -130,6 +139,14 @@
 		DE3A110B2BF61D61005DD177 /* ShelterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterDetailView.swift; sourceTree = "<group>"; };
 		DE3A110D2BF61ECE005DD177 /* ShelterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterDetailViewController.swift; sourceTree = "<group>"; };
 		DE3A110F2BF61EE5005DD177 /* ShelterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterDetailViewModel.swift; sourceTree = "<group>"; };
+		DE3A113A2BFC2575005DD177 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		DE3A113C2BFC2593005DD177 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		DE3A113E2BFC25AB005DD177 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		DE3A11402BFC2945005DD177 /* ChatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRouter.swift; sourceTree = "<group>"; };
+		DE3A11422BFC3518005DD177 /* ChatQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatQuery.swift; sourceTree = "<group>"; };
+		DE3A11442BFCB07A005DD177 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		DE3A11462BFCB67B005DD177 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		DE3A11482BFCC386005DD177 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRouter.swift; sourceTree = "<group>"; };
 		DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentQuery.swift; sourceTree = "<group>"; };
 		DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModel.swift; sourceTree = "<group>"; };
@@ -231,6 +248,7 @@
 				DE8B8F062BCE71D200AA5A53 /* TextFieldEffects in Frameworks */,
 				DE5A883D2BECB23500DB7D9D /* iamport-ios in Frameworks */,
 				DE8B8EA42BC7BF5000AA5A53 /* SnapKit in Frameworks */,
+				DE3A114C2BFCC3C1005DD177 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +294,17 @@
 			path = ShelterDetail;
 			sourceTree = "<group>";
 		};
+		DE3A11392BFC2568005DD177 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				DE3A113A2BFC2575005DD177 /* ChatView.swift */,
+				DE3A113C2BFC2593005DD177 /* ChatViewModel.swift */,
+				DE3A113E2BFC25AB005DD177 /* ChatViewController.swift */,
+				DE3A11462BFCB67B005DD177 /* ChatTableViewCell.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		DE527F5F2BD685690081C68E /* NetworkErrorManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +317,7 @@
 		DE8B8E892BC76EAE00AA5A53 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				DE3A11392BFC2568005DD177 /* Chat */,
 				DE8F6D192BDFD42500074A6C /* Funding */,
 				DE8F6D112BDFD31800074A6C /* Shelter */,
 				DE8B8F112BCFA06100AA5A53 /* Post */,
@@ -376,6 +406,7 @@
 				DE8B8F6F2BD52D2000AA5A53 /* ProfileQuery.swift */,
 				DEB14EB02BD93F3A00B7A0AC /* LikeQuery.swift */,
 				DE5A882A2BEC89D000DB7D9D /* PaymentQuery.swift */,
+				DE3A11422BFC3518005DD177 /* ChatQuery.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -392,6 +423,7 @@
 				DE5A882C2BEC8A1C00DB7D9D /* PaymentModel.swift */,
 				DE3A10872BF064A2005DD177 /* AccountModel.swift */,
 				DE3A10FA2BF4956A005DD177 /* ShelterModel.swift */,
+				DE3A11442BFCB07A005DD177 /* ChatModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -472,6 +504,7 @@
 				DEB14EA82BD8E7AB00B7A0AC /* FollowRouter.swift */,
 				DEB14EAC2BD93EE700B7A0AC /* LikeRouter.swift */,
 				DE5A87E32BEC556C00DB7D9D /* PaymentRouter.swift */,
+				DE3A11402BFC2945005DD177 /* ChatRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -494,6 +527,7 @@
 				DEB14EAA2BD931DC00B7A0AC /* UserDefault.swift */,
 				DE8F6D0F2BDF978B00074A6C /* DataManager.swift */,
 				DE8F90B72BE37E1F00E41A98 /* DateManager.swift */,
+				DE3A11482BFCC386005DD177 /* SocketIOManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -664,6 +698,7 @@
 				DE5A883C2BECB23500DB7D9D /* iamport-ios */,
 				DE3A108A2BF0AF37005DD177 /* Toast */,
 				DE3A10FF2BF499C9005DD177 /* Alamofire */,
+				DE3A114B2BFCC3C1005DD177 /* SocketIO */,
 			);
 			productName = PuDingProj;
 			productReference = DE9CEC0C2BC646BB00360192 /* PuDingProj.app */;
@@ -701,6 +736,7 @@
 				DE5A883B2BECB23500DB7D9D /* XCRemoteSwiftPackageReference "iamport-ios" */,
 				DE3A10892BF0AF37005DD177 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				DE3A10FE2BF499C9005DD177 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DE3A114A2BFCC3C1005DD177 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = DE9CEC0D2BC646BB00360192 /* Products */;
 			projectDirPath = "";
@@ -745,6 +781,7 @@
 				DE179CB62BDB2BA3000A74C7 /* EditMyInfoViewController.swift in Sources */,
 				DE5A882D2BEC8A1C00DB7D9D /* PaymentModel.swift in Sources */,
 				DE8B8EC42BCABA1500AA5A53 /* MyInfoView.swift in Sources */,
+				DE3A11452BFCB07A005DD177 /* ChatModel.swift in Sources */,
 				DE9CEC102BC646BB00360192 /* AppDelegate.swift in Sources */,
 				DE8B8F152BCFA1B200AA5A53 /* CommunitiyViewController.swift in Sources */,
 				DE8F6D092BDF91EE00074A6C /* CategoryView.swift in Sources */,
@@ -764,6 +801,7 @@
 				DE8B8F5F2BD3B80300AA5A53 /* PostDetailViewController.swift in Sources */,
 				DE8B8F722BD52EB000AA5A53 /* ProfileModel.swift in Sources */,
 				DE8B8F1E2BCFC68000AA5A53 /* PostModel.swift in Sources */,
+				DE3A11412BFC2945005DD177 /* ChatRouter.swift in Sources */,
 				DE8B8F632BD3B82C00AA5A53 /* PostDetailViewModel.swift in Sources */,
 				DE3A11042BF4DC2B005DD177 /* PinterestLayout.swift in Sources */,
 				DEA63C4F2BEE1E7800B586CB /* FudingPaymentViewModel.swift in Sources */,
@@ -772,6 +810,7 @@
 				DE8B8F832BD634C900AA5A53 /* NetworkErrorManager.swift in Sources */,
 				DE3A10882BF064A2005DD177 /* AccountModel.swift in Sources */,
 				DEA63C4B2BEE0BD300B586CB /* FundingPaymentViewController.swift in Sources */,
+				DE3A113F2BFC25AB005DD177 /* ChatViewController.swift in Sources */,
 				DE8B8EAC2BC7C65700AA5A53 /* AccountRouter.swift in Sources */,
 				DE5A882B2BEC89D000DB7D9D /* PaymentQuery.swift in Sources */,
 				DEDDB6622BE7B49E00AAF732 /* MyInfoTableViewCell.swift in Sources */,
@@ -781,12 +820,15 @@
 				DE8B8F612BD3B81700AA5A53 /* PostDetailView.swift in Sources */,
 				DE8F90C42BE7193300E41A98 /* FundingDetailView.swift in Sources */,
 				DE8B8EEE2BCD203000AA5A53 /* LoginViewModel.swift in Sources */,
+				DE3A11472BFCB67B005DD177 /* ChatTableViewCell.swift in Sources */,
 				DE8B8EA82BC7C4C900AA5A53 /* UIView+Extension.swift in Sources */,
 				DE179CB82BDB2BB9000A74C7 /* EditMyInfoViewModel.swift in Sources */,
 				DE9CEC272BC6473500360192 /* APIKey.swift in Sources */,
 				DEB14EAF2BD93F3000B7A0AC /* LikeModel.swift in Sources */,
 				DE8F6D0E2BDF964900074A6C /* CategoryViewModel.swift in Sources */,
 				DE3A110C2BF61D61005DD177 /* ShelterDetailView.swift in Sources */,
+				DE3A113B2BFC2575005DD177 /* ChatView.swift in Sources */,
+				DE3A113D2BFC2593005DD177 /* ChatViewModel.swift in Sources */,
 				DE8B8EA62BC7C27000AA5A53 /* BaseView.swift in Sources */,
 				DE8B8EBD2BC7E1FE00AA5A53 /* NetworkManager.swift in Sources */,
 				DE8B8F1A2BCFC5DB00AA5A53 /* PostRouter.swift in Sources */,
@@ -800,6 +842,7 @@
 				DEB14EA92BD8E7AB00B7A0AC /* FollowRouter.swift in Sources */,
 				DEA63C4D2BEE1E6E00B586CB /* FudingPaymentView.swift in Sources */,
 				DE9CEC122BC646BB00360192 /* SceneDelegate.swift in Sources */,
+				DE3A11492BFCC386005DD177 /* SocketIOManager.swift in Sources */,
 				DE8B8F702BD52D2000AA5A53 /* ProfileQuery.swift in Sources */,
 				DE8B8F242BCFCDEA00AA5A53 /* CommunityTableViewCell.swift in Sources */,
 				DE8F6D202BDFD7D300074A6C /* FundingViewModel.swift in Sources */,
@@ -813,6 +856,7 @@
 				DE8B8F3B2BD110EE00AA5A53 /* RegistPostView.swift in Sources */,
 				DE8B8EC92BCBC81100AA5A53 /* MainTabBarController.swift in Sources */,
 				DE8F90C82BE7197200E41A98 /* FundingDetailViewModel.swift in Sources */,
+				DE3A11432BFC3519005DD177 /* ChatQuery.swift in Sources */,
 				DE8F6D342BE1FDE100074A6C /* FundingTableViewCell.swift in Sources */,
 				DE6A5BD72BE2559500D9578F /* RegistPostImageCollectionViewCell.swift in Sources */,
 				DE179CB42BDB2B31000A74C7 /* EditMyInfoView.swift in Sources */,
@@ -1078,6 +1122,14 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		DE3A114A2BFCC3C1005DD177 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 16.1.0;
+			};
+		};
 		DE5A883B2BECB23500DB7D9D /* XCRemoteSwiftPackageReference "iamport-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/iamport/iamport-ios.git";
@@ -1130,6 +1182,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE3A10FE2BF499C9005DD177 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		DE3A114B2BFCC3C1005DD177 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE3A114A2BFCC3C1005DD177 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
 		};
 		DE5A883C2BECB23500DB7D9D /* iamport-ios */ = {
 			isa = XCSwiftPackageProductDependency;

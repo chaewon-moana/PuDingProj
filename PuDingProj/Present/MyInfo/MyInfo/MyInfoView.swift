@@ -22,9 +22,10 @@ final class MyInfoView: BaseView {
     let mypostTableView = UITableView()
     let fundingInfoLabel = UILabel()
     let fundingPriceLabel = UILabel()
+    let testButton = UIButton()
     
     override func configureViewLayout() {
-        self.addSubviews([profileImageView, nicknameLabel, followerLabel, followingLabel, firstUnderLine, mypostLabel, withdrawButton, mypostTableView, fundingInfoLabel, fundingPriceLabel])
+        self.addSubviews([profileImageView, nicknameLabel, followerLabel, followingLabel, firstUnderLine, mypostLabel, withdrawButton, mypostTableView, fundingInfoLabel, fundingPriceLabel, testButton])
         profileImageView.snp.makeConstraints { make in
             make.size.equalTo(80)
             make.top.leading.equalTo(self.safeAreaLayoutGuide).offset(16)
@@ -40,6 +41,10 @@ final class MyInfoView: BaseView {
         followingLabel.snp.makeConstraints { make in
             make.leading.equalTo(followerLabel.snp.trailing).offset(4)
             make.top.equalTo(nicknameLabel.snp.bottom).offset(4)
+        }
+        testButton.snp.makeConstraints { make in
+            make.top.equalTo(followerLabel.snp.bottom).offset(4)
+            make.leading.equalTo(profileImageView.snp.trailing).offset(12)
         }
 
         firstUnderLine.snp.makeConstraints { make in
@@ -89,6 +94,8 @@ final class MyInfoView: BaseView {
     
     
     override func configureAttribute() {
+        testButton.setTitle("채팅하기", for: .normal)
+        
         mypostLabel.text = "MY POST"
         withdrawButton.setTitle("탈퇴", for: .normal)
         withdrawButton.titleLabel?.font = .systemFont(ofSize: 12)

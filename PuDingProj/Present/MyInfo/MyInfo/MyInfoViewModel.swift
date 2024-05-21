@@ -17,12 +17,14 @@ final class MyInfoViewModel {
         let inputTrigger: Observable<Void>
         let withdrawButtonTapped: Observable<Void>
         let settingButtonTapped: Observable<Void>
+        let moveChat: Observable<Void>
     }
     
     struct Output {
         let profileInfo: Observable<InqueryProfileModel>
         let moveToEditInfo: Observable<InqueryProfileModel>
         let resultList: Driver<[RegisterPostModel]>
+        let moveToChat: Driver<Void>
     }
 
     func transform(input: Input) -> Output {
@@ -90,6 +92,7 @@ final class MyInfoViewModel {
 
         return Output(profileInfo: profile.asObservable(),
                       moveToEditInfo: editProfile.asObservable().asObservable(),
-                      resultList: resultPostList.asDriver(onErrorJustReturn: []))
+                      resultList: resultPostList.asDriver(onErrorJustReturn: []),
+                      moveToChat: input.moveChat.asDriver(onErrorJustReturn: ()))
     }
 }

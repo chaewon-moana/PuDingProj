@@ -41,9 +41,17 @@ class MyInfoViewController: BaseViewController {
         
         let input = MyInfoViewModel.Input(inputTrigger: trigger.asObservable(),
                                           withdrawButtonTapped: mainView.withdrawButton.rx.tap.asObservable(),
-                                          settingButtonTapped: editButton.rx.tap.asObservable())
+                                          settingButtonTapped: editButton.rx.tap.asObservable(),
+                                          moveChat: mainView.testButton.rx.tap.asObservable())
         
         let output = viewModel.transform(input: input)
+        
+        output.moveToChat
+            .drive(with: self) { owner, _ in
+                let vc = ChatViewController()
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
         
         output.profileInfo
             .subscribe(with: self) { owner, model in
