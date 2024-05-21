@@ -25,6 +25,10 @@ final class ChatTableViewCell: UITableViewCell {
         }
     }
     
+    func updateUI(item: RealChat) {
+        chatLabel.text = item.content
+    }
+    
     private func configureAttribute() {
         chatLabel.backgroundColor = .blue
         chatLabel.textColor = .white

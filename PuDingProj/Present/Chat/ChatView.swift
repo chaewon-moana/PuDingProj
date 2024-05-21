@@ -17,9 +17,13 @@ final class ChatView: BaseView {
    
     override func configureViewLayout() {
         self.addSubviews([chatTableView, chatSendView])
+        chatTableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     override func configureAttribute() {
-        
+        self.backgroundColor = .yellow
+        chatTableView.backgroundColor = .blue
     }
 }

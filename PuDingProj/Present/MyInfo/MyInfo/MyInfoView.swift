@@ -95,6 +95,7 @@ final class MyInfoView: BaseView {
     
     override func configureAttribute() {
         testButton.setTitle("채팅하기", for: .normal)
+        testButton.backgroundColor = .yellow
         
         mypostLabel.text = "MY POST"
         withdrawButton.setTitle("탈퇴", for: .normal)
