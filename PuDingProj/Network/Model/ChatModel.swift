@@ -11,11 +11,11 @@ struct ChatRoomModel: Decodable {
     let room_id: String
     let createdAt: String
     let updatedAt: String
-    let participants: [ChatRoomInfo]
+    let participants: [SenderInfo]
     let lastChat: LastChatInfo?
 }
 
-struct ChatRoomInfo: Decodable {
+struct SenderInfo: Decodable {
     let user_id: String
     let nick: String
     let profileImage: String?
@@ -26,7 +26,7 @@ struct LastChatInfo: Decodable {
     let room_id: String
     let content: String
     let createdAt: String
-    let sender: ChatRoomInfo
+    let sender: SenderInfo
     let files: [String]?
 }
 
@@ -43,7 +43,7 @@ struct SendChatModel: Decodable {
     let room_id: String
     let content: String?
     let createdAt: String
-    let sender: ChatRoomInfo
+    let sender: SenderInfo
     let files: [String]?
 }
 

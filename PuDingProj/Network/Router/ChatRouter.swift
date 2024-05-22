@@ -11,7 +11,7 @@ import Alamofire
 enum ChatRouter {
     case makeChatRoom(query: ChatRoomQuery)
     case inqueryChatRoomList
-    case inqueryChat(id: String, query: String)
+    case inqueryChat(id: String, query: String?)
     case sendChat(id: String, query: SendChatQuery)
     case sendImageChat(id: String, query: SendChatImageQuery)
 }

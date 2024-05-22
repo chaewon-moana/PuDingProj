@@ -39,7 +39,6 @@ final class ChatView: BaseView {
     }
     
     override func configureAttribute() {
-        self.backgroundColor = .yellow
         chatTableView.backgroundColor = .blue
         chatSendView.backgroundColor = .green
         chatSendButton.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)

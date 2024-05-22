@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RealmSwift
 
 class ChatViewController: BaseViewController {
     
@@ -16,9 +17,14 @@ class ChatViewController: BaseViewController {
     let trigger = PublishRelay<Void>()
     var list: [RealChat] = []
     var chatList = PublishRelay<[RealChat]>()
+    var roomInfo: InqueryChatModel!
+    var backButton = UIBarButtonItem(title: "백", style: .plain, target: nil, action: nil)
     
     override func viewDidLoad() {
+        let realm = try! Realm()
+        print(realm.configuration.fileURL)
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = backButton
         navigationItem.title = "채애티잉"
         SocketIOManager.shared.establishConnection()
         trigger.accept(())
@@ -28,13 +34,14 @@ class ChatViewController: BaseViewController {
                 cell.updateUI(item: item)
             }
             .disposed(by: disposeBag)
-        
     }
     
     override func bind() {
         let input = ChatViewModel.Input(inputTrigger: trigger.asObservable(),
                                         sendButtonTapped: mainView.chatSendButton.rx.tap.asObservable(),
-                                        sendText: mainView.chatTextField.rx.text.asObservable())
+                                        sendText: mainView.chatTextField.rx.text.asObservable(),
+                                        backButtonTapped: backButton.rx.tap.asObservable(),
+                                        roomID: Observable.just("664ca7712b0224d656165bdd"))
         
         let output = viewModel.transform(input: input)
         
@@ -45,6 +52,11 @@ class ChatViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.backButtonTapped
+            .drive(with: self) { owner, _ in
+                owner.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
         
     }
     

@@ -49,6 +49,7 @@ class MyInfoViewController: BaseViewController {
         output.moveToChat
             .drive(with: self) { owner, _ in
                 let vc = ChatViewController()
+                //TODO: Realm 연결
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
