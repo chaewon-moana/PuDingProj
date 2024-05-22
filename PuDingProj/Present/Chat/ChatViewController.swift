@@ -32,7 +32,9 @@ class ChatViewController: BaseViewController {
     }
     
     override func bind() {
-        let input = ChatViewModel.Input(inputTrigger: trigger.asObservable())
+        let input = ChatViewModel.Input(inputTrigger: trigger.asObservable(),
+                                        sendButtonTapped: mainView.chatSendButton.rx.tap.asObservable(),
+                                        sendText: mainView.chatTextField.rx.text.asObservable())
         
         let output = viewModel.transform(input: input)
         
