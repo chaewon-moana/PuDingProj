@@ -19,7 +19,8 @@ final class ChatView: BaseView {
         self.addSubviews([chatTableView, chatSendView])
         chatSendView.addSubviews([chatTextField, chatSendButton])
         chatTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(chatSendView.snp.top)
         }
         chatSendView.snp.makeConstraints { make in
             make.height.equalTo(50)

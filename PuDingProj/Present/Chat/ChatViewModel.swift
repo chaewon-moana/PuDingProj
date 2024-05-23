@@ -17,6 +17,7 @@ final class ChatViewModel {
     private var chatReceivedObserver: NSObjectProtocol?
     let repo = ChatRepository()
     
+    
     struct Input {
         let inputTrigger: Observable<Void>
         let sendButtonTapped: Observable<Void>
@@ -31,10 +32,7 @@ final class ChatViewModel {
     }
     
     deinit {
-        if let observer = chatReceivedObserver {
-            NotificationCenter.default.removeObserver(observer)
-            print("소켓 연결 끊긴 거 deinit으로 확인했어요!")
-        }
+        SocketIOManager.shared.leaveConnection()
     }
     
     func transform(input: Input) -> Output {
@@ -46,7 +44,7 @@ final class ChatViewModel {
         input.backButtonTapped
             .withLatestFrom(input.roomID)
             .flatMap { id in
-                return NetworkManager.requestNetwork(router: .chat(.inqueryChat(id: id, query: nil)), modelType: InqueryChatModel.self)
+                return NetworkManager.requestNetwork(router: .chat(.inqueryChat(id: id, query: "")), modelType: InqueryChatModel.self)
             }
             .subscribe(with: self) { owner, model in
                 print(model.data.count, "대체 몇개가 받아와지는거야")
@@ -69,7 +67,15 @@ final class ChatViewModel {
         //TODO: 여기서 뭐 처리를 안해줘도 됨??
             .subscribe(with: self) { owner, model in
                 let item = RealChat(content: model.content!, createdAt: model.createdAt)
-                print("보내짐", owner.messages)
+                print("보내짐")
+            }
+            .disposed(by: disposeBag)
+        
+        SocketIOManager.shared.receivedData
+            .subscribe(with: self) { owner, chat in
+                print("뷰모델에서 받음!")
+                owner.messages.append(chat)
+                outputMessage.accept(owner.messages)
             }
             .disposed(by: disposeBag)
         
@@ -77,15 +83,22 @@ final class ChatViewModel {
             .subscribe(with: self) { owner, _ in
                 //TODO: 넘어오면서 받은 데이터 넣기
                // repo.addChatList(data: EachChatInfo)
-                
-                owner.chatReceivedObserver = NotificationCenter.default.addObserver(forName: .chatReceived, object: nil, queue: nil) { notification in
-                           if let chat = notification.object as? RealChat {
-                               print("Received chat in ViewModel:", chat)
-                               owner.messages.append(chat)
-                               outputMessage.accept(owner.messages)
-                               print("호옥시 너도 되는거니")
-                           }
-                       }
+                SocketIOManager.shared.establishConnection()
+//
+//                owner.chatReceivedObserver = NotificationCenter.default.addObserver(forName: .chatReceived, object: nil, queue: nil) { notification in
+//                           if let chat = notification.object as? RealChat {
+//                               print("Received chat in ViewModel:", chat)
+//                               owner.messages.append(chat)
+//                               outputMessage.accept(owner.messages)
+//                           }
+//                       }
+                let list = owner.repo.fetchChatList()
+                for item in list {
+                    let chat = RealChat(content: item.content, createdAt: item.createdAt)
+                    owner.messages.append(chat)
+                }
+                print("되나용")
+                outputMessage.accept(owner.messages)
             }
             .disposed(by: disposeBag)
         

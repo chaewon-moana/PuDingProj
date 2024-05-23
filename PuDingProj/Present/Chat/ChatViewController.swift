@@ -36,6 +36,11 @@ class ChatViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        trigger.accept(())
+    }
+    
     override func bind() {
         let input = ChatViewModel.Input(inputTrigger: trigger.asObservable(),
                                         sendButtonTapped: mainView.chatSendButton.rx.tap.asObservable(),
