@@ -34,7 +34,5 @@ final class TokenManager: RequestInterceptor {
                 completion(.doNotRetryWithError(error))
             }
             .disposed(by: disposeBag)
-        
-        
     }
 }

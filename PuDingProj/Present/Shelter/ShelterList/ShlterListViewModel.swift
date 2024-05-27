@@ -9,10 +9,11 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+
 final class ShelterListViewModel {
     
     let disposeBag = DisposeBag()
-    
+
     struct Input {
         let Trigger: Observable<Void>
         let paginationTrigger: Observable<Void>

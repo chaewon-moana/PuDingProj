@@ -64,10 +64,7 @@ class ChatViewController: BaseViewController {
             .disposed(by: disposeBag)
         
     }
-    
     override func loadView() {
         view = mainView
     }
-   
-
 }

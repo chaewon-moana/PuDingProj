@@ -39,8 +39,7 @@ final class ChatViewModel {
         let outputMessage = BehaviorRelay(value: messages)
         let backButtonTapped = PublishRelay<Void>()
         //TODO: 이전화면에서 넘겨받는 걸로 변경
-        let roomID = BehaviorRelay(value: "664ca7712b0224d656165bdd")
-        
+
         input.backButtonTapped
             .withLatestFrom(input.roomID)
             .flatMap { id in
@@ -81,17 +80,7 @@ final class ChatViewModel {
         
         input.inputTrigger
             .subscribe(with: self) { owner, _ in
-                //TODO: 넘어오면서 받은 데이터 넣기
-               // repo.addChatList(data: EachChatInfo)
                 SocketIOManager.shared.establishConnection()
-//
-//                owner.chatReceivedObserver = NotificationCenter.default.addObserver(forName: .chatReceived, object: nil, queue: nil) { notification in
-//                           if let chat = notification.object as? RealChat {
-//                               print("Received chat in ViewModel:", chat)
-//                               owner.messages.append(chat)
-//                               outputMessage.accept(owner.messages)
-//                           }
-//                       }
                 let list = owner.repo.fetchChatList()
                 for item in list {
                     let chat = RealChat(content: item.content, createdAt: item.createdAt)
